@@ -1,0 +1,13 @@
+<%inherit file="/admin/base.mako"/>
+
+<%def name="title()">Editovat úlohu</%def>
+
+<%def name="body()">
+    ${h.form_start(h.url_for(controller="admin", action="edit_task_submit"), method="post", multipart=True)}
+    ${h.hidden(name="tid", value=c.id)}
+    ${h.field("Název úlohy", h.text(name="name", value=c.name))}
+    ${h.field("Popis úlohy", h.textarea(name="description", value=c.description, rows=20, cols=80))}
+    ${h.field("Testy", h.file(name="tests"))}
+    ${h.field("", h.submit("submit", "Odeslat"))}
+    ${h.form_end()}
+</%def>

@@ -1,0 +1,16 @@
+<%inherit file="/base.html"/>
+
+<%def name="title()">Administrace</%def>
+
+<%def name="body()">
+    <div id="admin_menu">
+        <ul>
+            <li><a href=${h.url_for(controller="admin", action="add_user")}>Přidat uživatele</a></li>
+            <li><a href=${h.url_for(controller="admin", action="add_task")}>Přidat úlohu</a></li>
+        </ul>
+    </div>
+
+    ${next.body()}
+
+</%def>
+

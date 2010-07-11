@@ -1,0 +1,17 @@
+<%inherit file="/admin/base.mako"/>
+
+<%def name="title()">Přidat uživatele</%def>
+
+<%def name="body()">
+${h.form_start(h.url_for(controller="admin", action="add_user_submit"), method="post")}
+    ${h.field("Login", h.text("login"))}
+    ${h.field("Jméno", h.text("name"))}
+    ${h.field("Příjmení", h.text("surname"))}
+    ${h.field("Heslo", h.password("password"))}
+    ${h.field("Znovu heslo", h.password("control"))}
+    ${h.field("", h.submit("submit", "Odeslat"))}
+${h.form_end()}
+</%def>
+
+
+

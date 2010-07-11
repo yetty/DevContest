@@ -1,0 +1,17 @@
+<%inherit file="/base.mako"/>
+
+<%def name="title()">Administrace - ${next.title()}</%def>
+
+<%def name="body()">
+    <div id="admin_menu">
+        <ul>
+            <li><a href=${h.url_for(controller="admin", action="add_user")}>Přidat uživatele</a></li>
+            <li><a href=${h.url_for(controller="admin", action="add_task")}>Přidat úlohu</a></li>
+            <li><a href=${h.url_for(controller="admin", action="edit_task")}>Editovat úlohu</a></li>
+        </ul>
+    </div>
+
+    ${next.body()}
+
+</%def>
+
