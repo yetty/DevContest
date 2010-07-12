@@ -1,0 +1,1 @@
+Program AxB; { *************************************************** * Ilustracni priklad pro PILSPROG * * netrvalo * * Time&date: 20:51 6.8.2007 * * Provede soucin n dvojic zadanych celych cisel * *************************************************** } var i,n : integer; a,b : longint; begin read(n); for i:=1 to n do begin read (a,b); writeln(a * b); end end.
