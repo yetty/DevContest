@@ -1,3 +1,4 @@
 include devcontest/config/deployment.ini_tmpl
+recursive-include data *
 recursive-include devcontest/public *
 recursive-include devcontest/templates *
