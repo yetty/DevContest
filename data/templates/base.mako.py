@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 5
-_modified_time = 1273930425.6374171
+_modified_time = 1278950440.1073771
 _template_filename=u'/home/yetty/Work/Development/DevContest/devcontest/templates/base.mako'
 _template_uri=u'/base.mako'
 _template_cache=cache.Cache(__name__, _modified_time)
@@ -33,18 +33,21 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         h = context.get('h', UNDEFINED)
-        login = _mako_get_namespace(context, 'login')
+        next = context.get('next', UNDEFINED)
         session = context.get('session', UNDEFINED)
         menu = _mako_get_namespace(context, 'menu')
-        next = context.get('next', UNDEFINED)
+        login = _mako_get_namespace(context, 'login')
+        _ = context.get('_', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 1
         __M_writer(u'')
         # SOURCE LINE 2
         __M_writer(u'')
         # SOURCE LINE 3
-        __M_writer(u'<html>\n<head>\n    <meta http-equiv="content-type" content="text/html; charset=utf-8" />\n    <title>DevContest - ')
+        __M_writer(u'<html>\n<head>\n    <meta http-equiv="content-type" content="text/html; charset=utf-8" />\n    <title>')
         # SOURCE LINE 6
+        __M_writer(escape(_('DevContest')))
+        __M_writer(u' - ')
         __M_writer(escape(next.title()))
         __M_writer(u'</title>\n    <link rel="shortcut icon" href="/icon.png">\n    ')
         # SOURCE LINE 8
@@ -88,13 +91,18 @@ def render_body(context,**pageargs):
         __M_writer(u'\n    <div id="header">\n    <h1><a href=')
         # SOURCE LINE 38
         __M_writer(escape(h.url_for(controller="home", action="index")))
-        __M_writer(u'>DevContest</a></h1>\n    </div>\n    <div id="left_nav">\n    <div id="menu">\n        ')
+        __M_writer(u'>')
+        __M_writer(escape(_('DevContest')))
+        __M_writer(u'</a></h1>\n    </div>\n    <div id="left_nav">\n    <div id="menu">\n        ')
         # SOURCE LINE 42
         __M_writer(escape(menu.menu()))
         __M_writer(u'\n    </div>\n\n    <div id="login_box">\n        ')
         # SOURCE LINE 46
         __M_writer(escape(login.login_box()))
-        __M_writer(u'\n    </div>\n    <br/>\n    <a href="http://python.org" alt="Python"><img src="/python-powered-w-70x28.png" alt="Python powered"/></a>\n    </div>\n\n    <div id="content">\n        ')
+        __M_writer(u'\n    </div>\n    <br/>\n    <a href="http://python.org" alt="Python"><img src="/python-powered-w-70x28.png" alt="')
+        # SOURCE LINE 49
+        __M_writer(escape(_('Python powered')))
+        __M_writer(u'"/></a>\n    </div>\n\n    <div id="content">\n        ')
         # SOURCE LINE 53
         __M_writer(escape(next.body()))
         __M_writer(u'\n    </div>\n</body>\n</html>\n')

@@ -1,12 +1,10 @@
 <%inherit file="/base.mako"/>
 
-<%def name="title()">Vítejte</%def>
+<%def name="title()">${_('Welcome')}</%def>
 
 <%def name="body()">
-<h2>Vítejte v programátorské soutěži.</h2> 
+<h2>${_('Welcome in contest of developpers')}</h2>
 <p>
-Zde si vyzkoušíte, co vše jste se z programování naučili. Nemusíte se bát,
-úlohy jsou všech různých obtížností a věříme, že nikdo nezůstane bezradně
-zírat.
+${_('There is a place to try, what you can do and if you are better than your classmattes. Dont worry, there is simply tasks, too.')}
 </p>
 </%def>

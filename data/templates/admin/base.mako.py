@@ -4,9 +4,9 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 5
-_modified_time = 1274518312.3841741
+_modified_time = 1278951781.4178369
 _template_filename=u'/home/yetty/Work/Development/DevContest/devcontest/templates/admin/base.mako'
-_template_uri=u'/admin/base.mako'
+_template_uri=u'admin/base.mako'
 _template_cache=cache.Cache(__name__, _modified_time)
 _source_encoding='utf-8'
 from webhelpers.html import escape
@@ -58,10 +58,12 @@ def render_body(context):
 def render_title(context):
     context.caller_stack._push_frame()
     try:
+        _ = context.get('_', UNDEFINED)
         next = context.get('next', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
-        __M_writer(u'Administrace :: ')
+        __M_writer(escape(_('Administration')))
+        __M_writer(u' :: ')
         __M_writer(escape(next.title()))
         __M_writer(u' ')
         return ''

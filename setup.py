@@ -11,7 +11,8 @@ setup(
     description='Web interface for developers contests. Python, C, Pascal, PHP, Perl, Java',
     author='Juda Kaleta',
     author_email='juda.kaleta@gmail.com',
-    url='',
+    url='http://github.com/yetty/DevContest/',
+    license='GPL2',
     install_requires=[
         "Pylons==0.9.7",
         "routes==1.11",

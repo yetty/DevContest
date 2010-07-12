@@ -9,6 +9,10 @@ from pylons.controllers import WSGIController
 from pylons.templating import render_mako as render
 from pylons.controllers.util import abort, redirect_to
 
+from pylons.i18n import get_lang, set_lang
+
+from devcontest.lib.base import *
+
 from devcontest.model.meta import Session
 
 class BaseController(WSGIController):
@@ -22,6 +26,10 @@ class BaseController(WSGIController):
 				self.user = user
 		except:
 			pass
+
+		if 'lang' in session:
+			set_lang(session['lang'])
+
 
 	def __call__(self, environ, start_response):
 		"""Invoke the Controller"""

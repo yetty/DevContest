@@ -1,0 +1,426 @@
+# English translations for DevContest.
+# Copyright (C) 2010 ORGANIZATION
+# This file is distributed under the same license as the DevContest project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DevContest 0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2010-07-12 18:24+0200\n"
+"PO-Revision-Date: 2010-07-12 19:02+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.5\n"
+
+#: devcontest/templates/archiv.mako:3 devcontest/templates/archiv.mako:6
+msgid "The Archive"
+msgstr ""
+
+#: devcontest/templates/archiv.mako:10 devcontest/templates/archivTasks.mako:10
+#: devcontest/templates/contestTasks.mako:10 devcontest/templates/rank.mako:11
+#: devcontest/templates/top.mako:11 devcontest/templates/admin/user.mako:11
+msgid "Name"
+msgstr ""
+
+#: devcontest/templates/archiv.mako:11
+msgid "Started at"
+msgstr ""
+
+#: devcontest/templates/archiv.mako:18
+msgid "tasks"
+msgstr ""
+
+#: devcontest/templates/archiv.mako:19
+msgid "rank"
+msgstr ""
+
+#: devcontest/templates/archiv.mako:20
+#, python-format
+msgid "%d.%m.%Y"
+msgstr ""
+
+#: devcontest/templates/archiv.mako:26
+msgid "There are no contests in archive."
+msgstr ""
+
+#: devcontest/templates/archivTasks.mako:3
+#: devcontest/templates/archivTasks.mako:6
+msgid "Archiv :: list of tasks"
+msgstr ""
+
+#: devcontest/templates/archivTasks.mako:11
+msgid "Resolvers"
+msgstr ""
+
+#: devcontest/templates/auth.mako:3
+msgid "Logging..."
+msgstr ""
+
+#: devcontest/templates/base.mako:6 devcontest/templates/base.mako:38
+msgid "DevContest"
+msgstr ""
+
+#: devcontest/templates/base.mako:49
+msgid "Python powered"
+msgstr ""
+
+#: devcontest/templates/contestTasks.mako:3
+#: devcontest/templates/contestTasks.mako:6
+#: devcontest/templates/admin/contestTasks.mako:3
+#: devcontest/templates/admin/contestTasks.mako:6
+msgid "The List of Tasks"
+msgstr ""
+
+#: devcontest/templates/contestTasks.mako:11
+msgid "Time of solving"
+msgstr ""
+
+#: devcontest/templates/error.mako:3 devcontest/templates/error.mako:6
+msgid "Page wasnt found"
+msgstr ""
+
+#: devcontest/templates/error.mako:8
+msgid "We are sorry, but this page doesnt exist."
+msgstr ""
+
+#: devcontest/templates/home.mako:3
+msgid "Welcome"
+msgstr ""
+
+#: devcontest/templates/home.mako:6
+msgid "Welcome in contest of developpers"
+msgstr ""
+
+#: devcontest/templates/home.mako:8
+msgid ""
+"There is a place to try, what you can do and if you are better than your "
+"classmattes. Dont worry, there is simply tasks, too."
+msgstr ""
+
+#: devcontest/templates/login.mako:7 devcontest/templates/registration.mako:17
+#: devcontest/templates/user.mako:16
+#: devcontest/templates/admin/userEdit.mako:10
+msgid "Login"
+msgstr ""
+
+#: devcontest/templates/login.mako:8 devcontest/templates/registration.mako:19
+#: devcontest/templates/user.mako:18
+#: devcontest/templates/admin/userEdit.mako:12
+msgid "Password"
+msgstr ""
+
+#: devcontest/templates/login.mako:9
+msgid "Log in"
+msgstr ""
+
+#: devcontest/templates/login.mako:12 devcontest/templates/registration.mako:3
+#: devcontest/templates/registration.mako:6
+msgid "Registration"
+msgstr ""
+
+#: devcontest/templates/login.mako:14
+msgid "You are logged as"
+msgstr ""
+
+#: devcontest/templates/menu.mako:10
+msgid "Tasks"
+msgstr ""
+
+#: devcontest/templates/menu.mako:11
+msgid "Ranks"
+msgstr ""
+
+#: devcontest/templates/menu.mako:14
+msgid "Archive"
+msgstr ""
+
+#: devcontest/templates/menu.mako:15
+msgid "Documentation"
+msgstr ""
+
+#: devcontest/templates/menu.mako:16
+msgid "FAQ"
+msgstr ""
+
+#: devcontest/templates/menu.mako:20 devcontest/templates/admin/base.mako:3
+#: devcontest/templates/admin/index.mako:5
+msgid "Administration"
+msgstr ""
+
+#: devcontest/templates/menu.mako:22
+msgid "Contests"
+msgstr ""
+
+#: devcontest/templates/menu.mako:23
+msgid "Pages"
+msgstr ""
+
+#: devcontest/templates/menu.mako:24 devcontest/templates/admin/user.mako:3
+#: devcontest/templates/admin/user.mako:6
+msgid "Users"
+msgstr ""
+
+#: devcontest/templates/menu.mako:25
+msgid "Starters"
+msgstr ""
+
+#: devcontest/templates/menu.mako:30
+msgid "TOP10"
+msgstr ""
+
+#: devcontest/templates/menu.mako:31 devcontest/templates/user.mako:3
+#: devcontest/templates/user.mako:6 devcontest/templates/admin/userEdit.mako:3
+msgid "Profile"
+msgstr ""
+
+#: devcontest/templates/menu.mako:32
+msgid "Log out"
+msgstr ""
+
+#: devcontest/templates/rank.mako:3 devcontest/templates/rank.mako:6
+msgid "Rank"
+msgstr ""
+
+#: devcontest/templates/rank.mako:12 devcontest/templates/top.mako:13
+msgid "Count"
+msgstr ""
+
+#: devcontest/templates/rank.mako:13
+msgid "Time"
+msgstr ""
+
+#: devcontest/templates/rank.mako:27
+msgid "Nobody has any solutions. You can be the first."
+msgstr ""
+
+#: devcontest/templates/registration.mako:20 devcontest/templates/user.mako:19
+#: devcontest/templates/admin/userEdit.mako:13
+msgid "twice for sure"
+msgstr ""
+
+#: devcontest/templates/registration.mako:21 devcontest/templates/user.mako:20
+#: devcontest/templates/admin/userEdit.mako:14
+msgid "E-mail"
+msgstr ""
+
+#: devcontest/templates/registration.mako:25 devcontest/templates/user.mako:24
+#: devcontest/templates/admin/userEdit.mako:18
+msgid "First name"
+msgstr ""
+
+#: devcontest/templates/registration.mako:27 devcontest/templates/user.mako:26
+#: devcontest/templates/admin/userEdit.mako:20
+msgid "Last name"
+msgstr ""
+
+#: devcontest/templates/registration.mako:29 devcontest/templates/top.mako:12
+#: devcontest/templates/user.mako:28 devcontest/templates/admin/user.mako:12
+#: devcontest/templates/admin/userEdit.mako:22
+msgid "Class"
+msgstr ""
+
+#: devcontest/templates/registration.mako:33 devcontest/templates/task.mako:23
+#: devcontest/templates/admin/pageEdit.mako:13
+#: devcontest/templates/admin/taskEdit.mako:11
+#: devcontest/templates/admin/taskEdit.mako:46
+#: devcontest/templates/admin/userEdit.mako:30
+msgid "Submit"
+msgstr ""
+
+#: devcontest/templates/registration.mako:36
+msgid "Strong items are obliged"
+msgstr ""
+
+#: devcontest/templates/registration.mako:40
+msgid "Registration was succesful. You can log in by the box on the left."
+msgstr ""
+
+#: devcontest/templates/task.mako:6 devcontest/templates/admin/taskEdit.mako:7
+msgid "back to the contest"
+msgstr ""
+
+#: devcontest/templates/task.mako:12
+#: devcontest/templates/admin/taskEdit.mako:15
+msgid "Example of input"
+msgstr ""
+
+#: devcontest/templates/task.mako:13
+#: devcontest/templates/admin/taskEdit.mako:18
+msgid "Example of output"
+msgstr ""
+
+#: devcontest/templates/task.mako:22
+msgid "Source code"
+msgstr ""
+
+#: devcontest/templates/task.mako:27
+msgid "The task was solved"
+msgstr ""
+
+#: devcontest/templates/task.mako:31
+msgid "Last version"
+msgstr ""
+
+#: devcontest/templates/top.mako:3 devcontest/templates/top.mako:6
+msgid "Ranking"
+msgstr ""
+
+#: devcontest/templates/top.mako:27 devcontest/templates/admin/user.mako:31
+msgid "Nobody?"
+msgstr ""
+
+#: devcontest/templates/user.mako:35
+msgid "Strong items are obliged."
+msgstr ""
+
+#: devcontest/templates/admin/contestList.mako:3
+#: devcontest/templates/admin/contestList.mako:6
+msgid "The List of Contests"
+msgstr ""
+
+#: devcontest/templates/admin/contestList.mako:13
+msgid "is running"
+msgstr ""
+
+#: devcontest/templates/admin/contestList.mako:19
+msgid "Pilsprog"
+msgstr ""
+
+#: devcontest/templates/admin/contestList.mako:21
+msgid "Normal"
+msgstr ""
+
+#: devcontest/templates/admin/contestList.mako:26
+msgid "Stop"
+msgstr ""
+
+#: devcontest/templates/admin/contestList.mako:28
+msgid "Start"
+msgstr ""
+
+#: devcontest/templates/admin/contestList.mako:31
+#: devcontest/templates/admin/contestTasks.mako:11
+#: devcontest/templates/admin/pageList.mako:11
+msgid "Edit"
+msgstr ""
+
+#: devcontest/templates/admin/contestList.mako:32
+#: devcontest/templates/admin/contestTasks.mako:12
+#: devcontest/templates/admin/pageList.mako:12
+#: devcontest/templates/admin/runners.mako:16
+msgid "Remove"
+msgstr ""
+
+#: devcontest/templates/admin/contestTasks.mako:18
+msgid "Name of task"
+msgstr ""
+
+#: devcontest/templates/admin/contestTasks.mako:19
+#: devcontest/templates/admin/pageList.mako:19
+#: devcontest/templates/admin/runners.mako:25
+msgid "Create"
+msgstr ""
+
+#: devcontest/templates/admin/pageEdit.mako:3
+#: devcontest/templates/admin/pageEdit.mako:10
+msgid "Editation of page"
+msgstr ""
+
+#: devcontest/templates/admin/pageList.mako:3
+#: devcontest/templates/admin/pageList.mako:6
+msgid "The List of Pages"
+msgstr ""
+
+#: devcontest/templates/admin/pageList.mako:18
+msgid "URL"
+msgstr ""
+
+#: devcontest/templates/admin/runners.mako:3
+#: devcontest/templates/admin/runners.mako:7
+msgid "The Settings of Compilators and Starters"
+msgstr ""
+
+#: devcontest/templates/admin/runners.mako:22
+msgid "Language (extension)"
+msgstr ""
+
+#: devcontest/templates/admin/runners.mako:23
+msgid "Compilator"
+msgstr ""
+
+#: devcontest/templates/admin/runners.mako:24
+msgid "Starter"
+msgstr ""
+
+#: devcontest/templates/admin/runners.mako:26
+msgid "for input"
+msgstr ""
+
+#: devcontest/templates/admin/runners.mako:26
+msgid "for output"
+msgstr ""
+
+#: devcontest/templates/admin/taskEdit.mako:3
+msgid "Editation of task"
+msgstr ""
+
+#: devcontest/templates/admin/taskEdit.mako:31
+msgid "Script for generating input"
+msgstr ""
+
+#: devcontest/templates/admin/taskEdit.mako:34
+msgid "Script for process"
+msgstr ""
+
+#: devcontest/templates/admin/taskEdit.mako:49
+msgid "Actually input"
+msgstr ""
+
+#: devcontest/templates/admin/taskEdit.mako:52
+msgid "Actually output"
+msgstr ""
+
+#: devcontest/templates/admin/taskEdit.mako:57
+#: devcontest/templates/admin/taskEdit.mako:64
+msgid "status"
+msgstr ""
+
+#: devcontest/templates/admin/taskEdit.mako:58
+#: devcontest/templates/admin/taskEdit.mako:65
+msgid "output"
+msgstr ""
+
+#: devcontest/templates/admin/taskEdit.mako:60
+#: devcontest/templates/admin/taskEdit.mako:67
+msgid "errors"
+msgstr ""
+
+#: devcontest/templates/admin/user.mako:20
+msgid "is administrator"
+msgstr ""
+
+#: devcontest/templates/admin/user.mako:24
+msgid "edit"
+msgstr ""
+
+#: devcontest/templates/admin/user.mako:25
+msgid "remove"
+msgstr ""
+
+#: devcontest/templates/admin/userEdit.mako:6
+msgid "back to the list"
+msgstr ""
+
+#: devcontest/templates/admin/userEdit.mako:7
+msgid "Editation of profile"
+msgstr ""
+
+#: devcontest/templates/admin/userEdit.mako:26
+msgid "Administrator"
+msgstr ""
+

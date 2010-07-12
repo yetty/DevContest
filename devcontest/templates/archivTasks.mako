@@ -1,14 +1,14 @@
 <%inherit file="/base.mako"/>
 
-<%def name="title()">Seznam otázek</%def>
+<%def name="title()">${_('Archiv :: list of tasks')}</%def>
 
 <%def name="body()">
-	<h2>Seznam soutěží</h2>
+	<h2>${_('Archiv :: list of tasks')}</h2>
 	<table class="dark">
 	<thead>
 		<th class="ns"></th>
-		<th width=80%>Název</th>
-		<th>Řešitelů</th>
+		<th width=80%>${_('Name')}</th>
+		<th>${_('Resolvers')}</th>
 	</thead>
 	% for i, task in enumerate(c.list):
 		<tr>

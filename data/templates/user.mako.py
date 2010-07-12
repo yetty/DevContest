@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 5
-_modified_time = 1274530048.847404
+_modified_time = 1278950467.0975621
 _template_filename='/home/yetty/Work/Development/DevContest/devcontest/templates/user.mako'
 _template_uri='user.mako'
 _template_cache=cache.Cache(__name__, _modified_time)
@@ -33,7 +33,7 @@ def render_body(context,**pageargs):
         __M_writer(u'\n\n')
         # SOURCE LINE 3
         __M_writer(u'\n\n')
-        # SOURCE LINE 42
+        # SOURCE LINE 39
         __M_writer(u'\n')
         return ''
     finally:
@@ -45,60 +45,79 @@ def render_body(context):
     try:
         h = context.get('h', UNDEFINED)
         c = context.get('c', UNDEFINED)
+        _ = context.get('_', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 5
-        __M_writer(u'\n<h2>Profil</h2>\n\n')
+        __M_writer(u'\n<h2>')
+        # SOURCE LINE 6
+        __M_writer(escape(_('Profile')))
+        __M_writer(u'</h2>\n\n')
         # SOURCE LINE 8
-        if not c.success:
+        if c.errors:
             # SOURCE LINE 9
-            if c.errors:
-                # SOURCE LINE 10
-                __M_writer(u'\t\t<ol id="errors">\n')
+            __M_writer(u'\t<ol id="errors">\n')
+            # SOURCE LINE 10
+            for error in c.errors:
                 # SOURCE LINE 11
-                for error in c.errors:
-                    # SOURCE LINE 12
-                    __M_writer(u'\t\t\t<li>')
-                    __M_writer(escape(error))
-                    __M_writer(u'</li>\n')
-                    pass
-                # SOURCE LINE 14
-                __M_writer(u'\t\t</ol>\n')
+                __M_writer(u'\t\t<li>')
+                __M_writer(escape(error))
+                __M_writer(u'</li>\n')
                 pass
-            # SOURCE LINE 16
-            __M_writer(u'\t')
-            __M_writer(escape(h.form(h.url_for(controller="user", action="save"), method="post")))
-            __M_writer(u'\n\t<label for="login" class="strong">Login:</label>\n\t')
-            # SOURCE LINE 18
-            __M_writer(escape(c.user.login))
-            __M_writer(u'<br/><br/>\n\t<label for="password" class="strong">Heslo:</label><br>\n\t')
-            # SOURCE LINE 20
-            __M_writer(escape(h.password('password')))
-            __M_writer(u' ')
-            __M_writer(escape(h.password('cpassword')))
-            __M_writer(u' <span class="info">(dvakr\xe1t pro kontrolu)</span><br/>\n\t<label for="mail" class="strong">E-mail:</label><br/>\n\t')
-            # SOURCE LINE 22
-            __M_writer(escape(h.text('mail', c.user.mail)))
-            __M_writer(u'<br/>\n\t<br>\n\n\t<label for="fname">Jm\xe9no:</label><br/>\n\t')
-            # SOURCE LINE 26
-            __M_writer(escape(h.text('fname', c.user.fname)))
-            __M_writer(u'<br/>\n\t<label for="lname">P\u0159\xedjmen\xed:</label><br/>\n\t')
-            # SOURCE LINE 28
-            __M_writer(escape(h.text('lname', c.user.lname)))
-            __M_writer(u'<br/>\n\t<label for="class">T\u0159\xedda:</label><br/>\n\t')
-            # SOURCE LINE 30
-            __M_writer(escape(h.text('cls', c.user.cls)))
-            __M_writer(u'<br/>\n\t<br/>\n\n\t')
-            # SOURCE LINE 33
-            __M_writer(escape(h.submit('submit', 'Upravit')))
-            __M_writer(u'\n\n\t<p class="info">\n\t\tTu\u010dn\u011b zv\xfdrazn\u011bn\xe9 polo\u017eky jsou povinn\xe9.\n\t</p>\n\t')
-            # SOURCE LINE 38
-            __M_writer(escape(h.end_form()))
-            __M_writer(u'\n')
-            # SOURCE LINE 39
-        else:
-            # SOURCE LINE 40
-            __M_writer(u'\t<p>Registrace byla \xfasp\u011b\u0161n\xe1. Nyn\xed se m\u016f\u017eete p\u0159ihl\xe1sit formul\xe1\u0159em vlevo.</p>\n')
+            # SOURCE LINE 13
+            __M_writer(u'\t</ol>\n')
             pass
+        # SOURCE LINE 15
+        __M_writer(escape(h.form(h.url_for(controller="user", action="save"), method="post")))
+        __M_writer(u'\n<label for="login" class="strong">')
+        # SOURCE LINE 16
+        __M_writer(escape(_('Login')))
+        __M_writer(u':</label>\n')
+        # SOURCE LINE 17
+        __M_writer(escape(c.user.login))
+        __M_writer(u'<br/><br/>\n<label for="password" class="strong">')
+        # SOURCE LINE 18
+        __M_writer(escape(_('Password')))
+        __M_writer(u':</label><br>\n')
+        # SOURCE LINE 19
+        __M_writer(escape(h.password('password')))
+        __M_writer(u' ')
+        __M_writer(escape(h.password('cpassword')))
+        __M_writer(u' <span class="info">')
+        __M_writer(escape(_('twice for sure')))
+        __M_writer(u'</span><br/>\n<label for="mail" class="strong">')
+        # SOURCE LINE 20
+        __M_writer(escape(_('E-mail')))
+        __M_writer(u':</label><br/>\n')
+        # SOURCE LINE 21
+        __M_writer(escape(h.text('mail', c.user.mail)))
+        __M_writer(u'<br/>\n<br>\n\n<label for="fname">')
+        # SOURCE LINE 24
+        __M_writer(escape(_('First name')))
+        __M_writer(u':</label><br/>\n')
+        # SOURCE LINE 25
+        __M_writer(escape(h.text('fname', c.user.fname)))
+        __M_writer(u'<br/>\n<label for="lname">')
+        # SOURCE LINE 26
+        __M_writer(escape(_('Last name')))
+        __M_writer(u':</label><br/>\n')
+        # SOURCE LINE 27
+        __M_writer(escape(h.text('lname', c.user.lname)))
+        __M_writer(u'<br/>\n<label for="class">')
+        # SOURCE LINE 28
+        __M_writer(escape(_('Class')))
+        __M_writer(u':</label><br/>\n')
+        # SOURCE LINE 29
+        __M_writer(escape(h.text('cls', c.user.cls)))
+        __M_writer(u'<br/>\n<br/>\n\n')
+        # SOURCE LINE 32
+        __M_writer(escape(h.submit('submit', 'Upravit')))
+        __M_writer(u'\n\n<p class="info">\n\t')
+        # SOURCE LINE 35
+        __M_writer(escape(_('Strong items are obliged.')))
+        __M_writer(u'\n</p>\n')
+        # SOURCE LINE 37
+        __M_writer(escape(h.end_form()))
+        __M_writer(u'\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -107,9 +126,10 @@ def render_body(context):
 def render_title(context):
     context.caller_stack._push_frame()
     try:
+        _ = context.get('_', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
-        __M_writer(u'Profil')
+        __M_writer(escape(_('Profile')))
         return ''
     finally:
         context.caller_stack._pop_frame()

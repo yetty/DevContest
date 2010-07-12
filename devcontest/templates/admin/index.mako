@@ -2,5 +2,5 @@
 
 <%def name="title()"></%def>
 
-<%def name="body()">Administrace</%def>
+<%def name="body()">${_('Administration')}</%def>
 

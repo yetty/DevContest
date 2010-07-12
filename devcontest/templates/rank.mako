@@ -1,16 +1,16 @@
 <%inherit file="/base.mako"/>
 
-<%def name="title()">Pořadí</%def>
+<%def name="title()">${_('Rank')}</%def>
 
 <%def name="body()">
-<h2>Pořadí</h2>
+<h2>${_('Rank')}</h2>
 <div >
     <table class="dark">
         <thead>
             <th class="ns"></th>
-            <th>Jméno</th>
-            <th>Počet</th>
-            <th>Čas</th>
+            <th>${_('Name')}</th>
+            <th>${_('Count')}</th>
+            <th>${_('Time')}</th>
         </thead>
     <% i = -1 %>
     % for i, b in enumerate(c.rank):
@@ -24,7 +24,7 @@
     % if i<0:
     <tr>
 		<td class="ns"></td>
-		<td class="ns info" colspan=3>Nikdo ještě nic nevyřešil. Můžeš být první!</td>
+		<td class="ns info" colspan=3>${_('Nobody has any solutions. You can be the first.')}</td>
 	</tr>
 	% endif
     </table>

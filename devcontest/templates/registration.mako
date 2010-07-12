@@ -1,9 +1,9 @@
 <%inherit file="/base.mako"/>
 
-<%def name="title()">Registrace</%def>
+<%def name="title()">${_('Registration')}</%def>
 
 <%def name="body()">
-<h2>Registrace</h2>
+<h2>${_('Registration')}</h2>
 
 % if not c.success:
 	% if c.errors:
@@ -14,29 +14,29 @@
 		</ol>
 	% endif
 	${h.form(h.url_for(controller="registration", action="check"), method="post")}
-	<label for="login" class="strong">Login:</label><br/>
+	<label for="login" class="strong">${_('Login')}:</label><br/>
 	${h.text('login', c.form['login'])}<br/>
-	<label for="password" class="strong">Heslo:</label><br/>
-	${h.password('password', c.form['password'])} ${h.password('cpassword', c.form['cpassword'])} <span class="info">(dvakrát pro kontrolu)</span><br/>
-	<label for="mail" class="strong">E-mail:</label><br/>
+	<label for="password" class="strong">${_('Password')}:</label><br/>
+	${h.password('password', c.form['password'])} ${h.password('cpassword', c.form['cpassword'])} <span class="info">(${_('twice for sure')})</span><br/>
+	<label for="mail" class="strong">${_('E-mail')}:</label><br/>
 	${h.text('mail', c.form['mail'])}<br/>
 	<br>
 
-	<label for="fname">Jméno:</label><br/>
+	<label for="fname">${_('First name')}:</label><br/>
 	${h.text('fname', c.form['fname'])}<br/>
-	<label for="lname">Příjmení:</label><br/>
+	<label for="lname">${_('Last name')}:</label><br/>
 	${h.text('lname', c.form['lname'])}<br/>
-	<label for="class">Třída:</label><br/>
+	<label for="class">${_('Class')}:</label><br/>
 	${h.text('cls', c.form['cls'])}<br/>
 	<br/>
 
-	${h.submit('submit', 'Zaregistrovat')}
+	${h.submit('submit', _('Submit'))}
 
 	<p class="info">
-		Tučně zvýrazněné položky jsou povinné.
+		${_('Strong items are obliged.')}
 	</p>
 	${h.end_form()}
 % else:
-	<p>Registrace byla úspěšná. Nyní se můžete přihlásit formulářem vlevo.</p>
+	<p>${_('Registration was succesful. You can log in by the box on the left.')}</p>
 % endif
 </%def>

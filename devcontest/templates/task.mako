@@ -3,14 +3,14 @@
 <%def name="title()">${c.task.name}</%def>
 
 <%def name="body()">
-	<a href=${h.url_for(controller="contest", action="tasks", id=c.task.contest_id)} class="back">zpět na soutěž</a>
+	<a href=${h.url_for(controller="contest", action="tasks", id=c.task.contest_id)} class="back">${_('back to the contest')}</a>
 	<h2>${c.task.name}</h2>
 	${c.task.description | n}
 
 	<hr style="visibility:hidden;">
 
-	<div id="example_in"><h3>Příklad vstupu:</h3><pre>${c.task.example_in}</pre></div>
-	<div id="example_out"><h3>Příklad výstupu:</h3><pre>${c.task.example_out}</pre></div>
+	<div id="example_in"><h3>${_('Example of input')}:</h3><pre>${c.task.example_in}</pre></div>
+	<div id="example_out"><h3>${_('Example of output')}:</h3><pre>${c.task.example_out}</pre></div>
 <%
 from devcontest.model import Contest
 from devcontest.model.meta import Session
@@ -19,16 +19,16 @@ from devcontest.model.meta import Session
 	<hr>
 	% if not c.status or request.environ.get('REMOTE_USER').admin:
 	 ${h.form_start(h.url_for(param="upload"), method="post", multipart=True)}
-	 ${h.field("Zdroják", h.file(name="source"))}
-	 ${h.field("", h.submit("submit", "Nahrát"))}
+	 ${h.field(_("Source code"), h.file(name="source"))}
+	 ${h.field("", h.submit("submit", _("Submit")))}
 	 ${h.form_end()}
 	% endif
 	% if c.status:
-		<div class="success">Úloha vyřešena</div>
+		<div class="success">${_('The task was solved')}</div>
 	% endif
 
 	% if c.source:
-	<h3>Poslední verze</h3>
+	<h3>${_('Last version')}</h3>
 	<%
 	from pygments import highlight
 	from pygments.lexers import guess_lexer

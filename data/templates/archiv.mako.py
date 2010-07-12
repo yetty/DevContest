@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 5
-_modified_time = 1274518259.8353381
+_modified_time = 1278948754.083528
 _template_filename='/home/yetty/Work/Development/DevContest/devcontest/templates/archiv.mako'
 _template_uri='archiv.mako'
 _template_cache=cache.Cache(__name__, _modified_time)
@@ -45,10 +45,20 @@ def render_body(context):
     try:
         h = context.get('h', UNDEFINED)
         c = context.get('c', UNDEFINED)
+        _ = context.get('_', UNDEFINED)
         enumerate = context.get('enumerate', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 5
-        __M_writer(u'\n\t<h2>Seznam sout\u011b\u017e\xed</h2>\n\t<table class="dark">\n\t<thead>\n\t\t<th class="ns"></th>\n\t\t<th width=80% colspan=3>N\xe1zev</th>\n\t\t<th>Zah\xe1jen\xed</th>\n\t</thead>\n\t')
+        __M_writer(u'\n\t<h2>')
+        # SOURCE LINE 6
+        __M_writer(escape(_('The Archive')))
+        __M_writer(u'</h2>\n\t<table class="dark">\n\t<thead>\n\t\t<th class="ns"></th>\n\t\t<th width=80% colspan=3>')
+        # SOURCE LINE 10
+        __M_writer(escape(_('Name')))
+        __M_writer(u'</th>\n\t\t<th>')
+        # SOURCE LINE 11
+        __M_writer(escape(_('Started at')))
+        __M_writer(u'</th>\n\t</thead>\n\t')
         # SOURCE LINE 13
         i = -1 
         
@@ -65,18 +75,25 @@ def render_body(context):
             __M_writer(u'</td>\n\t\t\t<td style="text-align:center;"><a href=')
             # SOURCE LINE 18
             __M_writer(escape(h.url_for(controller="archiv", action="contest", id=contest.id)))
-            __M_writer(u'>\xfalohy</a></td>\n\t\t\t<td style="text-align:center;"><a href=')
+            __M_writer(u'>')
+            __M_writer(escape(_('tasks')))
+            __M_writer(u'</a></td>\n\t\t\t<td style="text-align:center;"><a href=')
             # SOURCE LINE 19
             __M_writer(escape(h.url_for(controller="contest", action="rank", id=contest.id)))
-            __M_writer(u'>po\u0159ad\xed</a></td>\n\t\t\t<td style="text-align:center;">')
+            __M_writer(u'>')
+            __M_writer(escape(_('rank')))
+            __M_writer(u'</a></td>\n\t\t\t<td style="text-align:center;">')
             # SOURCE LINE 20
-            __M_writer(escape(contest.timeStart.strftime("%d.%m.%Y")))
+            __M_writer(escape(contest.timeStart.strftime(_("%d.%m.%Y"))))
             __M_writer(u'</td>\n\t\t</tr>\n')
             pass
         # SOURCE LINE 23
         if i<0:
             # SOURCE LINE 24
-            __M_writer(u'    <tr>\n\t\t<td class="ns"></td>\n\t\t<td class="ns info" colspan=3>Je\u0161t\u011b nem\xe1me \u017e\xe1dnou sout\u011b\u017e v archivu!</td>\n\t</tr>\n')
+            __M_writer(u'    <tr>\n\t\t<td class="ns"></td>\n\t\t<td class="ns info" colspan=3>')
+            # SOURCE LINE 26
+            __M_writer(escape(_('There are no contests in archive.')))
+            __M_writer(u'</td>\n\t</tr>\n')
             pass
         # SOURCE LINE 29
         __M_writer(u'\t</table>\n')
@@ -88,9 +105,10 @@ def render_body(context):
 def render_title(context):
     context.caller_stack._push_frame()
     try:
+        _ = context.get('_', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 3
-        __M_writer(u'Seznam ot\xe1zek')
+        __M_writer(escape(_('The Archive')))
         return ''
     finally:
         context.caller_stack._pop_frame()

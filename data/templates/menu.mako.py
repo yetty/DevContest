@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 5
-_modified_time = 1274458710.7224381
+_modified_time = 1278951711.733983
 _template_filename=u'/home/yetty/Work/Development/DevContest/devcontest/templates/menu.mako'
 _template_uri=u'/menu.mako'
 _template_cache=cache.Cache(__name__, _modified_time)
@@ -30,6 +30,7 @@ def render_menu(context):
     try:
         h = context.get('h', UNDEFINED)
         request = context.get('request', UNDEFINED)
+        _ = context.get('_', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 1
         __M_writer(u'\n')
@@ -53,48 +54,75 @@ def render_menu(context):
                 __M_writer(u'<hr></li>\n\t\t\t<li><a href=')
                 # SOURCE LINE 10
                 __M_writer(escape(h.url_for(controller="contest", action="tasks", id=contest.id, param=None)))
-                __M_writer(u'>\xdakoly</a></li>\n\t\t\t<li><a href=')
+                __M_writer(u'>')
+                __M_writer(escape(_('Tasks')))
+                __M_writer(u'</a></li>\n\t\t\t<li><a href=')
                 # SOURCE LINE 11
                 __M_writer(escape(h.url_for(controller="contest", action="rank", id=contest.id, param=None)))
-                __M_writer(u'>Po\u0159ad\xed</a></li>\n\t\t\t<li class="break"></li>\n')
+                __M_writer(u'>')
+                __M_writer(escape(_('Ranks')))
+                __M_writer(u'</a></li>\n\t\t\t<li class="break"></li>\n')
                 pass
             # SOURCE LINE 14
             __M_writer(u'        <li><a href=')
             __M_writer(escape(h.url_for(controller="archiv", action="index", id=None, param=None)))
-            __M_writer(u'>Archiv</a></li>\n        <li><a href=')
+            __M_writer(u'>')
+            __M_writer(escape(_('Archive')))
+            __M_writer(u'</a></li>\n        <li><a href=')
             # SOURCE LINE 15
             __M_writer(escape(h.url_for(controller="page", action="documentation", id=None, param=None)))
-            __M_writer(u'>Dokumentace</a></li>\n        <li><a href=')
+            __M_writer(u'>')
+            __M_writer(escape(_('Documentation')))
+            __M_writer(u'</a></li>\n        <li><a href=')
             # SOURCE LINE 16
             __M_writer(escape(h.url_for(controller="page", action="FAQ", id=None, param=None)))
-            __M_writer(u'>FAQ</a></li>\n        <li class="break"></li>\n')
+            __M_writer(u'>')
+            __M_writer(escape(_('FAQ')))
+            __M_writer(u'</a></li>\n        <li class="break"></li>\n')
             # SOURCE LINE 18
             if request.environ.get('REMOTE_USER').admin:
                 # SOURCE LINE 19
-                __M_writer(u'            <li>\n\t\t\t\t<a href="#">Administrace</a>\n\t\t\t\t<ul>\n\t\t\t\t\t<li><a href=')
+                __M_writer(u'            <li>\n\t\t\t\t<a href="#">')
+                # SOURCE LINE 20
+                __M_writer(escape(_('Administration')))
+                __M_writer(u'</a>\n\t\t\t\t<ul>\n\t\t\t\t\t<li><a href=')
                 # SOURCE LINE 22
                 __M_writer(escape(h.url_for(controller="admin", action="contest", id=None, param=None)))
-                __M_writer(u'>Sout\u011b\u017ee</a></li>\n\t\t\t\t\t<li><a href=')
+                __M_writer(u'>')
+                __M_writer(escape(_('Contests')))
+                __M_writer(u'</a></li>\n\t\t\t\t\t<li><a href=')
                 # SOURCE LINE 23
                 __M_writer(escape(h.url_for(controller="admin", action="page", id=None, param=None)))
-                __M_writer(u'>Str\xe1nky</a></li>\n\t\t\t\t\t<li><a href=')
+                __M_writer(u'>')
+                __M_writer(escape(_('Pages')))
+                __M_writer(u'</a></li>\n\t\t\t\t\t<li><a href=')
                 # SOURCE LINE 24
                 __M_writer(escape(h.url_for(controller="admin", action="users", id=None, param=None)))
-                __M_writer(u'>U\u017eivatel\xe9</a></li>\n\t\t\t\t\t<li><a href=')
+                __M_writer(u'>')
+                __M_writer(escape(_('Users')))
+                __M_writer(u'</a></li>\n\t\t\t\t\t<li><a href=')
                 # SOURCE LINE 25
                 __M_writer(escape(h.url_for(controller="admin", action="runners", id=None, param=None)))
-                __M_writer(u'>Spou\u0161t\u011b\u010de</a></li>\n\t\t\t\t</ul>\n            </li>\n            <li class="break"></li>\n')
+                __M_writer(u'>')
+                __M_writer(escape(_('Starters')))
+                __M_writer(u'</a></li>\n\t\t\t\t</ul>\n            </li>\n            <li class="break"></li>\n')
                 pass
             # SOURCE LINE 30
             __M_writer(u'        <li><a href=')
             __M_writer(escape(h.url_for(controller="user", action="top", id="10", param=None)))
-            __M_writer(u'>TOP10</a></li>\n        <li><a href=')
+            __M_writer(u'>')
+            __M_writer(escape(_('TOP10')))
+            __M_writer(u'</a></li>\n        <li><a href=')
             # SOURCE LINE 31
             __M_writer(escape(h.url_for(controller="user", action="index", id=None, param=None)))
-            __M_writer(u'>Profil</a></li>\n        <li><a href=')
+            __M_writer(u'>')
+            __M_writer(escape(_('Profile')))
+            __M_writer(u'</a></li>\n        <li><a href=')
             # SOURCE LINE 32
             __M_writer(escape(h.url_for(controller="auth", action="signout", id=None, param=None)))
-            __M_writer(u'>Odhl\xe1sit</a></li>\n    </ul>\n')
+            __M_writer(u'>')
+            __M_writer(escape(_('Log out')))
+            __M_writer(u'</a></li>\n    </ul>\n')
             pass
         return ''
     finally:

@@ -1,6 +1,6 @@
 <%inherit file="/base.mako"/>
 
-<%def name="title()">Administrace :: ${next.title()} </%def>
+<%def name="title()">${_('Administration')} :: ${next.title()} </%def>
 
 <%def name="body()">
 

@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>DevContest - ${next.title()}</title>
+    <title>${_('DevContest')} - ${next.title()}</title>
     <link rel="shortcut icon" href="/icon.png">
     ${h.stylesheet_link("/style.css")}
     ${h.stylesheet_link("/highlighter.css")}
@@ -35,7 +35,7 @@ function remove(url) {
 % endif
 
     <div id="header">
-    <h1><a href=${h.url_for(controller="home", action="index")}>DevContest</a></h1>
+    <h1><a href=${h.url_for(controller="home", action="index")}>${_('DevContest')}</a></h1>
     </div>
     <div id="left_nav">
     <div id="menu">
@@ -46,7 +46,7 @@ function remove(url) {
         ${login.login_box()}
     </div>
     <br/>
-    <a href="http://python.org" alt="Python"><img src="/python-powered-w-70x28.png" alt="Python powered"/></a>
+    <a href="http://python.org" alt="Python"><img src="/python-powered-w-70x28.png" alt="${_('Python powered')}"/></a>
     </div>
 
     <div id="content">

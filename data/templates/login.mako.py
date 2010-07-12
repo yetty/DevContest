@@ -4,7 +4,7 @@ UNDEFINED = runtime.UNDEFINED
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 5
-_modified_time = 1278415027.1491721
+_modified_time = 1278950440.184196
 _template_filename=u'/home/yetty/Work/Development/DevContest/devcontest/templates/login.mako'
 _template_uri=u'/login.mako'
 _template_cache=cache.Cache(__name__, _modified_time)
@@ -31,6 +31,7 @@ def render_login_box(context):
         h = context.get('h', UNDEFINED)
         c = context.get('c', UNDEFINED)
         request = context.get('request', UNDEFINED)
+        _ = context.get('_', UNDEFINED)
         __M_writer = context.writer()
         # SOURCE LINE 1
         __M_writer(u'\n')
@@ -46,26 +47,34 @@ def render_login_box(context):
             # SOURCE LINE 6
             __M_writer(u'        ')
             __M_writer(escape(h.form(h.url_for(controller="auth", action="signin"), method="post")))
-            __M_writer(u'\n        <label for="login">Login:</label>')
+            __M_writer(u'\n        <label for="login">')
             # SOURCE LINE 7
+            __M_writer(escape(_('Login')))
+            __M_writer(u':</label>')
             __M_writer(escape(h.text('login')))
-            __M_writer(u'<br/>\n        <label for="password">Heslo:</label>')
+            __M_writer(u'<br/>\n        <label for="password">')
             # SOURCE LINE 8
+            __M_writer(escape(_('Password')))
+            __M_writer(u':</label>')
             __M_writer(escape(h.password('password')))
             __M_writer(u'<br/>\n        ')
             # SOURCE LINE 9
-            __M_writer(escape(h.submit('submit', 'Přihlásit')))
+            __M_writer(escape(h.submit('submit', _('Log in'))))
             __M_writer(u'\n        ')
             # SOURCE LINE 10
             __M_writer(escape(h.end_form()))
             __M_writer(u'\n\n        <p><a href=')
             # SOURCE LINE 12
             __M_writer(escape(h.url_for(controller="registration", action="index")))
-            __M_writer(u'>&rang; Registrace</a></p>\n')
+            __M_writer(u'>&rang; ')
+            __M_writer(escape(_('Registration')))
+            __M_writer(u'</a></p>\n')
             # SOURCE LINE 13
         else:
             # SOURCE LINE 14
-            __M_writer(u'        Jste p\u0159ihl\xe1\u0161en jako <strong>')
+            __M_writer(u'        ')
+            __M_writer(escape(_('You are logged as')))
+            __M_writer(u' <strong>')
             __M_writer(escape(request.environ.get('REMOTE_USER').fname))
             __M_writer(u' ')
             __M_writer(escape(request.environ.get('REMOTE_USER').lname))

@@ -1,10 +1,10 @@
 <%inherit file="/base.mako"/>
 
-<%def name="title()">Vítejte</%def>
+<%def name="title()">${_('Page wasnt found')}</%def>
 
 <%def name="body()">
-<h2>Error 404</h2>
+<h2>${_('Page wasnt found')}</h2>
 <p>
-Požadovaná stránka nebyla nalezena. Zkuste zkontrolovat zadanou adresu.
+${_('We are sorry, but this page doesnt exist.')}
 </p>
 </%def>
