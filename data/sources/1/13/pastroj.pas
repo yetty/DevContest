@@ -1,1 +1,0 @@
-Nepouzivejte cestinu prosim pekne :)
