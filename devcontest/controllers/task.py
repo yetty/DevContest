@@ -94,9 +94,6 @@ class TaskController(BaseController):
 			self.source.errors = data['errors']
 			return False
 
-		print data
-		print orig
-
 		if data['return'].strip()!=orig['return'].strip():
 			self.source.errors = u"Chybný výstup"
 			return False
