@@ -3,7 +3,7 @@
 <%def name="title()">${_('The List of Pages')}</%def>
 
 <%def name="body()">
-	<h2>S${_('The List of Pages')}</h2>
+	<h2>${_('The List of Pages')}</h2>
 	<table class="dark">
 	% for page in c.list:
 			<tr>

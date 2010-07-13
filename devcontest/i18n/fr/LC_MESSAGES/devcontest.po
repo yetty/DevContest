@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2010-07-12 19:05+0200\n"
+"PO-Revision-Date: 2010-07-13 20:47+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
@@ -23,7 +23,9 @@ msgstr "L'Archive"
 
 #: devcontest/templates/archiv.mako:10 devcontest/templates/archivTasks.mako:10
 #: devcontest/templates/contestTasks.mako:10 devcontest/templates/rank.mako:11
-#: devcontest/templates/top.mako:11 devcontest/templates/admin/user.mako:11
+#: devcontest/templates/top.mako:11
+#: devcontest/templates/admin/contestList.mako:39
+#: devcontest/templates/admin/user.mako:11
 msgid "Name"
 msgstr "Le Nome"
 
@@ -232,8 +234,8 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: devcontest/templates/registration.mako:36
-msgid "Strong items are obliged"
+#: devcontest/templates/registration.mako:36 devcontest/templates/user.mako:35
+msgid "Strong items are obliged."
 msgstr ""
 
 #: devcontest/templates/registration.mako:40
@@ -274,10 +276,6 @@ msgstr ""
 msgid "Nobody?"
 msgstr ""
 
-#: devcontest/templates/user.mako:35
-msgid "Strong items are obliged."
-msgstr ""
-
 #: devcontest/templates/admin/contestList.mako:3
 #: devcontest/templates/admin/contestList.mako:6
 msgid "The List of Contests"
@@ -316,14 +314,15 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: devcontest/templates/admin/contestTasks.mako:18
-msgid "Name of task"
-msgstr ""
-
+#: devcontest/templates/admin/contestList.mako:40
 #: devcontest/templates/admin/contestTasks.mako:19
 #: devcontest/templates/admin/pageList.mako:19
 #: devcontest/templates/admin/runners.mako:25
 msgid "Create"
+msgstr ""
+
+#: devcontest/templates/admin/contestTasks.mako:18
+msgid "Name of task"
 msgstr ""
 
 #: devcontest/templates/admin/pageEdit.mako:3
@@ -423,4 +422,10 @@ msgstr ""
 #: devcontest/templates/admin/userEdit.mako:26
 msgid "Administrator"
 msgstr ""
+
+#~ msgid "Název sout\\u011b\\u017ee"
+#~ msgstr ""
+
+#~ msgid "Vytvo\\u0159it"
+#~ msgstr ""
 

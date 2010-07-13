@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: juda.kaleta@gmail.cm\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2010-07-12 18:25+0200\n"
+"PO-Revision-Date: 2010-07-13 20:47+0200\n"
 "Last-Translator: Juda Kaleta <juda.kaleta@gmail.com>\n"
 "Language-Team: cs\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
@@ -24,7 +24,9 @@ msgstr "Archiv"
 
 #: devcontest/templates/archiv.mako:10 devcontest/templates/archivTasks.mako:10
 #: devcontest/templates/contestTasks.mako:10 devcontest/templates/rank.mako:11
-#: devcontest/templates/top.mako:11 devcontest/templates/admin/user.mako:11
+#: devcontest/templates/top.mako:11
+#: devcontest/templates/admin/contestList.mako:39
+#: devcontest/templates/admin/user.mako:11
 msgid "Name"
 msgstr "Jméno"
 
@@ -102,8 +104,8 @@ msgid ""
 "There is a place to try, what you can do and if you are better than your "
 "classmattes. Dont worry, there is simply tasks, too."
 msgstr ""
-"Zde si můžete vyzkoušet, co umíte a zda jste lepší než vaši "
-"spolužáci. Nebojte se, naleznete zde i jednoduché úkoly."
+"Zde si můžete vyzkoušet, co umíte a zda jste lepší než vaši spolužáci. "
+"Nebojte se, naleznete zde i jednoduché úkoly."
 
 #: devcontest/templates/login.mako:7 devcontest/templates/registration.mako:17
 #: devcontest/templates/user.mako:16
@@ -235,6 +237,10 @@ msgstr "Třída"
 msgid "Submit"
 msgstr "Odeslat"
 
+#: devcontest/templates/registration.mako:36 devcontest/templates/user.mako:35
+msgid "Strong items are obliged."
+msgstr "Tučně zvýrazněné položky jsou povinné."
+
 #: devcontest/templates/registration.mako:40
 msgid "Registration was succesful. You can log in by the box on the left."
 msgstr "Registrace byla úspěšná. Můžete se přihlásit formulářem vlevo."
@@ -272,11 +278,6 @@ msgstr "Pořadí"
 #: devcontest/templates/top.mako:27 devcontest/templates/admin/user.mako:31
 msgid "Nobody?"
 msgstr "Nikdo?"
-
-#: devcontest/templates/user.mako:35
-#: devcontest/templates/registration.mako:36
-msgid "Strong items are obliged."
-msgstr "Tučně zvýrazněné položky jsou povinné."
 
 #: devcontest/templates/admin/contestList.mako:3
 #: devcontest/templates/admin/contestList.mako:6
@@ -316,15 +317,16 @@ msgstr "Upravit"
 msgid "Remove"
 msgstr "Smazat"
 
-#: devcontest/templates/admin/contestTasks.mako:18
-msgid "Name of task"
-msgstr "Název úkolu"
-
+#: devcontest/templates/admin/contestList.mako:40
 #: devcontest/templates/admin/contestTasks.mako:19
 #: devcontest/templates/admin/pageList.mako:19
 #: devcontest/templates/admin/runners.mako:25
 msgid "Create"
 msgstr "Vytvořit"
+
+#: devcontest/templates/admin/contestTasks.mako:18
+msgid "Name of task"
+msgstr "Název úkolu"
 
 #: devcontest/templates/admin/pageEdit.mako:3
 #: devcontest/templates/admin/pageEdit.mako:10
@@ -423,4 +425,10 @@ msgstr "Úprava profilu"
 #: devcontest/templates/admin/userEdit.mako:26
 msgid "Administrator"
 msgstr "Administrátor"
+
+#~ msgid "Název sout\\u011b\\u017ee"
+#~ msgstr ""
+
+#~ msgid "Vytvo\\u0159it"
+#~ msgstr ""
 

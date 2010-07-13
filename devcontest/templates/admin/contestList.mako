@@ -36,7 +36,7 @@
 	</table>
 	<hr>
 	 ${h.form_start(h.url_for(id="_", param="create"), method="post")}
-	 ${h.field("Název soutěže", h.text(name="name"))}
-	 ${h.field("", h.submit("submit", "Vytvořit"))}
+	 ${h.field(_("Name"), h.text(name="name"))}
+	 ${h.field("", h.submit("submit", _("Create")))}
 	 ${h.form_end()}
 </%def>
