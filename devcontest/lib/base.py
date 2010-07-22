@@ -11,8 +11,6 @@ from pylons.controllers.util import abort, redirect_to
 
 from pylons.i18n import get_lang, set_lang
 
-from devcontest.lib.base import *
-
 from devcontest.model.meta import Session
 
 class BaseController(WSGIController):

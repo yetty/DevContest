@@ -7,7 +7,7 @@ except ImportError:
 
 setup(
     name='DevContest',
-    version='0.2',
+    version='0.2.4',
     description='Web interface for developers contests. Python, C, Pascal, PHP, Perl, Java',
     author='Juda Kaleta',
     author_email='juda.kaleta@gmail.com',

@@ -14,6 +14,9 @@ from devcontest.model import *
 from devcontest.model.meta import Session
 
 
+from pylons.i18n import get_lang, set_lang, _
+from devcontest.lib.base import *
+
 class AuthController(BaseController):
 
 	def index(self):
