@@ -24,19 +24,19 @@ class RegistrationController(BaseController):
 		form = self.getPost()
 
 		if not form['login']:
-			c.errors.append("Zadejte přihlašovací jméno")
+			c.errors.append(_("Enter your login"))
 		if Session.query(User).filter_by(login=form['login']).count()!=0:
-			c.errors.append("Zadaný login již někdo používá")
+			c.errors.append(_("This login name is already used"))
 		if form['password']!=form['cpassword'] or not form['password']:
-			c.errors.append("Hesla se neshodují nebo jsou prázdná")
+			c.errors.append(_("Passwords are empty or wrong"))
 		if not form['mail'] or form['mail']=="@":
-			c.errors.append("Zadejte váš e-mail")
+			c.errors.append(_("Enter your e-mail"))
 		if Session.query(User).filter_by(mail=form['mail']).count()!=0:
-			c.errors.append("E-mail je již registrován")
+			c.errors.append(_("E-mail is already registered"))
 
 		if len(c.errors)==0:
 			if not self.register(form):
-				c.errors.append("Registrace se nezdařila. Kontaktujte nás")
+				c.errors.append(_("Registration failed. Sorry. Please, contact us."))
 			else:
 				c.success = True
 				return render('/registration.mako')

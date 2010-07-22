@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2010-07-13 20:47+0200\n"
+"PO-Revision-Date: 2010-07-22 18:24+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: fr <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
@@ -16,6 +16,46 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.5\n"
+
+#: devcontest/controllers/auth.py:39
+msgid "Login failed"
+msgstr ""
+
+#: devcontest/controllers/registration.py:27
+msgid "Enter your login"
+msgstr ""
+
+#: devcontest/controllers/registration.py:29
+msgid "This login name is already used"
+msgstr ""
+
+#: devcontest/controllers/registration.py:31
+msgid "Passwords are empty or wrong"
+msgstr ""
+
+#: devcontest/controllers/registration.py:33
+msgid "Enter your e-mail"
+msgstr ""
+
+#: devcontest/controllers/registration.py:35
+msgid "E-mail is already registered"
+msgstr ""
+
+#: devcontest/controllers/registration.py:39
+msgid "Registration failed. Sorry. Please, contact us."
+msgstr ""
+
+#: devcontest/controllers/task.py:75
+msgid "Unknown file type"
+msgstr ""
+
+#: devcontest/controllers/task.py:84
+msgid "Unexpected error"
+msgstr ""
+
+#: devcontest/controllers/task.py:98
+msgid "Wrong output"
+msgstr ""
 
 #: devcontest/templates/archiv.mako:3 devcontest/templates/archiv.mako:6
 msgid "The Archive"
@@ -423,9 +463,9 @@ msgstr ""
 msgid "Administrator"
 msgstr ""
 
-#~ msgid "Název sout\\u011b\\u017ee"
+#~ msgid "Enter your log"
 #~ msgstr ""
 
-#~ msgid "Vytvo\\u0159it"
+#~ msgid "Enter your e-mail)"
 #~ msgstr ""
 

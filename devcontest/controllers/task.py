@@ -72,7 +72,7 @@ class TaskController(BaseController):
 		self.source.errors = ""
 
 		if not r:
-			self.source.errors = u"Neznámý formát souboru."
+			self.source.errors = _("Unknown file type")
 			return False
 
 		runIn = self._run(self.task.getPath("in"))
@@ -81,7 +81,7 @@ class TaskController(BaseController):
 		try:
 			data = r.exe(self.source.getPath(), fileIn)
 		except:
-			self.source.errors = u"Neobvyklá chyba :)"
+			self.source.errors = _("Unexpected error")
 			return False
 
 		orig = self._run(self.task.getPath("out"), fileIn)
@@ -95,7 +95,7 @@ class TaskController(BaseController):
 			return False
 
 		if data['return'].strip()!=orig['return'].strip():
-			self.source.errors = u"Chybný výstup"
+			self.source.errors = _("Wrong output")
 			return False
 
 		self.source.status = True

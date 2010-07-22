@@ -36,7 +36,7 @@ class AuthController(BaseController):
 			session.save()
 			return self.index()
 		else:
-			c.error = 'Špatné uživatelské jméno nebo heslo'
+			c.error = _('Login failed')
 			return render('/home.mako')
 
 	def signout(self):
