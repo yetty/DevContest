@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Title      : StandardIssue
+Version    : 1.0
+Released   : 20070723
+Description: A two-column, fixed-width and lightweight template ideal for 1024x768 resolutions. Suitable for blogs and small websites.
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>DevContest :: Home Page</title>
+<meta name="keywords" content="devcontest programming development python php java c c++ pascal delphi school informatics" />
+<meta name="description" content="DevContest is web server based on Pylons framework and Python. This allows you to create a competition for students of informatics." />
+<meta content="Juda Kaleta - juda.kaleta(at)gmail.com" name="author" />
+<meta content="index, follow" name="robots" />
+<link href="default.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!-- start header -->
+<div id="header">
+	<div id="logo">
+		<h1><a href="#"><strong>Dev</strong>Contest<sup>0.2</sup></a></h1>
+	</div>
+	<div id="menu">
+		<ul>
+			<li class="active"><a href="index.html">home</a></li>
+			<li><a href="documentation.html">documentation</a></li>
+			<li><a href="screenshots.html">screenshots</a></li>
+			<li><a href="http://github.com/yetty/DevContest">sources</a></li>
+		</ul>
+	</div>
+</div>
+<!-- end header -->
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<div class="box1">
+			<p><img src="images/img04.gif" alt="" width="48" height="48" class="left" />DevContest is web server based on  <strong>Pylons framework</strong> and  <strong>Python</strong>. This allows you to create a competition for students of informatics. The only thing you need is a  <strong>Linux server</strong> with the necessary compilers. In the administration system you can set the language, what you want. The base is the default <strong>C</strong>,  <strong>C++</strong>,  <strong>Java</strong>,  <strong>Pascal</strong>,  <strong>Python</strong>,  <strong>PHP</strong> and  <strong>Ruby</strong>.</p>
+		</div>
+		<div class="post">
+			<h2 class="title"><strong style="font-size:110%;">10 Steps</strong> to create first contest</h2>
+			<div class="entry">
+				<ol>
+					<li>Log in to your system <strong>as root</strong>.</li>
+					<li>Install this applications to your server:
+						<ul>
+							<li><strong>Python 2.6</strong> (with easy_install)</li>
+							<li>compilers for support needed languages: <strong>gcc</strong> (C), <strong>fpc</strong> (Pascal), <strong>gcj</strong> (Java) etc.</li>
+							<li>and <strong>sudo</strong> (running script under special user) + some text editor (vim, nano)</li>
+						</ul>
+					</li>
+					<li><strong>Download the setup script</strong> and run it:
+						<code>
+						<small>root@myserver ~ #</small> wget http://github.com/downloads/yetty/DevContest/setup.sh<br />
+						<small>root@myserver ~ #</small> sh setup.sh
+						</code>
+					</li>
+					<li><strong>Go to devcontest dir.</strong> You can edit configuration files (it is not necessary):
+					<code>
+						<small>root@myserver ~ #</small> cd /usr/share/devcontest/<br />
+						<small>root@myserver devcontest #</small> vim config.ini
+					</code>
+						There you can edit for example port or e-mail for sending errors.
+					</li>
+					<li><strong>Start your DevContest</strong> server:
+					<code>
+						<small>root@myserver devcontest #</small> paster serve --monitor-restart config.ini
+					</code>
+					<br />
+					</li>
+					<li>
+						<strong>Open your browser</strong> and enter this url: <span style="font-family: mono; font-size:90%;">http://localhost:8888</span> <small>(8888 is the default port. If you set the port 80 in config.ini, you can write only localhost. But there cannot be any other server at your server - for example Apache.)</small>
+					</li>
+					<li>
+						<strong>Log in as administrator.</strong> Your login is 'admin' and password is 'admin', too.
+					</li>
+					<li>
+						<strong>Create new contest.</strong> In menu go to 'Administration' -> 'Contests', fill name of contest and submit it.
+					</li>
+					<li>
+						<strong>Create first task.</strong> Submit its name, fill description, example of input and output, script for generating input and correct script for proccess it. Save it. Down there are outputs of you script. You can check them.
+					</li>
+					<li>
+						<strong>Start your first contest!</strong> Go back to 'Administration' -> 'Contests' and click to green arrow.
+					</li>
+				</ol>
+			</div>
+			<div class="meta">
+				<p class="byline">2010 <span style="color: #777;">Juda Kaleta</span> | template from <a href="http://www.freecsstemplates.org" style="color: #777;text-decoration:none;">http://www.freecsstemplates.org</a></p>
+			</div>
+		</div>
+	</div>
+	<!-- end content -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2063092-9']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- end page -->
+</body>
+</html>
