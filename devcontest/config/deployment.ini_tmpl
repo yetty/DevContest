@@ -18,8 +18,9 @@ port = 8888
 use = egg:DevContest
 full_stack = true
 static_files = true
+lang = en
 
-cache_dir = %(here)s/data
+c`ache_dir = %(here)s/data
 beaker.session.key = devcontest
 beaker.session.secret = rW/JvuN0xisb9Ft4OPXgZ7ULg
 app_instance_uuid = {248e4c01-3440-49bb-8af9-e1378966e931}
@@ -31,7 +32,7 @@ app_instance_uuid = {248e4c01-3440-49bb-8af9-e1378966e931}
 #beaker.session.data_dir = %(here)s/data/sessions
 
 # SQLAlchemy database URL
-sqlalchemy.url = sqlite:///devcontest.db
+sqlalchemy.url = sqlite:///%(here)s/devcontest.db
 
 # WARNING: *THE LINE BELOW MUST BE UNCOMMENTED ON A PRODUCTION ENVIRONMENT*
 # Debug mode will enable the interactive debugging tool, allowing ANYONE to
