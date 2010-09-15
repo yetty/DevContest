@@ -20,7 +20,7 @@ full_stack = true
 static_files = true
 lang = en
 
-c`ache_dir = %(here)s/data
+cache_dir = %(here)s/data
 beaker.session.key = devcontest
 beaker.session.secret = rW/JvuN0xisb9Ft4OPXgZ7ULg
 app_instance_uuid = {248e4c01-3440-49bb-8af9-e1378966e931}
