@@ -124,6 +124,7 @@ class TaskController(BaseController):
 
 
 		c.run_out = self._run(self.task.getPath("out"), nameIn)
+		c.run_out['errors'] = unicode(c.run_out['errors'], errors='ignore')
 
 		return render('/admin/taskEdit.mako')
 
