@@ -5,9 +5,13 @@ except ImportError:
     use_setuptools()
     from setuptools import setup, find_packages
 
+os_files = [
+	 ('/etc/init.d',['bin/devcontestd']),
+]
+
 setup(
     name='DevContest',
-    version='0.2.4',
+    version='0.2.6',
     description='Web interface for developers contests. Python, C, Pascal, PHP, Perl, Java',
     author='Juda Kaleta',
     author_email='juda.kaleta@gmail.com',
@@ -30,6 +34,7 @@ setup(
             ('public/**', 'ignore', None)]},
     zip_safe=True,
     paster_plugins=['PasteScript', 'Pylons'],
+    data_files = os_files,
     entry_points="""
     [paste.app_factory]
     main = devcontest.config.middleware:make_app
