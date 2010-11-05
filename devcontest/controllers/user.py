@@ -6,6 +6,7 @@ from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 
 from devcontest.lib.base import BaseController, render
+from pylons.i18n import get_lang, set_lang, _
 
 log = logging.getLogger(__name__)
 
@@ -44,7 +45,6 @@ class UserController(BaseController):
 
 		users = None
 		if self.user:
-			print self.user
 			if self.user.admin:
 				users = Session.query(User).all()
 		if not users:

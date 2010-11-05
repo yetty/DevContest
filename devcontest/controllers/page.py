@@ -11,6 +11,7 @@ from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 
 from devcontest.lib.base import BaseController, render
+from pylons.i18n import get_lang, set_lang, _
 
 
 log = logging.getLogger(__name__)
@@ -39,8 +40,13 @@ class PageController(BaseController):
 
 	def _save(self, content):
 		f = codecs.open(self._filename(), 'w', 'utf-8')
-		f.write(content)
-		f.close()
+		try:
+			f.write(content)
+		except:
+			f.close()
+			return False
+
+		return True
 
 	def _create(self, name):
 		self.page = name
@@ -79,6 +85,7 @@ class PageController(BaseController):
 		self.auth(admin=True)
 		self.page = id
 		c.lang = self.extension
+		c.error = ''
 
 		if param=="remove":
 			self._remove()
@@ -93,7 +100,10 @@ class PageController(BaseController):
 			return render("admin/pageList.mako")
 
 		if id and param=="save":
-			self._save(request.params['area'])
+			if not self._save(request.params['area']):
+				c.error = _('The page couldn\'t be saved')
+			else:
+				c.success = _('Page was saved succesfull')
 
 		self._loadPage()
 

@@ -6,6 +6,7 @@ import sqlalchemy as sa
 from sqlalchemy import orm
 
 from devcontest.model import meta
+from pylons.i18n import get_lang, set_lang, _
 
 import codecs
 
@@ -65,7 +66,7 @@ class Runner(object):
 			if self.compile:
 				file = self.exeCompile(file)
 		except:
-			self.compileErrors = "Chyba v kompilace"
+			self.compileErrors = _("Error in compilation")
 
 		if not self.compileErrors:
 			params = self.pushFileName(self.sudo+self.run, {"%f":file})
@@ -90,12 +91,14 @@ class Runner(object):
 					except:
 						pass
 					status = False
-					err = "The time limit was exceeded."
+					err = _("The time limit was exceeded.")
 					value = None
 
 					break
-			ret = p.stdout.read()
-			err = p.stderr.read()+err
+
+			if not err:
+				ret = p.stdout.read()
+				err = p.stderr.read()+err
 
 		return {
 			"status":status,

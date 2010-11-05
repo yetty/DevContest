@@ -8,6 +8,7 @@ from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 
 from devcontest.lib.base import BaseController, render
+from pylons.i18n import get_lang, set_lang, _
 
 log = logging.getLogger(__name__)
 
@@ -157,5 +158,8 @@ class TaskController(BaseController):
 
 	def _run(self, file, fileIn=None):
 		r = Session.query(Runner).filter_by(lang="py").first()
-		get = r.exe(file, fileIn)
-		return get
+		if not r:
+			raise Exception(_("I need Python to run! Please set it in the runners."))
+		else:
+			get = r.exe(file, fileIn)
+			return get
