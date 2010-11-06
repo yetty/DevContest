@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: juda.kaleta@gmail.cm\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2010-07-22 18:24+0200\n"
+"PO-Revision-Date: 2010-11-06 09:02+0100\n"
 "Last-Translator: Juda Kaleta <juda.kaleta@gmail.com>\n"
 "Language-Team: cs\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
@@ -18,46 +18,66 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.5\n"
 
-#: devcontest/controllers/auth.py:39
+#: devcontest/controllers/auth.py:42
 msgid "Login failed"
 msgstr "Přihlášení selhalo"
 
-#: devcontest/controllers/registration.py:27
+#: devcontest/controllers/page.py:104
+msgid "The page couldn't be saved"
+msgstr "Stránka nemohla být uložena"
+
+#: devcontest/controllers/page.py:106
+msgid "Page was saved succesfull"
+msgstr "Stránka byla úspěšně uložena"
+
+#: devcontest/controllers/registration.py:30
 msgid "Enter your login"
 msgstr "Zadejte uživatelské jméno"
 
-#: devcontest/controllers/registration.py:29
+#: devcontest/controllers/registration.py:32
 msgid "This login name is already used"
 msgstr "Uživatelské jméno je již používáno"
 
-#: devcontest/controllers/registration.py:31
+#: devcontest/controllers/registration.py:34
 msgid "Passwords are empty or wrong"
 msgstr "Hesla jsou prázdná nebo chybná"
 
-#: devcontest/controllers/registration.py:33
+#: devcontest/controllers/registration.py:36
 msgid "Enter your e-mail"
 msgstr "Zadejte e-mail"
 
-#: devcontest/controllers/registration.py:35
+#: devcontest/controllers/registration.py:38
 msgid "E-mail is already registered"
 msgstr "E-mail je již zaregistrován"
 
-#: devcontest/controllers/registration.py:39
+#: devcontest/controllers/registration.py:42
 msgid "Registration failed. Sorry. Please, contact us."
 msgstr "Registrace selhala, kontaktujte administrátora."
 
-#: devcontest/controllers/task.py:75
+#: devcontest/controllers/task.py:76
 msgid "Unknown file type"
 msgstr "Neznámý formát souboru"
 
-#: devcontest/controllers/task.py:84
+#: devcontest/controllers/task.py:85
 msgid "Unexpected error"
 msgstr "Neočekávaná chyba"
 
-#: devcontest/controllers/task.py:98
+#: devcontest/controllers/task.py:99
 #, fuzzy
 msgid "Wrong output"
-msgstr "pro výstup"
+msgstr "Špatná odpověď."
+
+#: devcontest/controllers/task.py:162
+msgid "I need Python to run! Please set it in the runners."
+msgstr "Potřebuji Python k spuštění kontrolních testů! Prosím nastavte ho v administraci » spouštěče."
+
+#: devcontest/model/db/runner.py:69
+msgid "Error in compilation"
+msgstr "Chyba při kompilaci"
+
+#: devcontest/model/db/runner.py:94
+msgid "The time limit was exceeded."
+msgstr "Časový limit byl překročen"
 
 #: devcontest/templates/archiv.mako:3 devcontest/templates/archiv.mako:6
 msgid "The Archive"
@@ -271,7 +291,7 @@ msgid "Class"
 msgstr "Třída"
 
 #: devcontest/templates/registration.mako:33 devcontest/templates/task.mako:23
-#: devcontest/templates/admin/pageEdit.mako:13
+#: devcontest/templates/admin/pageEdit.mako:23
 #: devcontest/templates/admin/taskEdit.mako:11
 #: devcontest/templates/admin/taskEdit.mako:46
 #: devcontest/templates/admin/userEdit.mako:30
@@ -370,7 +390,7 @@ msgid "Name of task"
 msgstr "Název úkolu"
 
 #: devcontest/templates/admin/pageEdit.mako:3
-#: devcontest/templates/admin/pageEdit.mako:10
+#: devcontest/templates/admin/pageEdit.mako:11
 msgid "Editation of page"
 msgstr "Editace stránky"
 
@@ -466,10 +486,4 @@ msgstr "Úprava profilu"
 #: devcontest/templates/admin/userEdit.mako:26
 msgid "Administrator"
 msgstr "Administrátor"
-
-#~ msgid "Enter your log"
-#~ msgstr ""
-
-#~ msgid "Enter your e-mail)"
-#~ msgstr ""
 
