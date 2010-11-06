@@ -85,6 +85,7 @@ class TaskController(BaseController):
 			self.source.errors = _("Unexpected error")
 			return False
 
+
 		orig = self._run(self.task.getPath("out"), fileIn)
 
 		if data['compile']:
@@ -123,14 +124,13 @@ class TaskController(BaseController):
 		c.run_in = self._run(self.task.getPath("in"))
 		nameIn = self._saveTmpIn(c.run_in['return'])
 
-
 		c.run_out = self._run(self.task.getPath("out"), nameIn)
-		c.run_out['errors'] = unicode(c.run_out['errors'], errors='ignore')
+		#c.run_out['errors'] = unicode(c.run_out['errors'], errors='ignore')
 
 		return render('/admin/taskEdit.mako')
 
 	def _saveTmpIn(self, data):
-		nameIn = 'data/tmp/'+hashlib.sha256(str(time.time())+str(random.randint(0,1000))).hexdigest()
+		nameIn = os.path.join(config.get('runner_tmp_dir'), hashlib.sha256(str(time.time())+str(random.randint(0,1000))).hexdigest())
 
 		f = open(nameIn, 'w')
 		f.write(data)

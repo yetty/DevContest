@@ -7,6 +7,8 @@ from sqlalchemy import orm
 from devcontest.model import meta
 from devcontest.model.meta import Session
 
+from pylons import config
+
 tasks_table = sa.Table('tasks', meta.metadata,
 	sa.Column('id', sa.types.Integer(), primary_key=True),
 	sa.Column('contest_id', sa.types.Integer(), sa.ForeignKey('contests.id')),
@@ -16,10 +18,12 @@ tasks_table = sa.Table('tasks', meta.metadata,
 	sa.Column('example_out', sa.types.Unicode()),
 )
 
+
 class Task(object):
-	path = './data/tasks/'
+	path = ''
 
 	def __init__(self, parent, name, description="", example_in="", example_out="", data_in="", data_out=""):
+		self.path = config.get('task_dir')
 		self.contest_id = parent
 		self.name = name
 		self.description = description
@@ -51,7 +55,7 @@ class Task(object):
 		if postfix!="":
 			postfix = "."+postfix
 
-		return self.path+str(self.contest_id)+"/"+self.name+postfix+".py"
+		return os.path.join(config.get('task_dir'), str(self.contest_id), self.name+postfix+".py")
 
 	def _load(self, postfix):
 		try:

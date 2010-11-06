@@ -10,6 +10,7 @@ from pylons.i18n import get_lang, set_lang, _
 
 import codecs
 
+from pylons import config
 
 runners_table = sa.Table('runners', meta.metadata,
 	sa.Column('id', sa.types.Integer(), primary_key=True),
@@ -19,13 +20,13 @@ runners_table = sa.Table('runners', meta.metadata,
 )
 
 class Runner(object):
-	path = './data/tmp/'
 	sudo = 'sudo -u python '
 	compileErrors = None
 
 	def __init__(self, lang, compile="", run=""):
 		self.lang = lang
 		self.compile = compile
+		self.path = config.get('runner_tmp_dir')
 		self.run = run
 
 	def __unicode__(self):
@@ -98,7 +99,7 @@ class Runner(object):
 
 			if not err:
 				ret = p.stdout.read()
-				err = p.stderr.read()+err
+				err = p.stderr.read()
 
 		return {
 			"status":status,

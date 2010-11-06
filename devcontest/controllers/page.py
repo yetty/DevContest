@@ -12,12 +12,11 @@ from pylons.controllers.util import abort, redirect_to
 
 from devcontest.lib.base import BaseController, render
 from pylons.i18n import get_lang, set_lang, _
-
+from pylons import config
 
 log = logging.getLogger(__name__)
 
 class PageController(BaseController):
-	path = './data/pages/'
 	page = None
 	extension = "html"
 
@@ -51,11 +50,11 @@ class PageController(BaseController):
 	def _create(self, name):
 		self.page = name
 		if not self._pageExists():
-			f = open(self.path+self.page+"."+self.extension, "w")
+			f = open(self._filename(), "w")
 			f.close()
 
 	def _filename(self):
-		return self.path+self.page+"."+self.extension
+		return os.path.join(config.get('page_dir'), self.page+"."+self.extension)
 
 	def _pageExists(self):
 		if os.path.isfile(self._filename()):
@@ -73,8 +72,8 @@ class PageController(BaseController):
 
 	def _getListOfPages(self):
 		list = []
-		for o in os.listdir(self.path):
-			if os.path.isfile(self.path+o):
+		for o in os.listdir(config.get('page_dir')):
+			if os.path.isfile(os.path.join(config.get('page_dir'), o)):
 				name, ext = o.rsplit('.')
 				if ext==self.extension:
 					list.append(name)
