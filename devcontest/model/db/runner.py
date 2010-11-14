@@ -21,7 +21,7 @@ runners_table = sa.Table('runners', meta.metadata,
 
 class Runner(object):
 	sudo = 'sudo -u python '
-	compileErrors = None
+	compileErrors = ''
 
 	def __init__(self, lang, compile="", run=""):
 		self.lang = lang
@@ -39,12 +39,13 @@ class Runner(object):
 		name = os.path.basename(file).split(".")[0]
 		params = self.pushFileName(self.compile, {"%f":file, "%o":out, "%c":name})
 
-		subprocess.call(params, stderr=subprocess.PIPE)
+		p = subprocess.Popen(params, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		p.wait()
 
 		try:
 			self.compileErrors = p.stderr.read()
 		except:
-			self.compileErrors = None
+			self.compileErrors = ''
 
 		return out
 
@@ -82,7 +83,7 @@ class Runner(object):
 
 			timeStart = time.time()
 			while True:
-				if p.poll()==0:
+				if p.poll() is not None:
 					status = True
 					break
 
@@ -102,10 +103,10 @@ class Runner(object):
 				err = p.stderr.read()
 
 		return {
-			"status":status,
+			"status": status,
 			"return": ret,
 			"errors": err,
-			"compile":self.compileErrors
+			"compile": unicode(self.compileErrors, errors='ignore')
 		}
 
 

@@ -26,12 +26,36 @@
 			${h.textarea(name="example_out", id="", content=c.example_out, rows=15, cols=55)}
 			</td>
 		</tr>
+		<tr><td>&nbsp;</td></tr>
+		<tr>
+			<td colspan=2>
+			${_('Count of test script execution')}: <input type="text" name="run_count" value="${c.run_count}">
+			</td>
+		</tr>
 		<tr>
 			<td class="strong">
 			${_('Script for generating input')}:
+
+			<select name="script_in_lang">
+				<option name="${c.script_in_lang}">${c.script_in_lang}</option>
+				<option disabled>---</option>
+
+				% for runner in c.runners:
+					<option name="${runner.lang}">${runner.lang}</option>
+				% endfor
+			</select>
 			</td>
 			<td class="strong">
 			${_('Script for process')}:
+
+			<select name="script_out_lang">
+				<option name="${c.script_out_lang}">${c.script_out_lang}</option>
+				<option disabled>---</option>
+
+				% for runner in c.runners:
+					<option name="${runner.lang}">${runner.lang}</option>
+				% endfor
+				</select>
 			</td>
 		</tr>
 		<tr>
@@ -58,14 +82,16 @@
 				${_('output')}:</br>
 				<pre style="width: 350px;" wrap=hard>${c.run_in["return"]}</pre>
 				${_('errors')}:</br>
-				<pre style="width: 350px;" wrap=hard>${c.run_in["errors"]}</pre>
+				<pre style="width: 350px;" wrap=hard>${c.run_in["compile"]}
+${c.run_in["errors"]}</pre>
 			</td>
 			<td>
 				${_('status')}: ${c.run_out["status"]}<br>
 				${_('output')}:</br>
 				<pre style="width: 350px;" wrap=hard>${c.run_out["return"]}</pre>
 				${_('errors')}:</br>
-				<pre style="width: 350px;" wrap=hard>${c.run_out["errors"]}</pre>
+				<pre style="width: 350px;" wrap=hard>${c.run_out["compile"]}
+${c.run_out["errors"]}</pre>
 			</td>
 		</tr>
 	</table>

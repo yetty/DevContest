@@ -120,11 +120,16 @@ class TaskController(BaseController):
 		c.example_out = self.task.example_out
 		c.data_in = self.task.data_in
 		c.data_out = self.task.data_out
+		c.run_count = self.task.run_count
+		c.script_in_lang = self.task.script_in_lang
+		c.script_out_lang = self.task.script_out_lang
 
-		c.run_in = self._run(self.task.getPath("in"))
+		c.runners = Session.query(Runner).all()
+
+		c.run_in = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang)
 		nameIn = self._saveTmpIn(c.run_in['return'])
 
-		c.run_out = self._run(self.task.getPath("out"), nameIn)
+		c.run_out = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, nameIn)
 		#c.run_out['errors'] = unicode(c.run_out['errors'], errors='ignore')
 
 		return render('/admin/taskEdit.mako')
@@ -153,11 +158,14 @@ class TaskController(BaseController):
 		self.task.example_out = request.params['example_out']
 		self.task.data_in = request.params['data_in']
 		self.task.data_out = request.params['data_out']
+		self.task.run_count = request.params['run_count']
+		self.task.script_in_lang = request.params['script_in_lang']
+		self.task.script_out_lang = request.params['script_out_lang']
 
 		self.task.commit()
 
-	def _run(self, file, fileIn=None):
-		r = Session.query(Runner).filter_by(lang="py").first()
+	def _run(self, file, lang, fileIn=None):
+		r = Session.query(Runner).filter_by(lang=lang).first()
 		if not r:
 			raise Exception(_("I need Python to run! Please set it in the runners."))
 		else:
