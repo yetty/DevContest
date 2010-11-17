@@ -36,6 +36,12 @@ class Runner(object):
 		if out==None:
 			out = file+".out"
 
+		if os.path.isfile(out):
+			if os.path.getmtime(file) < os.path.getmtime(out):
+				return out
+			else:
+				os.remove(out)
+
 		name = os.path.basename(file).split(".")[0]
 		params = self.pushFileName(self.compile, {"%f":file, "%o":out, "%c":name})
 
@@ -46,6 +52,9 @@ class Runner(object):
 			self.compileErrors = p.stderr.read()
 		except:
 			self.compileErrors = ''
+
+		if not os.path.isfile(out) and not self.compileErrors:
+			self.compileErrors = p.stdout.read()
 
 		return out
 
@@ -58,20 +67,25 @@ class Runner(object):
 		list = command.split("|")
 		return list
 
-	def exe(self, file, fileIn=None, limit=1):
+	def exe(self, file, fileIn=None, limit=1, i=None):
 		err = ""
 		ret = ""
 		status = False
 		self.compileErrors = ""
 
-		try:
-			if self.compile:
-				file = self.exeCompile(file)
-		except:
-			self.compileErrors = _("Error in compilation")
+		if self.compile:
+			try:
+				fileToCompile = str(file)
+				file = ""
+				file = self.exeCompile(fileToCompile)
+			except:
+				self.compileErrors = _("Error in compilation")
 
-		if not self.compileErrors:
+		if (not self.compileErrors) or os.path.isfile(file):
 			params = self.pushFileName(self.sudo+self.run, {"%f":file})
+
+			if (i is not None):
+				params += [str(i)]
 
 			p = subprocess.Popen(params, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -102,11 +116,16 @@ class Runner(object):
 				ret = p.stdout.read()
 				err = p.stderr.read()
 
+		try:
+			compile = unicode(self.compileErrors, errors='ignore')
+		except:
+			compile = self.compileErrors
+
 		return {
 			"status": status,
 			"return": ret,
 			"errors": err,
-			"compile": unicode(self.compileErrors, errors='ignore')
+			"compile": compile
 		}
 
 

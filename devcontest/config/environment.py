@@ -11,6 +11,10 @@ import devcontest.lib.helpers
 from devcontest.config.routing import make_map
 from devcontest.model import init_model
 
+from weberror import collector
+collector.FALLBACK_ENCODING = 'utf-8'
+
+
 def load_environment(global_conf, app_conf):
 	"""Configure the Pylons environment via the ``pylons.config``
 	object

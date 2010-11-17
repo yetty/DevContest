@@ -76,31 +76,32 @@ class TaskController(BaseController):
 			self.source.errors = _("Unknown file type")
 			return False
 
-		runIn = self._run(self.task.getPath("in"))
-		fileIn = self._saveTmpIn(runIn['return'])
+		success = True
+		for i in range(self.task.run_count):
+			runIn = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang, i=i)
+			fileIn = self._saveTmpIn(runIn['return'])
 
-		try:
-			data = r.exe(self.source.getPath(), fileIn)
-		except:
-			self.source.errors = _("Unexpected error")
-			return False
+			try:
+				data = r.exe(self.source.getPath(), fileIn)
+			except:
+				self.source.errors = _("Unexpected error")
+				return False
 
+			orig = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, fileIn)
 
-		orig = self._run(self.task.getPath("out"), fileIn)
+			if data['return'].strip()==orig['return'].strip():
+				pass
+			elif data['return'].strip()!=orig['return'].strip() and data['return'].strip():
+				self.source.errors = _("Wrong output")
+				success = False
+			elif data['compile']:
+				self.source.errors = data['compile']
+				success = False
+			elif data['errors']:
+				self.source.errors = data['errors']
+				success = False
 
-		if data['compile']:
-			self.source.errors = data['compile']
-			return False
-
-		if data['errors']:
-			self.source.errors = data['errors']
-			return False
-
-		if data['return'].strip()!=orig['return'].strip():
-			self.source.errors = _("Wrong output")
-			return False
-
-		self.source.status = True
+		self.source.status = success
 
 
 	def admin(self, id=None, param=None):
@@ -110,7 +111,9 @@ class TaskController(BaseController):
 		if param=="save":
 			self._save()
 		if param=="remove":
+			contest_id = self.task.contest_id
 			self._remove()
+			return redirect_to(action="contest", id=contest_id, param=None)
 
 		c.id = self.task.id
 		c.contest_id = self.task.contest_id
@@ -125,12 +128,26 @@ class TaskController(BaseController):
 		c.script_out_lang = self.task.script_out_lang
 
 		c.runners = Session.query(Runner).all()
+		c.run_in = {'return' : '', 'errors' : '', 'status' : '', 'compile' : ''}
+		c.run_out = {'return' : '', 'errors' : '', 'status' : '', 'compile' : ''}
 
-		c.run_in = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang)
-		nameIn = self._saveTmpIn(c.run_in['return'])
+		for i in range(self.task.run_count):
+			run_in = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang, i=i)
+			nameIn = self._saveTmpIn(run_in['return'])
 
-		c.run_out = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, nameIn)
-		#c.run_out['errors'] = unicode(c.run_out['errors'], errors='ignore')
+			run_out = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, nameIn)
+
+			try:
+				run_out['errors'] = unicode(c.run_out['errors'], errors='ignore')
+			except:
+				pass
+
+			c.run_in['return'] += run_in['return']
+			c.run_in['errors'] += run_in['errors']
+			c.run_out['return'] += run_out['return']
+			c.run_out['errors'] += run_out['errors']
+
+
 
 		return render('/admin/taskEdit.mako')
 
@@ -164,10 +181,11 @@ class TaskController(BaseController):
 
 		self.task.commit()
 
-	def _run(self, file, lang, fileIn=None):
+	def _run(self, file, lang, fileIn=None, i=None):
 		r = Session.query(Runner).filter_by(lang=lang).first()
-		if not r:
-			raise Exception(_("I need Python to run! Please set it in the runners."))
-		else:
-			get = r.exe(file, fileIn)
+
+		if r:
+			get = r.exe(file, fileIn, i=i)
 			return get
+		else:
+			return {'errors': _("This script need support of *.%s") % lang, 'return' : '', 'status':'false', 'compile' : ''}

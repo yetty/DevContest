@@ -52,12 +52,14 @@ class Task(object):
 
 	def _save(self, postfix, content):
 		f = open(self.getPath(postfix), 'w')
-		f.write(unicodedata.normalize('NFKD', content).encode('ascii', 'ignore'))
+		if content:
+			content = unicodedata.normalize('NFKD', content).encode('ascii', 'ignore')
+		f.write(content)
 		f.close()
 
 	def getPath(self, postfix=""):
-		if not os.path.isdir(self.path+str(self.contest_id)):
-			os.mkdir(self.path+str(self.contest_id))
+		if not os.path.isdir(os.path.join(self.path, str(self.contest_id))):
+			os.mkdir(os.path.join(self.path, str(self.contest_id)))
 
 		if postfix!="":
 			postfix = "."+postfix
