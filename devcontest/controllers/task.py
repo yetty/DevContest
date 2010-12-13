@@ -89,16 +89,17 @@ class TaskController(BaseController):
 
 			orig = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, fileIn)
 
+			print data
 			if data['return'].strip()==orig['return'].strip():
 				pass
+			elif data['errors']:
+				self.source.errors = data['errors']
+				success = False
 			elif data['return'].strip()!=orig['return'].strip() and data['return'].strip():
 				self.source.errors = _("Wrong output")
 				success = False
 			elif data['compile']:
 				self.source.errors = data['compile']
-				success = False
-			elif data['errors']:
-				self.source.errors = data['errors']
 				success = False
 
 		self.source.status = success
@@ -144,8 +145,10 @@ class TaskController(BaseController):
 
 			c.run_in['return'] += run_in['return']
 			c.run_in['errors'] += run_in['errors']
+			c.run_in['compile'] += run_in['compile']
 			c.run_out['return'] += run_out['return']
 			c.run_out['errors'] += run_out['errors']
+			c.run_out['compile'] += run_out['compile']
 
 
 

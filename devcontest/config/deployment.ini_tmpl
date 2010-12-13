@@ -26,6 +26,7 @@ beaker.session.secret = rW/JvuN0xisb9Ft4OPXgZ7ULg
 app_instance_uuid = {248e4c01-3440-49bb-8af9-e1378966e931}
 page_dir = %(here)s/data/pages
 task_dir = %(here)s/data/tasks
+sources_dir = %(here)s/data/sources/
 runner_tmp_dir = %(here)s/data/tmp
 
 

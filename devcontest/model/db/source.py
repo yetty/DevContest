@@ -9,6 +9,8 @@ import codecs
 from devcontest.model import meta
 from devcontest.model.meta import Session
 
+from pylons import config
+
 sources_table = sa.Table('sources', meta.metadata,
 	sa.Column('id', sa.types.Integer(), primary_key=True),
 	sa.Column('contest_id', sa.types.Integer(), sa.ForeignKey('contests.id')),
@@ -21,11 +23,12 @@ sources_table = sa.Table('sources', meta.metadata,
 )
 
 class Source(object):
-	path = os.path.abspath('data/sources/')
+	path = ''
 
 	status = False
 
 	def __init__(self, contest_id, task_id, user_id, file, errors=None):
+		self.path = config.get('sources_dir')
 		self.contest_id = contest_id
 		self.task_id = task_id
 		self.user_id = user_id

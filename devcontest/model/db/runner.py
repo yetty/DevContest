@@ -116,6 +116,9 @@ class Runner(object):
 				ret = p.stdout.read()
 				err = p.stderr.read()
 
+		if not err and ('error' in ret):
+			err = ret
+
 		try:
 			compile = unicode(self.compileErrors, errors='ignore')
 		except:
