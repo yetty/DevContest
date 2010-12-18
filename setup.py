@@ -11,7 +11,7 @@ os_files = [
 
 setup(
     name='DevContest',
-    version='0.2.6',
+    version='0.2.7',
     description='Web interface for developers contests. Python, C, Pascal, PHP, Perl, Java',
     author='Juda Kaleta',
     author_email='juda.kaleta@gmail.com',

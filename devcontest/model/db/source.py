@@ -28,7 +28,6 @@ class Source(object):
 	status = False
 
 	def __init__(self, contest_id, task_id, user_id, file, errors=None):
-		self.path = config.get('sources_dir')
 		self.contest_id = contest_id
 		self.task_id = task_id
 		self.user_id = user_id
@@ -52,6 +51,9 @@ class Source(object):
 			f.close()
 
 	def getPath(self):
+		if self.path=='':
+			self.path = config.get('sources_dir')
+
 		if not os.path.isdir(os.path.join(self.path, str(self.user_id))):
 			os.mkdir(os.path.join(self.path, str(self.user_id)))
 		if not os.path.isdir(os.path.join(self.path, str(self.user_id), str(self.task_id))):

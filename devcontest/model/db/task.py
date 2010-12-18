@@ -28,7 +28,6 @@ class Task(object):
 	path = ''
 
 	def __init__(self, parent, name, description="", example_in="", example_out="", data_in="", data_out="", run_count=1, script_in_lang="py", script_out_lang="py"):
-		self.path = config.get('task_dir')
 		self.contest_id = parent
 		self.name = name
 		self.description = description
@@ -58,13 +57,16 @@ class Task(object):
 		f.close()
 
 	def getPath(self, postfix=""):
+		if self.path=='':
+			self.path = config.get('task_dir')
+
 		if not os.path.isdir(os.path.join(self.path, str(self.contest_id))):
 			os.mkdir(os.path.join(self.path, str(self.contest_id)))
 
 		if postfix!="":
 			postfix = "."+postfix
 
-		return unicodedata.normalize('NFKD', os.path.join(config.get('task_dir'), str(self.contest_id), self.name+postfix)).encode('ascii','ignore')
+		return unicodedata.normalize('NFKD', os.path.join(self.path, str(self.contest_id), self.name+postfix)).encode('ascii','ignore')
 
 	def _load(self, postfix):
 		try:

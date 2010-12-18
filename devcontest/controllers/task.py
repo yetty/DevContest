@@ -89,7 +89,6 @@ class TaskController(BaseController):
 
 			orig = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, fileIn)
 
-			print data
 			if data['return'].strip()==orig['return'].strip():
 				pass
 			elif data['errors']:
