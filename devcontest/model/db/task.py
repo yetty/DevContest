@@ -21,13 +21,18 @@ tasks_table = sa.Table('tasks', meta.metadata,
 	sa.Column('run_count', sa.types.Integer()),
 	sa.Column('script_in_lang', sa.types.Unicode()),
 	sa.Column('script_out_lang', sa.types.Unicode()),
+	sa.Column('time_limit', sa.types.Integer()),
+	sa.Column('memory_limit', sa.types.Integer()),
 )
 
 
 class Task(object):
 	path = ''
 
-	def __init__(self, parent, name, description="", example_in="", example_out="", data_in="", data_out="", run_count=1, script_in_lang="py", script_out_lang="py"):
+	def __init__(self, parent, name, description="", example_in="",
+		example_out="", data_in="", data_out="", run_count=1,
+		script_in_lang="py", script_out_lang="py", time_limit=60,
+		memory_limit=1024):
 		self.contest_id = parent
 		self.name = name
 		self.description = description
@@ -36,6 +41,8 @@ class Task(object):
 		self.run_count = run_count
 		self.script_in_lang = script_in_lang
 		self.script_out_lang = script_out_lang
+		self.time_limit = time_limit
+		self.memory_limit = memory_limit
 
 		if data_in!="":
 			self._save("in."+self.script_in_lang , data_in)

@@ -126,6 +126,8 @@ class TaskController(BaseController):
 		c.run_count = self.task.run_count
 		c.script_in_lang = self.task.script_in_lang
 		c.script_out_lang = self.task.script_out_lang
+		c.time_limit = self.task.time_limit
+		c.memory_limit = self.task.memory_limit
 
 		c.runners = Session.query(Runner).all()
 		c.run_in = {'return' : '', 'errors' : '', 'status' : '', 'compile' : ''}
@@ -180,14 +182,15 @@ class TaskController(BaseController):
 		self.task.run_count = request.params['run_count']
 		self.task.script_in_lang = request.params['script_in_lang']
 		self.task.script_out_lang = request.params['script_out_lang']
-
+		self.task.time_limit = request.params['time_limit']
+		self.task.memory_limit = request.params['memory_limit']
 		self.task.commit()
 
 	def _run(self, file, lang, fileIn=None, i=None):
 		r = Session.query(Runner).filter_by(lang=lang).first()
 
 		if r:
-			get = r.exe(file, fileIn, i=i)
+			get = r.exe(file, fileIn, i=i, time_limit=self.task.time_limit, memory_limit=self.task.memory_limit)
 			return get
 		else:
 			return {'errors': _("This script need support of *.%s") % lang, 'return' : '', 'status':'false', 'compile' : ''}

@@ -67,7 +67,20 @@ class Runner(object):
 		list = command.split("|")
 		return list
 
-	def exe(self, file, fileIn=None, limit=1, i=None):
+	def ListToText(self, l):
+	    s = ''
+	    for i in l:
+		s += i+" "
+	    return s.strip()
+	
+	def toUnicode(self, str):
+	    try:
+		str = unicode(str, errors='ignore')
+	    except:
+		pass
+	    return str
+
+	def exe(self, file, fileIn=None, time_limit=20, memory_limit=10*1024, i=None):
 		err = ""
 		ret = ""
 		status = False
@@ -82,12 +95,20 @@ class Runner(object):
 				self.compileErrors = _("Error in compilation")
 
 		if (not self.compileErrors) or os.path.isfile(file):
-			params = self.pushFileName(self.sudo+self.run, {"%f":file})
-
+			params = self.pushFileName(self.run, {"%f":'"'+file+'"'})
+			
 			if (i is not None):
 				params += [str(i)]
 
-			p = subprocess.Popen(params, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+			strParams = self.ListToText(params)
+			strUlimit = self.sudo + "-H bash -c 'ulimit -t " + str(time_limit) \
+				    + " -v " + str(memory_limit) 
+		
+			sh = open(file+".sh", "w")
+			sh.write(strUlimit+"; "+strParams+"'\n")
+			sh.close()
+
+			p = subprocess.Popen(['sh', file+'.sh'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 			if fileIn:
 				f = open(fileIn, 'r')
@@ -95,21 +116,9 @@ class Runner(object):
 				p.stdin.close()
 				f.close()
 
-			timeStart = time.time()
 			while True:
 				if p.poll() is not None:
 					status = True
-					break
-
-				if int((time.time()-timeStart)) >= limit:
-					try:
-						p.kill()
-					except:
-						pass
-					status = False
-					err = _("The time limit was exceeded.")
-					value = None
-
 					break
 
 			if not err:
@@ -119,16 +128,11 @@ class Runner(object):
 		if not err and ('error' in ret):
 			err = ret
 
-		try:
-			compile = unicode(self.compileErrors, errors='ignore')
-		except:
-			compile = self.compileErrors
-
 		return {
 			"status": status,
-			"return": ret,
-			"errors": err,
-			"compile": compile
+			"return": self.toUnicode(ret),
+			"errors": self.toUnicode(err),
+			"compile": self.toUnicode(self.compileErrors)
 		}
 
 

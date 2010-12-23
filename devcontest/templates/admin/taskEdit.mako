@@ -28,6 +28,14 @@
 		</tr>
 		<tr><td>&nbsp;</td></tr>
 		<tr>
+			<td>
+			${_('Time limit (seconds)')}: <input type="text" name="time_limit" value="${c.time_limit}">
+			</td>
+			<td>
+			${_('Memory limit (kB)')}: <input type="text" name="memory_limit" value="${c.memory_limit}">
+			</td>
+		</tr>
+		<tr>
 			<td colspan=2>
 			${_('Count of test script execution')}: <input type="text" name="run_count" value="${c.run_count}">
 			</td>
