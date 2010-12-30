@@ -78,7 +78,7 @@ class TaskController(BaseController):
 
 		success = True
 		for i in range(self.task.run_count):
-			runIn = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang, i=i)
+			runIn = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang, i=i, nolimit=True)
 			fileIn = self._saveTmpIn(runIn['return'])
 
 			try:
@@ -134,7 +134,7 @@ class TaskController(BaseController):
 		c.run_out = {'return' : '', 'errors' : '', 'status' : '', 'compile' : ''}
 
 		for i in range(self.task.run_count):
-			run_in = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang, i=i)
+			run_in = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang, i=i, nolimit=True)
 			nameIn = self._saveTmpIn(run_in['return'])
 
 			run_out = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, nameIn)
@@ -186,11 +186,14 @@ class TaskController(BaseController):
 		self.task.memory_limit = request.params['memory_limit']
 		self.task.commit()
 
-	def _run(self, file, lang, fileIn=None, i=None):
+	def _run(self, file, lang, fileIn=None, i=None, nolimit=False):
 		r = Session.query(Runner).filter_by(lang=lang).first()
 
 		if r:
-			get = r.exe(file, fileIn, i=i, time_limit=self.task.time_limit, memory_limit=self.task.memory_limit)
+			if nolimit:
+				get = r.exe(file, fileIn, i=i, time_limit=0, memory_limit=0)
+			else:
+				get = r.exe(file, fileIn, i=i, time_limit=self.task.time_limit, memory_limit=self.task.memory_limit)
 			return get
 		else:
 			return {'errors': _("This script need support of *.%s") % lang, 'return' : '', 'status':'false', 'compile' : ''}

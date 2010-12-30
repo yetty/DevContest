@@ -80,7 +80,7 @@ class Runner(object):
 		pass
 	    return str
 
-	def exe(self, file, fileIn=None, time_limit=20, memory_limit=10*1024, i=None):
+	def exe(self, file, fileIn=None, time_limit=10, memory_limit=10*1024, i=None):
 		err = ""
 		ret = ""
 		status = False
@@ -97,15 +97,17 @@ class Runner(object):
 		if (not self.compileErrors) or os.path.isfile(file):
 			params = self.pushFileName(self.run, {"%f":'"'+file+'"'})
 			
-			if (i is not None):
-				params += [str(i)]
+			#if (i is not None):
+			#	params += [str(i)]
 
 			strParams = self.ListToText(params)
-			strUlimit = self.sudo + "-H bash -c 'ulimit -t " + str(time_limit) \
-				    + " -v " + str(memory_limit) 
+			strUlimit = ""
+			print params
+			if time_limit>0 and memory_limit>0:
+				strUlimit = self.sudo + "-H bash -c 'ulimit -t " + str(time_limit) + " -v " + str(memory_limit) + "; "
 		
 			sh = open(file+".sh", "w")
-			sh.write(strUlimit+"; "+strParams+"'\n")
+			sh.write(strUlimit+strParams+"';\n")
 			sh.close()
 
 			p = subprocess.Popen(['sh', file+'.sh'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
