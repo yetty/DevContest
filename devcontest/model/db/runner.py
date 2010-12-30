@@ -102,12 +102,12 @@ class Runner(object):
 
 			strParams = self.ListToText(params)
 			strUlimit = ""
-			print params
 			if time_limit>0 and memory_limit>0:
-				strUlimit = self.sudo + "-H bash -c 'ulimit -t " + str(time_limit) + " -v " + str(memory_limit) + "; "
+				strUlimit = 'ulimit -t ' + str(time_limit) + " -v " + str(memory_limit) + "; "
 		
+			print strParams
 			sh = open(file+".sh", "w")
-			sh.write(strUlimit+strParams+"';\n")
+			sh.write(self.sudo + "-H bash -c '"+strUlimit+strParams+"';\n")
 			sh.close()
 
 			p = subprocess.Popen(['sh', file+'.sh'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
