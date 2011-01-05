@@ -46,9 +46,9 @@ class UserController(BaseController):
 		users = None
 		if self.user:
 			if self.user.admin:
-				users = Session.query(User).all()
+				users = Session.query(User).order_by(User.rank).all()
 		if not users:
-			users = Session.query(User).filter_by(admin=False).all()
+			users = Session.query(User).filter_by(admin=False).order_by(User.rank).all()
 
 		c.users = []
 		for user in users:
