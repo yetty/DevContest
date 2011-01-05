@@ -27,7 +27,10 @@ class TaskController(BaseController):
 		self.auth()
 
 		self._load(id)
+
 		c.task = self.task
+		print (self.task.getPath("out."+self.task.script_out_lang))
+		c.original_source = open(self.task.getPath("out."+self.task.script_out_lang)).read()
 		self.source = Session.query(Source).filter_by(user_id=self.user.id, task_id=id).first()
 		if self.source:
 			self.source.load()
@@ -36,7 +39,7 @@ class TaskController(BaseController):
 			if self._upload():
 				self._runUserScript()
 				self.source.commit()
-
+		c
 		c.source = self.source
 		if c.source:
 			c.status = c.source.status
