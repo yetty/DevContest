@@ -55,7 +55,7 @@ class UserController(BaseController):
 			count = Session.query(Source).filter_by(user_id=user.id, status=True).count()
 			if count:
 				c.users.append({'user':user,'count':count})
-		sorted(c.users, key=lambda rank: int(rank['count']))
+		c.users = sorted(c.users, key=lambda rank: (int(rank['count']), rank['user']), reverse=True)
 		return render('top.mako')
 
 	def admin(self, id, param):
