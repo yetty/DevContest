@@ -14,7 +14,11 @@
 <%
 from devcontest.model import Contest
 from devcontest.model.meta import Session
+from pygments import highlight
+from pygments.lexers import guess_lexer
+from pygments.formatters import HtmlFormatter
 %>
+
 % if Session.query(Contest.is_running).filter_by(id=c.task.contest_id).first()[0]:
 	<hr>
 	% if not c.status or request.environ.get('REMOTE_USER').admin:
@@ -29,11 +33,6 @@ from devcontest.model.meta import Session
 
 	% if c.source:
 	<h3>${_('Last version')}</h3>
-	<%
-	from pygments import highlight
-	from pygments.lexers import guess_lexer
-	from pygments.formatters import HtmlFormatter
-	%>
 	% if c.source.errors:
 	<pre>${c.source.errors}</pre>
 	% endif
@@ -41,5 +40,13 @@ from devcontest.model.meta import Session
 	${highlight(c.source.source, guess_lexer(c.source.source), HtmlFormatter(linenos=True)) | n}
 
 	% endif
+%else:
+	<hr>
+	<h3
+	onclick="javascript:document.getElementById('source').style.display='block';">${_('Source code')}</h3>
+
+	<div id="source">
+	${highlight(c.original_source, guess_lexer(c.original_source), HtmlFormatter(linenos=True)) | n}
+	</div>
 %endif
 </%def>
