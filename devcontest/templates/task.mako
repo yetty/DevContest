@@ -24,8 +24,27 @@ from pygments.formatters import HtmlFormatter
 	% if not c.status or request.environ.get('REMOTE_USER').admin:
 	 ${h.form_start(h.url_for(param="upload"), method="post", multipart=True)}
 	 ${h.field(_("Source code"), h.file(name="source"))}
+	
+	 
+	 <tr class="field">
+	 	<td class="label">
+			<span style="visibility: hidden;">*</span>	
+			<label>${_("File type")}:</label>
+		</td>
+		<td>
+			<select name="type">
+				<option value="*">${_("Select type automaticly")}</option>
+				% for runner in c.runners:
+					<option value="${runner.lang}">${_(runner.lang)}</option>
+				% endfor
+			</select>
+		</td>
+	</tr>
+	 
 	 ${h.field("", h.submit("submit", _("Submit")))}
-	 ${h.form_end()}
+	
+	
+	${h.form_end()}
 	% endif
 	% if c.status:
 		<div class="success">${_('The task was solved')}</div>

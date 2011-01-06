@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: juda.kaleta@gmail.cm\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2010-11-06 09:02+0100\n"
+"PO-Revision-Date: 2011-01-06 19:29+0100\n"
 "Last-Translator: Juda Kaleta <juda.kaleta@gmail.com>\n"
 "Language-Team: cs\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
@@ -22,11 +22,11 @@ msgstr ""
 msgid "Login failed"
 msgstr "Přihlášení selhalo"
 
-#: devcontest/controllers/page.py:104
+#: devcontest/controllers/page.py:103
 msgid "The page couldn't be saved"
 msgstr "Stránka nemohla být uložena"
 
-#: devcontest/controllers/page.py:106
+#: devcontest/controllers/page.py:105
 msgid "Page was saved succesfull"
 msgstr "Stránka byla úspěšně uložena"
 
@@ -54,30 +54,27 @@ msgstr "E-mail je již zaregistrován"
 msgid "Registration failed. Sorry. Please, contact us."
 msgstr "Registrace selhala, kontaktujte administrátora."
 
-#: devcontest/controllers/task.py:76
+#: devcontest/controllers/task.py:80
 msgid "Unknown file type"
 msgstr "Neznámý formát souboru"
 
-#: devcontest/controllers/task.py:85
+#: devcontest/controllers/task.py:91
 msgid "Unexpected error"
 msgstr "Neočekávaná chyba"
 
-#: devcontest/controllers/task.py:99
+#: devcontest/controllers/task.py:102
 #, fuzzy
 msgid "Wrong output"
 msgstr "Špatná odpověď."
 
-#: devcontest/controllers/task.py:162
-msgid "I need Python to run! Please set it in the runners."
-msgstr "Potřebuji Python k spuštění kontrolních testů! Prosím nastavte ho v administraci » spouštěče."
+#: devcontest/controllers/task.py:203
+#, python-format
+msgid "This script need support of *.%s"
+msgstr "Tento skript potřebuje podporu *.%s"
 
-#: devcontest/model/db/runner.py:69
+#: devcontest/model/db/runner.py:95
 msgid "Error in compilation"
 msgstr "Chyba při kompilaci"
-
-#: devcontest/model/db/runner.py:94
-msgid "The time limit was exceeded."
-msgstr "Časový limit byl překročen"
 
 #: devcontest/templates/archiv.mako:3 devcontest/templates/archiv.mako:6
 msgid "The Archive"
@@ -290,10 +287,10 @@ msgstr "Příjmení"
 msgid "Class"
 msgstr "Třída"
 
-#: devcontest/templates/registration.mako:33 devcontest/templates/task.mako:23
+#: devcontest/templates/registration.mako:33 devcontest/templates/task.mako:44
 #: devcontest/templates/admin/pageEdit.mako:23
 #: devcontest/templates/admin/taskEdit.mako:11
-#: devcontest/templates/admin/taskEdit.mako:46
+#: devcontest/templates/admin/taskEdit.mako:78
 #: devcontest/templates/admin/userEdit.mako:30
 msgid "Submit"
 msgstr "Odeslat"
@@ -320,15 +317,23 @@ msgstr "Příklad vstupu"
 msgid "Example of output"
 msgstr "Příklad výstupu"
 
-#: devcontest/templates/task.mako:22
+#: devcontest/templates/task.mako:26 devcontest/templates/task.mako:65
 msgid "Source code"
 msgstr "Zdrojový kód"
 
-#: devcontest/templates/task.mako:27
+#: devcontest/templates/task.mako:32
+msgid "File type"
+msgstr "Typ souboru"
+
+#: devcontest/templates/task.mako:36
+msgid "Select type automaticly"
+msgstr "Vyber typ souboru automaticky"
+
+#: devcontest/templates/task.mako:50
 msgid "The task was solved"
 msgstr "Úloha vyřešena"
 
-#: devcontest/templates/task.mako:31
+#: devcontest/templates/task.mako:54
 msgid "Last version"
 msgstr "Poslední verze"
 
@@ -432,34 +437,47 @@ msgstr "pro výstup"
 msgid "Editation of task"
 msgstr "Úprava úkolu"
 
-#: devcontest/templates/admin/taskEdit.mako:31
+#: devcontest/templates/admin/taskEdit.mako:32
+#, fuzzy
+msgid "Time limit (seconds)"
+msgstr "Časový limit byl překročen"
+
+#: devcontest/templates/admin/taskEdit.mako:35
+msgid "Memory limit (kB)"
+msgstr "Omezení paměti (v kB)"
+
+#: devcontest/templates/admin/taskEdit.mako:40
+msgid "Count of test script execution"
+msgstr "Počet spuštění testovacího souboru"
+
+#: devcontest/templates/admin/taskEdit.mako:45
 msgid "Script for generating input"
 msgstr "Skript pro generování vstupu"
 
-#: devcontest/templates/admin/taskEdit.mako:34
+#: devcontest/templates/admin/taskEdit.mako:57
 msgid "Script for process"
 msgstr "Skript pro zpracování"
 
-#: devcontest/templates/admin/taskEdit.mako:49
+#: devcontest/templates/admin/taskEdit.mako:81
 msgid "Actually input"
 msgstr "Současný vstup"
 
-#: devcontest/templates/admin/taskEdit.mako:52
+#: devcontest/templates/admin/taskEdit.mako:84
 msgid "Actually output"
 msgstr "Současný výstup"
 
-#: devcontest/templates/admin/taskEdit.mako:57
-#: devcontest/templates/admin/taskEdit.mako:64
+#: devcontest/templates/admin/taskEdit.mako:89
+#: devcontest/templates/admin/taskEdit.mako:97
 msgid "status"
 msgstr "status"
 
-#: devcontest/templates/admin/taskEdit.mako:58
-#: devcontest/templates/admin/taskEdit.mako:65
+#: devcontest/templates/admin/taskEdit.mako:90
+#: devcontest/templates/admin/taskEdit.mako:98
 msgid "output"
 msgstr "výstup"
 
-#: devcontest/templates/admin/taskEdit.mako:60
-#: devcontest/templates/admin/taskEdit.mako:67
+#: devcontest/templates/admin/taskEdit.mako:92
+#: devcontest/templates/admin/taskEdit.mako:100
 msgid "errors"
 msgstr "chyby"
 

@@ -29,8 +29,9 @@ class TaskController(BaseController):
 		self._load(id)
 
 		c.task = self.task
-		print (self.task.getPath("out."+self.task.script_out_lang))
+		c.runners = Session.query(Runner).all()
 		c.original_source = open(self.task.getPath("out."+self.task.script_out_lang)).read()
+		
 		self.source = Session.query(Source).filter_by(user_id=self.user.id, task_id=id).first()
 		if self.source:
 			self.source.load()
@@ -39,7 +40,7 @@ class TaskController(BaseController):
 			if self._upload():
 				self._runUserScript()
 				self.source.commit()
-		c
+		
 		c.source = self.source
 		if c.source:
 			c.status = c.source.status
@@ -53,13 +54,17 @@ class TaskController(BaseController):
 	def _upload(self):
 		try:
 			file = request.POST['source']
+
+			if request.POST['type'] != '*':
+				file.filename += "."+request.POST['type']
+
 			size = len(file.value)
 		except:
 			return False
 
 		fileName = file.filename.replace(" ", "_").encode('ascii', 'ignore')
 
-		if size>1024*1024*2: # 2 MB
+		if size>1024*10: # 10 kB 
 			return False
 
 		if not self.source:

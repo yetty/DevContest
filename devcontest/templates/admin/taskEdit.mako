@@ -45,11 +45,11 @@
 			${_('Script for generating input')}:
 
 			<select name="script_in_lang">
-				<option name="${c.script_in_lang}">${c.script_in_lang}</option>
+				<option value="${c.script_in_lang}">${c.script_in_lang}</option>
 				<option disabled>---</option>
 
 				% for runner in c.runners:
-					<option name="${runner.lang}">${runner.lang}</option>
+					<option value="${runner.lang}">${runner.lang}</option>
 				% endfor
 			</select>
 			</td>
