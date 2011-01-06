@@ -105,7 +105,6 @@ class Runner(object):
 			if time_limit>0 and memory_limit>0:
 				strUlimit = 'ulimit -t ' + str(time_limit) + " -v " + str(memory_limit) + "; "
 		
-			print strParams
 			sh = open(file+".sh", "w")
 			sh.write(self.sudo + "-H bash -c '"+strUlimit+strParams+"';\n")
 			sh.close()
@@ -114,8 +113,11 @@ class Runner(object):
 
 			if fileIn:
 				f = open(fileIn, 'r')
-				p.stdin.write(f.read())
-				p.stdin.close()
+				try:
+					p.stdin.write(f.read())
+					p.stdin.close()
+				except:
+					pass
 				f.close()
 
 			while True:
