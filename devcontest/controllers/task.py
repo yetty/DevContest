@@ -90,11 +90,10 @@ class TaskController(BaseController):
 			fileIn = self._saveTmpIn(runIn['return'])
 
 			try:
-				data = r.exe(self.source.getPath(), fileIn)
+				data = r.exe(self.source.getPath(), fileIn, time_limit=self.task.time_limit, memory_limit=self.task.memory_limit)
 			except:
 				self.source.errors = _("Unexpected error")
 				return False
-
 			orig = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, fileIn)
 
 			if data['return'].strip()==orig['return'].strip():
