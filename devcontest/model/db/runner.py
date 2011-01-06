@@ -81,8 +81,6 @@ class Runner(object):
 	    return str
 
 	def exe(self, file, fileIn=None, time_limit=10, memory_limit=10*1024, i=None):
-		print time_limit
-		print file
 		err = ""
 		ret = ""
 		status = False
