@@ -11,6 +11,15 @@
 			<li><a href=${h.url_for(controller="contest", action="rank", id=contest.id, param=None)}>${_('Ranks')}</a></li>
 			<li class="break"></li>
 		% endfor
+		% if request.environ.get('REMOTE_USER').admin:
+			% for contest in Session.query(Contest).filter_by(is_running=False, timeStart=None).all():
+				<li class="h" style="font-style: italic;">${contest.name}
+				<small>(${_('not running')})</small><hr></li>
+				<li><a style="font-style: italic;" href=${h.url_for(controller="contest", action="tasks", id=contest.id, param=None)}>${_('Tasks')}</a></li>
+				<li><a style="font-style: italic;" href=${h.url_for(controller="contest", action="rank", id=contest.id, param=None)}>${_('Ranks')}</a></li>
+				<li class="break"></li>
+			% endfor
+		% endif
         <li><a href=${h.url_for(controller="archiv", action="index", id=None, param=None)}>${_('Archive')}</a></li>
         <li><a href=${h.url_for(controller="page", action="documentation", id=None, param=None)}>${_('Documentation')}</a></li>
         <li><a href=${h.url_for(controller="page", action="FAQ", id=None, param=None)}>${_('FAQ')}</a></li>

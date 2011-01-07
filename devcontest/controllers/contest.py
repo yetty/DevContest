@@ -63,6 +63,10 @@ class ContestController(BaseController):
 			self._remove(id)
 			return self.toIndex()
 
+		if param=="reset":
+			self._reset(id)
+			return self.toIndex()
+
 		if id=="_" and param=="create":
 			id = self._create(request.params['name'])
 			return self.toIndex(id=id)
@@ -95,6 +99,11 @@ class ContestController(BaseController):
 		Session.execute(contests_table.delete().where(contests_table.c.id==int(id)))
 		Session.execute(tasks_table.delete().where(tasks_table.c.contest_id==int(id)))
 		Session.execute(sources_table.delete().where(sources_table.c.contest_id==int(id)))
+		Session.commit()
+
+	def _reset(self, id):
+		self._loadContest(id)
+		self.contest.timeStart = None
 		Session.commit()
 
 	def _create(self, name):
