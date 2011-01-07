@@ -19,7 +19,7 @@ from pygments.lexers import guess_lexer
 from pygments.formatters import HtmlFormatter
 %>
 
-% if Session.query(Contest.is_running).filter_by(id=c.task.contest_id).first()[0]:
+% if Session.query(Contest.is_running).filter_by(id=c.task.contest_id).first()[0] or request.environ.get('REMOTE_USER').admin:
 	<hr>
 	% if not c.status or request.environ.get('REMOTE_USER').admin:
 	 ${h.form_start(h.url_for(param="upload"), method="post", multipart=True)}
@@ -59,7 +59,8 @@ from pygments.formatters import HtmlFormatter
 	${highlight(c.source.source, guess_lexer(c.source.source), HtmlFormatter(linenos=True)) | n}
 
 	% endif
-%else:
+%endif
+%if not Session.query(Contest.is_running).filter_by(id=c.task.contest_id).first()[0]:
 	<hr>
 	<h3
 	onclick="javascript:document.getElementById('source').style.display='block';">${_('Source code')}</h3>
