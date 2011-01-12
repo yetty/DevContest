@@ -74,7 +74,7 @@ class UserController(BaseController):
 			c.user = Session.query(User).filter_by(id=int(param)).first()
 			return render("admin/userEdit.mako")
 
-		c.users = Session.query(User).order_by(users_table.c.cls, users_table.c.lname,  users_table.c.fname).all()
+		c.users = Session.query(User).order_by(users_table.c.lname, users_table.c.fname).all()
 		return render('admin/user.mako')
 
 	def _adminSave(self, id, params):
