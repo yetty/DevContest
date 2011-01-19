@@ -22,7 +22,11 @@ class ArchivController(BaseController):
 	def contest(self, id):
 		c.list = Session.query(Task).filter_by(contest_id=id).all()
 		c.okUsers = self._okUsers
+		c.allUsers = self._allUsers
 		return render('archivTasks.mako')
 
 	def _okUsers(self, task_id):
+		return Session.query(Source).filter_by(task_id=task_id, status=True).count()
+	
+	def _allUsers(self, task_id):
 		return Session.query(Source).filter_by(task_id=task_id).count()

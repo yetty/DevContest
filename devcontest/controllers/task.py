@@ -16,6 +16,7 @@ log = logging.getLogger(__name__)
 from devcontest.model import *
 from devcontest.model.meta import Session
 
+from base64 import b16encode
 
 class TaskController(BaseController):
 	task = None
@@ -59,10 +60,17 @@ class TaskController(BaseController):
 				file.filename += "."+request.POST['type']
 
 			size = len(file.value)
+			fileName = file.filename.replace(" ", "_").encode('ascii', 'ignore')
+			fileValue = file.value
 		except:
-			return False
+			if request.POST['code'] != '' and request.POST['type'] != '*':
+				fileName = b16encode(request.POST['code'])[:16]+"."+request.POST['type']
+				fileValue = request.POST['code'] 
+				print fileName
+				size = len(fileValue)
+			else:
+				return False
 
-		fileName = file.filename.replace(" ", "_").encode('ascii', 'ignore')
 
 		if size>1024*10: # 10 kB 
 			return False
@@ -72,7 +80,7 @@ class TaskController(BaseController):
 			Session.add(self.source)
 
 		self.source.file = fileName
-		self.source.source = file.value
+		self.source.source = fileValue
 		self.source.commit()
 		return True
 

@@ -23,7 +23,7 @@ from pygments.formatters import HtmlFormatter
 	<hr>
 	% if not c.status or request.environ.get('REMOTE_USER').admin:
 	 ${h.form_start(h.url_for(param="upload"), method="post", multipart=True)}
-	 ${h.field(_("Source code"), h.file(name="source"))}
+	 ${h.field(_("Source file"), h.file(name="source"))}
 	
 	 
 	 <tr class="field">
@@ -38,6 +38,16 @@ from pygments.formatters import HtmlFormatter
 					<option value="${runner.lang}">${_(runner.lang)}</option>
 				% endfor
 			</select>
+		</td>
+	</tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr class="field">
+		<td class="label" valign="top">
+			<span style="visibility: hidden;">*</span>
+			<label>${_("Source code")}:</label>
+		</td>
+		<td>
+			<textarea name="code" cols=60 rows=20></textarea>
 		</td>
 	</tr>
 	 
