@@ -238,7 +238,7 @@ msgstr "Spouštěč"
 
 #: devcontest/templates/menu.mako:36
 msgid "TOP10"
-msgstr "Spouštěče"
+msgstr "TOP10"
 
 #: devcontest/templates/menu.mako:37 devcontest/templates/user.mako:3
 #: devcontest/templates/user.mako:6 devcontest/templates/admin/userEdit.mako:3
