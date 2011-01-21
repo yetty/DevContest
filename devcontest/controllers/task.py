@@ -53,6 +53,9 @@ class TaskController(BaseController):
 		return render("task.mako")
 
 	def _upload(self):
+		if request.POST['type']:
+			response.set_cookie('source_type', request.POST['type'])
+
 		try:
 			file = request.POST['source']
 
@@ -66,7 +69,6 @@ class TaskController(BaseController):
 			if request.POST['code'] != '' and request.POST['type'] != '*':
 				fileName = b16encode(request.POST['code'])[:16]+"."+request.POST['type']
 				fileValue = request.POST['code'] 
-				print fileName
 				size = len(fileValue)
 			else:
 				return False
@@ -93,6 +95,7 @@ class TaskController(BaseController):
 			return False
 
 		success = True
+		
 		for i in range(self.task.run_count):
 			runIn = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang, i=i, nolimit=True)
 			fileIn = self._saveTmpIn(runIn['return'])
