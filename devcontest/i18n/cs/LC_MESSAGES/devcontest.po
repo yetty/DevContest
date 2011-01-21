@@ -451,7 +451,7 @@ msgstr "Úprava úkolu"
 
 #: devcontest/templates/admin/taskEdit.mako:32
 msgid "Time limit (seconds)"
-msgstr "Časový limit byl překročen"
+msgstr "Časový limit (sekundy)"
 
 #: devcontest/templates/admin/taskEdit.mako:35
 msgid "Memory limit (kB)"
