@@ -14,14 +14,13 @@
     <% i = -1 %>
     % for i, b in enumerate(c.users):
         <tr>
-            <td class="ns">${i+1}</td>
+			<td class="ns"><a href=${h.url_for(id="edit", param=b.id)}><img src="/edit.png" alt="${_('edit')}"></a></td>
             <td>
 			% if b.admin:
 				<img src="/running.gif" alt="${_('is administrator')}">
 			% endif
             &nbsp;${b.fname + ' ' + b.lname}</td>
             <td style="text-align:center;">${b.cls}</td>
-			<td class="ns"><a href=${h.url_for(id="edit", param=b.id)}><img src="/edit.png" alt="${_('edit')}"></a></td>
 			<td class="ns"><a href="#" ondblclick='remove("${h.url_for(id="remove", param=b.id)}");'><img src="/remove.png" alt="${_('remove')}"></a></td>
         </tr>
     % endfor

@@ -7,8 +7,8 @@
 	<table class="dark">
 	% for task in c.list:
 			<tr>
-				<td>${task.name}</td>
 				<td class="ns"><a href=${h.url_for(action="task", id=task.id)}><img src="/edit.png" alt="${_('Edit')}"></a></td>
+				<td>${task.name}</td>
 				<td class="ns"><a href="#" ondblclick='remove("${h.url_for(action="task", id=task.id, param="remove")}");'><img src="/remove.png" alt="${_('Remove')}"></a></td>
 			</tr>
 	%endfor

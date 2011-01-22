@@ -9,8 +9,7 @@
 	<table class="dark">
 	% for item in c.list:
 			<tr>
-				<td class="ns">${item.id}</td>
-				<td>${item.lang}</td>
+				<td><strong>${item.lang}</strong></td>
 				<td>${item.compile}</td>
 				<td>${item.run}</td>
 				<td class="ns"><a href="#" ondblclick='remove("${h.url_for(id=item.id, param="remove")}");'><img src="/remove.png" alt="${_('Remove')}"></a></td>
