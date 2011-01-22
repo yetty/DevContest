@@ -55,7 +55,10 @@ from pygments.formatters import HtmlFormatter
 				LANG="${request.cookies['source_type']}";</script>
 				<%include file="/edit.mako"/>
 			% endif
-			<textarea name="code" id="code" cols=60 rows=20>${c.source.source}</textarea>
+
+			% if c.source:
+				<textarea name="code" id="code" cols=60 rows=20>${c.source.source}</textarea>
+			% endif
 		</td>
 	</tr>
 	 
