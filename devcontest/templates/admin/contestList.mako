@@ -7,7 +7,6 @@
 	<table class="dark">
 	% for contest in c.list:
 			<tr>
-				<td class="ns">${contest.id}</td>
 				<td class="ns"><a href=${h.url_for(id=contest.id)}><img src="/edit.png" alt="${_('Edit')}"></a></td>
 				<td>
 				% if contest.is_running:

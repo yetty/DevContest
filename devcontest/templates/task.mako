@@ -50,7 +50,12 @@ from pygments.formatters import HtmlFormatter
 			<label>${_("Source code")}:</label>
 		</td>
 		<td>
-			<textarea name="code" cols=60 rows=20>${c.source.source}</textarea>
+			% if request.cookies.has_key('source_type'):
+				<script type="text/javascript">var
+				LANG="${request.cookies['source_type']}";</script>
+				<%include file="/edit.mako"/>
+			% endif
+			<textarea name="code" id="code" cols=60 rows=20>${c.source.source}</textarea>
 		</td>
 	</tr>
 	 
