@@ -15,7 +15,7 @@
     <% i = -1 %>
     % for i, b in enumerate(c.users):
         <tr>
-            <td class="ns">${i+1}</td>
+            <td class="ns" style="text-align:right;">${i+1}</td>
             <td>&nbsp;${b['user'].fname + ' ' + b['user'].lname}</td>
             <td style="text-align:center;">${b['user'].cls}</td>
             <td style="text-align:center;">${b['count']}</td>
