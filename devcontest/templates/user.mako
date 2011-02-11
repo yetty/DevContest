@@ -32,7 +32,7 @@ ${h.text('cls', c.user.cls)}<br/>
 ${h.submit('submit', 'Upravit')}
 
 <p class="info">
-	${_('Strong items are obliged.')}
+	${_('Strong items are obliged.')} <br>
 </p>
 ${h.end_form()}
 

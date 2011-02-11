@@ -25,20 +25,33 @@ class UserController(BaseController):
 
 	def save(self):
 		self.auth()
+	
+		id = self.user.id
+		
+		user = Session.query(User).filter_by(id=id).first()
+		
 		l = request.params
 
 		if l['password'] == l['cpassword'] and l['password']!="":
-			self.user.password = hash(l['password'])
+			user.password = hash(l['password'])
 
 		if l['mail']!="":
-			self.user.mail = l['mail']
+			user.mail = l['mail']
 
-		self.user.fname = l['fname']
-		self.user.lname = l['lname']
-		self.user.cls = l['cls']
+		user.fname = l['fname']
+		user.lname = l['lname']
+		user.cls = l['cls']
+
 		Session.commit()
+		del session['user']
 
-		return self.index()
+		request.environ['REMOTE_USER'] = user
+		request.environ['REMOTE_USER_NAME'] = session.get('user_name')
+		self.user = user
+		session['user'] = user
+		session.save()
+
+		return self.index() #redirect_to(controller=None)
 
 	def top(self, count=10):
 		self.auth()
