@@ -103,7 +103,7 @@ ${c.source.source}
 	onclick="javascript:document.getElementById('source').style.display='block';">${_('Source code')}</h3>
 
 	<div id="source">
-	${highlight(c.original_source, guess_lexer(c.original_source), HtmlFormatter(linenos=True)) | n}
+	${highlight(c.task.getSource().read(), guess_lexer(c.task.filetype), HtmlFormatter(linenos=True)) | n}
 	</div>
 %endif
 </%def>
