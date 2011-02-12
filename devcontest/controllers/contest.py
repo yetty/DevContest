@@ -23,7 +23,7 @@ class ContestController(BaseController):
 	def rank(self, id):
 		self._loadContest(id)
 
-		if not self.contest.results:
+		if not self.contest.results and self.contest.is_running:
 			return redirect_to(action="tasks")
 
 		c.rank = self.contest.getRank(self.user.admin)
