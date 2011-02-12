@@ -1,11 +1,11 @@
 <%inherit file="/admin/base.mako"/>
 
-<%def name="title()">${_('Editation of task')} ${c.name}</%def>
+<%def name="title()">${_('Editation of task')} ${c.task.name}</%def>
 
 <%def name="body()">
 	<script type="text/javascript">var LANG="html";</script>
 	<a href=${h.url_for(controller="admin", action="contest", id=c.contest.id, param=None)} class="back">${_('back to the contest')}</a>
-	<h2>${c.name}</h2>
+	<h2>${c.task.name}</h2>
 	${h.form_start(h.url_for(id=c.id, param="save"), method="post",	multipart=True)}
 	${h.textarea(name="description", content=c.task.description, rows=20, cols=114)}
 	<table>
