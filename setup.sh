@@ -18,7 +18,7 @@ echo ">> Opening $path"
 cd $path
 
 echo ">> Creating base data structure"
-mkdir -v data data/pages data/sessions data/sources data/tasks data/templates data/tmp
+mkdir -v data data/pages data/sessions data/sources data/tasks data/templates data/tmp data/judges
 
 echo ">> Running easy_install"
 easy_install --always-unzip -O2 DevContest
