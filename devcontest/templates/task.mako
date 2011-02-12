@@ -34,7 +34,7 @@ from pygments.formatters import HtmlFormatter
 		<td>
 			<select name="type">
 				% if request.cookies.has_key('source_type'):
-					<option value="${request.cookies['source_type']}">${_(request.cookies['source_type'])}</option>
+					<option value="${request.cookies['source_type']}">${request.cookies['source_type']}</option>
 				% endif
 				<option value="*">${_("Select type automaticly")}</option>
 				% for runner in c.runners:
