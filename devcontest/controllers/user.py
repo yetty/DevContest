@@ -10,7 +10,7 @@ from pylons.i18n import get_lang, set_lang, _
 
 log = logging.getLogger(__name__)
 
-
+from sqlalchemy import not_
 from devcontest.model import *
 from devcontest.model.meta import Session
 
@@ -53,9 +53,10 @@ class UserController(BaseController):
 
 		return self.index() #redirect_to(controller=None)
 
-	def top(self, count=10):
+	def top(self, id=10):
 		self.auth()
-
+	
+		countShow = int(id)
 		users = None
 		if self.user:
 			if self.user.admin:
@@ -63,12 +64,17 @@ class UserController(BaseController):
 		if not users:
 			users = Session.query(User).filter_by(admin=False).all()
 
+		contests = Session.query(Contest).filter_by(is_running=True).all()
+		runningContests = []
+		for contest in contests:
+			runningContests.append(contest.id)
+				
 		c.users = []
 		for user in users:
-			count = Session.query(Source).filter_by(user_id=user.id, status=True).count()
+			count = Session.query(Source).filter_by(user_id=user.id, status=True).filter(not_(Source.contest_id.in_(runningContests))).count()
 			if count:
 				c.users.append({'user':user,'count':count})
-		c.users = sorted(c.users, key=lambda rank: (int(rank['count']), rank['user']), reverse=True)
+		c.users = sorted(c.users, key=lambda rank: (int(rank['count']), rank['user']), reverse=True)[:countShow]
 		return render('top.mako')
 
 	def admin(self, id, param):

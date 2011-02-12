@@ -8,14 +8,20 @@
 		% for contest in Session.query(Contest).filter_by(is_running=True).all():
 			<li class="h">${contest.name}<hr></li>
 			<li><a href=${h.url_for(controller="contest", action="tasks", id=contest.id, param=None)}>${_('Tasks')}</a></li>
-			<li><a href=${h.url_for(controller="contest", action="rank", id=contest.id, param=None)}>${_('Ranks')}</a></li>
+			% if contest.results:
+				<li><a href=${h.url_for(controller="contest", action="rank", id=contest.id, param=None)}>${_('Ranks')}</a></li>
+			% endif
 			<li class="break"></li>
 		% endfor
 		% if request.environ.get('REMOTE_USER').admin:
+			<% exists = False %>
 			% for contest in Session.query(Contest).filter_by(is_running=False, timeStart=None).all():
 				<li><a style="font-style: italic;" href=${h.url_for(controller="contest", action="tasks", id=contest.id, param=None)}>${contest.name}</a></li>
+				<% exists = True %>
 			% endfor
-			<li class="break"></li>
+			% if exists:
+				<li class="break"></li>
+			% endif
 		% endif
         <li><a href=${h.url_for(controller="archiv", action="index", id=None, param=None)}>${_('Archive')}</a></li>
         <li><a href=${h.url_for(controller="page", action="documentation", id=None, param=None)}>${_('Documentation')}</a></li>
