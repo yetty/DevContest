@@ -27,5 +27,6 @@ def make_map():
 	map.connect('/{controller}/{action}')
 	map.connect('/{controller}/{action}/{id}')
 	map.connect('/{controller}/{action}/{id}/{param}')
+	map.connect('/{controller}/{action}/{id}/{param}/{num}')
 
 	return map
