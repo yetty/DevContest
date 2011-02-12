@@ -13,11 +13,14 @@ contests_table = sa.Table('contests', meta.metadata,
 	sa.Column('name', sa.types.Unicode()),
 	sa.Column('is_running', sa.types.Boolean(), default=False),
 	sa.Column('timeStart', sa.types.DateTime()),
-	sa.Column('pilsprog_mode', sa.types.Boolean(), default=False),
+	sa.Column('mode', sa.types.Integer(), default=0),
+	sa.Column('results', sa.types.Boolean(), default=True),
 )
 
 class Contest(object):
 	timeStart = None
+	
+	modes = ['normal', 'pilsprog', 'codex'] 
 
 	def __init__(self, name, is_running=False, pilsprog_mode=False):
 		self.name = name
@@ -48,10 +51,7 @@ class Contest(object):
 		for user in users:
 			count = Session.query(Source).filter_by(user_id=user.id, contest_id=self.id, status=True).count()
 			if count>0:
-				if not self.pilsprog_mode:
-					last, = Session.query(Source.datetime).filter_by(user_id=user.id, contest_id=self.id, status=True).order_by(sources_table.c.datetime.desc()).first()
-					time = last - self.timeStart
-				else:
+				if self.mode == 1: # pilsprog
 					sources = Session.query(Source).filter_by(user_id=user.id, contest_id=self.id, status=True).all()
 
 					time = self.timeStart
@@ -61,6 +61,10 @@ class Contest(object):
 						time = time+(source.datetime-self.timeStart)
 						count = count+1
 					time = time-self.timeStart
+				else:
+					last, = Session.query(Source.datetime).filter_by(user_id=user.id, contest_id=self.id, status=True).order_by(sources_table.c.datetime.desc()).first()
+					time = last - self.timeStart
+				
 				ret.append({'user':user, 'count':count, 'time':time})
 
 		ret = sorted(ret, key = lambda user: user['time'])

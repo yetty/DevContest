@@ -18,13 +18,15 @@ tasks_table = sa.Table('tasks', meta.metadata,
 	sa.Column('description', sa.types.Unicode()),
 	sa.Column('example_in', sa.types.Unicode()),
 	sa.Column('example_out', sa.types.Unicode()),
-	sa.Column('run_count', sa.types.Integer()),
-	sa.Column('script_in_lang', sa.types.Unicode()),
-	sa.Column('script_out_lang', sa.types.Unicode()),
-	sa.Column('time_limit', sa.types.Integer()),
-	sa.Column('memory_limit', sa.types.Integer()),
 )
 
+judges_table = sa.Table('judges', meta.metadata,
+	sa.Column('id', sa.types.Integer(), primary_key=True),
+	sa.Column('task_id', sa.types.Integer(), sa.ForeignKey('tasks.id')),
+	sa.Column('points', sa.types.Integer(), default=10),
+	sa.Column('time_limit', sa.types.Integer(), default=1),
+	sa.Column('memory_limit', sa.types.Integer(), default=1024),
+)
 
 class Task(object):
 	path = ''
