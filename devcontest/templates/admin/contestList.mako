@@ -26,14 +26,6 @@
 				% endif
 				</td>
 				<td class="ns">
-				<a href=${h.url_for(id=contest.id, param="cp")}>
-				%if contest.pilsprog_mode:
-					${_('Pilsprog')}
-				%else:
-					${_('Normal')}
-				%endif
-				</a></td>
-				<td class="ns">
 					<a href="#" ondblclick='remove("${h.url_for(id=contest.id, param="remove")}");'>
 						<img src="/remove.png" alt="${_('Remove')}" title="${_('Remove')}">
 					</a>

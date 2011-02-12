@@ -1,7 +1,7 @@
 import datetime
 
 import sqlalchemy as sa
-from sqlalchemy import orm
+from sqlalchemy import func, orm
 
 from devcontest.model import meta
 from devcontest.model.db.user import *
@@ -49,7 +49,10 @@ class Contest(object):
 			users = Session.query(User).filter_by(admin=False)
 
 		for user in users:
+			points = 0
+			time = 0
 			count = Session.query(Source).filter_by(user_id=user.id, contest_id=self.id, status=True).count()
+			points = Session.query(func.sum(Source.points)).filter_by(user_id=user.id, contest_id=self.id).scalar()
 			if count>0:
 				if self.mode == 1: # pilsprog
 					sources = Session.query(Source).filter_by(user_id=user.id, contest_id=self.id, status=True).all()
@@ -64,12 +67,19 @@ class Contest(object):
 				else:
 					last, = Session.query(Source.datetime).filter_by(user_id=user.id, contest_id=self.id, status=True).order_by(sources_table.c.datetime.desc()).first()
 					time = last - self.timeStart
-				
-				ret.append({'user':user, 'count':count, 'time':time})
+			if count > 0 or (points > 0 and self.mode == 2): # codex
+				ret.append({'user':user, 'count':count, 'points':points, 'time':time})
+	
 
-		ret = sorted(ret, key = lambda user: user['time'])
-		return sorted(ret, key = lambda user: user['count'], reverse=True)
-
+		
+		if self.mode == 2: #codex
+			ret = sorted(ret, key = lambda user: user['points'], reverse=True)
+		else:
+			ret = sorted(ret, key = lambda user: user['time'])
+			ret = sorted(ret, key = lambda user: user['count'], reverse=True)
+		
+		return ret
+	
 	def __unicode__(self):
 		return "<Contest("+str(self.id)+": "+self.name+")"
 

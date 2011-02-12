@@ -22,7 +22,12 @@ class ContestController(BaseController):
 
 	def rank(self, id):
 		self._loadContest(id)
+
+		if not self.contest.results:
+			return redirect_to(action="tasks")
+
 		c.rank = self.contest.getRank(self.user.admin)
+		c.contest = self.contest
 		return render("rank.mako")
 
 	def tasks(self, id):
@@ -46,15 +51,6 @@ class ContestController(BaseController):
 	def admin(self, id=None, param=None):
 		self.auth(admin=True)
 
-		if id and param=="cp":
-			co = Session.query(Contest).filter_by(id=int(id)).first()
-			if co.pilsprog_mode:
-				co.pilsprog_mode = False
-			else:
-				co.pilsprog_mode = True
-			Session.commit()
-			return redirect_to(id=None, param=None)
-
 		if not id:
 			c.list = self._getContestsList()
 			return render('/admin/contestList.mako')
@@ -73,6 +69,19 @@ class ContestController(BaseController):
 
 		self._loadContest(id)
 
+		if param=="save":
+			self.contest.name = request.params['contest_name']
+			self.contest.mode = request.params['mode']
+			
+			if request.params.has_key('results'):
+				self.contest.results = True
+			else:
+				self.contest.results = False
+
+			Session.commit()
+
+			return redirect_to(param=None)
+
 		if param=="start":
 			self.contest.start()
 			Session.commit()
@@ -90,6 +99,7 @@ class ContestController(BaseController):
 			return redirect_to(controller="admin", action="task", id=t.id, param=None)
 
 		c.list = self._loadTasks()
+		c.contest = self.contest
 		return render('/admin/contestTasks.mako')
 
 	def _getContestsList(self):

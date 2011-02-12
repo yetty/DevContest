@@ -9,10 +9,12 @@
         <thead>
             <th class="ns"></th>
             <th>${_('Name')}</th>
-            <th>${_('Count')}</th>
 			% if (not c.contest) or (c.contest.mode != 2): # CODEX
+            	<th>${_('Count')}</th>
             	<th>${_('Time')}</th>
-        	% endif
+        	% else:
+				<th>${_('Points')}</th>
+			% endif
 		</thead>
     <% i = -1 %>
 	<% j = 1 %>
@@ -21,11 +23,13 @@
         <tr>
             <td class="ns">${j}</td>
             <td>&nbsp;${b['user'].fname + ' ' + b['user'].lname}</td>
-            <td style="text-align:center;">${b['count']}</td>
 			
 			% if (not c.contest) or (c.contest.mode != 2): # CODEX
+            	<td style="text-align:center;">${b['count']}</td>
 				<td style="text-align:center;">${b['time']}</td>
-        	% endif
+        	% else:
+				<td style="text-align:center;">${b['points']}</td>
+			% endif
 
 			% if (last != b['count']) or (c.contest.mode != 2):
 				<% j += 1 %>

@@ -1,5 +1,5 @@
 """SQLAlchemy Metadata and Session object"""
-from sqlalchemy import MetaData
+from sqlalchemy import MetaData, not_
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 __all__ = ['Session', 'engine', 'metadata']

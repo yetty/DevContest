@@ -2,9 +2,9 @@
 from devcontest.model import meta
 
 from devcontest.model.db.user import *
+from devcontest.model.db.runner import *
 from devcontest.model.db.contest import *
 from devcontest.model.db.task import *
-from devcontest.model.db.runner import *
 from devcontest.model.db.source import *
 
 def init_model(engine):

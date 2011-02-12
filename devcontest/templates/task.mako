@@ -58,7 +58,7 @@ from pygments.formatters import HtmlFormatter
 			
 			<textarea name="code" id="code" cols=60 rows=20>
 			% if c.source:
-				${c.source.source}
+${c.source.source}
 			% endif
 			</textarea>
 		</td>
@@ -69,14 +69,28 @@ from pygments.formatters import HtmlFormatter
 	
 	${h.form_end()}
 	% endif
+
+
+	% if c.source:
+	<h3>${_('Last version')}</h3>
+
 	% if c.status:
 		<div class="success">${_('The task was solved')}</div>
 	% endif
 
-	% if c.source:
-	<h3>${_('Last version')}</h3>
-	% if c.source.errors:
-	<pre>${c.source.errors}</pre>
+	% if c.result:
+		${_('Task status')}: ${c.result['message']} <br>
+		
+		% if c.contest.mode == 2: # codex
+			${_('Points')}: ${c.result['points']} <br>
+ 		% endif
+		
+		<ul>
+		<% sum = len(c.result)+1 %>
+		% for i, result in enumerate(c.result['judges']):
+			<li>${i+1}/${sum}: ${result}</li>
+		% endfor
+		</ul>
 	% endif
 
 	${highlight(c.source.source, guess_lexer(c.source.source), HtmlFormatter(linenos=True)) | n}

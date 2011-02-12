@@ -4,6 +4,7 @@ import logging, random, time, hashlib, unicodedata
 
 import codecs
 
+import shutil
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 
@@ -26,20 +27,22 @@ class TaskController(BaseController):
 
 	def show(self, id, param=None):
 		self.auth()
-
 		self._load(id)
 
 		c.task = self.task
 		c.runners = Session.query(Runner).all()
-		c.original_source = open(self.task.getPath("out."+self.task.script_out_lang)).read()
-		
+		c.contest = self.contest
+
 		self.source = Session.query(Source).filter_by(user_id=self.user.id, task_id=id).first()
 		if self.source:
 			self.source.load()
+			c.status = self.source.status
 
 		if param=="upload":
 			if self._upload():
-				self._runUserScript()
+				c.result = self._runUserScript()
+				self.source.status = c.result['status']
+				self.source.points = c.result['points']
 				self.source.commit()
 		
 		c.source = self.source
@@ -87,44 +90,64 @@ class TaskController(BaseController):
 		return True
 
 	def _runUserScript(self):
+		result = {
+			'status' : True,
+			'points' : 0,
+			'message' : '',
+			'judges' : [],
+		}
+		
 		r = Session.query(Runner).filter_by(lang=self.source.getType).first()
-		self.source.errors = ""
 
 		if not r:
-			self.source.errors = _("Unknown file type")
-			return False
+			result['message'] = _("Unknown file type")
+			return result
 
-		success = True
+		judges = Session.query(Judge).filter_by(task_id=self.task.id).all()
+		for judge in judges:
+			resultJudge = r.exe(self.source, judge)
+
+			if not resultJudge['status']:
+				result['status'] = False
+				result['judges'].append(resultJudge['message'])
+			else:
+				result['judges'].append(_('OK (%s points)') % (judge.points))
+				result['points'] += judge.points
 		
-		for i in range(self.task.run_count):
-			runIn = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang, i=i, nolimit=True)
-			fileIn = self._saveTmpIn(runIn['return'])
+		if result['status']:
+			result['message'] = _('The task was solved')
+		else:
+			result['message'] = _('The task was not solved')
 
-			try:
-				data = r.exe(self.source.getPath(), fileIn, time_limit=self.task.time_limit, memory_limit=self.task.memory_limit)
-			except:
-				self.source.errors = _("Unexpected error")
-				return False
-			orig = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, fileIn)
-
-			if data['return'].strip()==orig['return'].strip():
-				pass
-			elif data['errors']:
-				self.source.errors = data['errors']
-				success = False
-			elif data['return'].strip()!=orig['return'].strip() and data['return'].strip():
-				self.source.errors = _("Wrong output")
-				success = False
-			elif data['compile']:
-				self.source.errors = data['compile']
-				success = False
-
-		self.source.status = success
+		return result
 
 
-	def admin(self, id=None, param=None):
+	def admin(self, id=None, param=None, num=None):
 		self.auth(admin=True)
-		self._load(id)
+	
+		if param=="deljudge" and num is not None:
+			Session.execute(judges_table.delete().where(judges_table.c.id==int(num)))
+			Session.commit()
+		
+		self._load(id)		
+		
+		if param=="download":
+			if num is None:
+				download = self.task.source
+				name = str(self.task.id)+"."+self.task.filetype
+				size = self.task.sourceSize()
+				file = download
+			else:
+				download = Session.query(Judge).filter_by(id=num).one()
+				name = download.name
+				size = download.size()
+				file = download.getFile()
+
+			response.headers['Content-Type'] = "text/plain; name=%s" % (name)
+			response.headers['Content-length'] = "%s" % (size)
+			response.headers['Content-Disposition'] = "attachment; filename= %s" %(name) 
+			shutil.copyfileobj(file, response)
+			return
 
 		if param=="save":
 			self._save()
@@ -133,43 +156,11 @@ class TaskController(BaseController):
 			self._remove()
 			return redirect_to(action="contest", id=contest_id, param=None)
 
-		c.id = self.task.id
-		c.contest_id = self.task.contest_id
-		c.name = self.task.name
-		c.description = self.task.description
-		c.example_in = self.task.example_in
-		c.example_out = self.task.example_out
-		c.data_in = self.task.data_in
-		c.data_out = self.task.data_out
-		c.run_count = self.task.run_count
-		c.script_in_lang = self.task.script_in_lang
-		c.script_out_lang = self.task.script_out_lang
-		c.time_limit = self.task.time_limit
-		c.memory_limit = self.task.memory_limit
-
+		c.task = self.task
+		if self.task.source:
+			c.runner = Session.query(Runner).filter_by(lang=self.task.filetype).one()
+		c.contest = self.contest
 		c.runners = Session.query(Runner).all()
-		c.run_in = {'return' : '', 'errors' : '', 'status' : '', 'compile' : ''}
-		c.run_out = {'return' : '', 'errors' : '', 'status' : '', 'compile' : ''}
-
-		for i in range(self.task.run_count):
-			run_in = self._run(self.task.getPath("in."+self.task.script_in_lang), self.task.script_in_lang, i=i, nolimit=True)
-			nameIn = self._saveTmpIn(run_in['return'])
-
-			run_out = self._run(self.task.getPath("out."+self.task.script_out_lang), self.task.script_out_lang, nameIn)
-
-			try:
-				run_out['errors'] = unicode(c.run_out['errors'], errors='ignore')
-			except:
-				pass
-
-			c.run_in['return'] += run_in['return']
-			c.run_in['errors'] += run_in['errors']
-			c.run_in['compile'] += run_in['compile']
-			c.run_out['return'] += run_out['return']
-			c.run_out['errors'] += run_out['errors']
-			c.run_out['compile'] += run_out['compile']
-
-
 
 		return render('/admin/taskEdit.mako')
 
@@ -189,20 +180,38 @@ class TaskController(BaseController):
 
 	def _load(self, id):
 		self.task = Session.query(Task).filter_by(id=id).first()
+		self.contest = Session.query(Contest).filter_by(id=self.task.contest_id).one()
 		self.task.load()
 
 	def _save(self):
-		self.task.description = request.params['description']
-		self.task.example_in = request.params['example_in']
-		self.task.example_out = request.params['example_out']
-		self.task.data_in = request.params['data_in']
-		self.task.data_out = request.params['data_out']
-		self.task.run_count = request.params['run_count']
-		self.task.script_in_lang = request.params['script_in_lang']
-		self.task.script_out_lang = request.params['script_out_lang']
-		self.task.time_limit = request.params['time_limit']
-		self.task.memory_limit = request.params['memory_limit']
-		self.task.commit()
+		self.task.description = request.POST['description']
+		self.task.example_in = request.POST['example_in']
+		self.task.example_out = request.POST['example_out']
+		
+		self.task.filetype = request.POST['filetype']	
+		if request.POST['source'] != '':
+			self.task.saveSource(request.POST['source'])
+	
+		for i in range(int(request.POST['count'])):
+			if self.contest.mode == 2: # codex
+				points = request.POST['points['+str(i)+']']
+			else:
+				points = 0
+
+			if request.POST.has_key('file_in['+str(i)+']') and request.POST['file_in['+str(i)+']'] != '':
+				judge = Judge(self.task.id, points=points, time_limit=request.POST['time_limit['+str(i)+']'], memory_limit=request.POST['memory_limit['+str(i)+']'])
+				Session.add(judge)
+				Session.commit()
+				judge.saveFile(request.POST['file_in['+str(i)+']'])
+
+			elif request.POST.has_key('id['+str(i)+']'):
+				judge = Session.query(Judge).filter_by(id=request.POST['id['+str(i)+']']).one()
+				judge.points = points
+				judge.time_limit = request.POST['time_limit['+str(i)+']']
+				judge.memory_limit = request.POST['memory_limit['+str(i)+']']
+
+		Session.commit()
+		self.task.load()
 
 	def _run(self, file, lang, fileIn=None, i=None, nolimit=False):
 		r = Session.query(Runner).filter_by(lang=lang).first()

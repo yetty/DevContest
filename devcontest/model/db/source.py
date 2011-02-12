@@ -20,6 +20,7 @@ sources_table = sa.Table('sources', meta.metadata,
 	sa.Column('errors', sa.types.String()),
 	sa.Column('status', sa.types.Boolean()),
 	sa.Column('datetime', sa.types.DateTime()),
+	sa.Column('points', sa.types.Integer()),
 )
 
 class Source(object):
@@ -27,12 +28,13 @@ class Source(object):
 
 	status = False
 
-	def __init__(self, contest_id, task_id, user_id, file, errors=None):
+	def __init__(self, contest_id, task_id, user_id, file, errors=None, points=0):
 		self.contest_id = contest_id
 		self.task_id = task_id
 		self.user_id = user_id
 		self.file = file
 		self.errors = errors
+		self.points = points
 
 		self.status = False
 		self.datetime = datetime.datetime.now()
@@ -49,6 +51,9 @@ class Source(object):
 			pass
 		except:
 			f.close()
+
+	def getFile(self):
+		return open(self.getPath(), 'r')
 
 	def getPath(self):
 		if self.path=='':

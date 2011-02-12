@@ -20,8 +20,8 @@ class AdminController(BaseController):
 	def users(self):
 		return self.mrender('/admin/auser.mako', admin=True)
 
-	def task(self, id=None, param=None):
-		return Task().admin(id, param)
+	def task(self, id=None, param=None, num=None):
+		return Task().admin(id, param, num)
 
 	def contest(self, id=None, param=None):
 		return Contest().admin(id, param)

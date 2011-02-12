@@ -14,7 +14,7 @@ from pylons import config
 
 runners_table = sa.Table('runners', meta.metadata,
 	sa.Column('id', sa.types.Integer(), primary_key=True),
-	sa.Column('lang', sa.types.Integer(), unique=True),
+	sa.Column('lang', sa.types.Unicode(), unique=True),
 	sa.Column('compile', sa.types.Unicode()),
 	sa.Column('run', sa.types.Unicode()),
 )
@@ -70,74 +70,88 @@ class Runner(object):
 	def ListToText(self, l):
 	    s = ''
 	    for i in l:
-		s += i+" "
+			s += i+" "
 	    return s.strip()
 	
 	def toUnicode(self, str):
 	    try:
-		str = unicode(str, errors='ignore')
+			str = unicode(str, errors='ignore')
 	    except:
-		pass
+			pass
 	    return str
 
-	def exe(self, file, fileIn=None, time_limit=10, memory_limit=10*1024, i=None):
-		err = ""
-		ret = ""
-		status = False
-		self.compileErrors = ""
+	def exe(self, source, judge, onlyResult=False):
+		self.compileErrors = ''
 
+		result = {
+			'status' : True,
+			'message' : '',
+		}
+		
+		compiledFile = source.getFile().name
+		
 		if self.compile:
 			try:
-				fileToCompile = str(file)
-				file = ""
-				file = self.exeCompile(fileToCompile)
+				fileToCompile = str(source.getFile().name)
+				compiledFile = self.exeCompile(fileToCompile)
 			except:
-				self.compileErrors = _("Error in compilation")
+				self.compileErrors = 'Unexpected error during compilation' # it shoudn't show anytime.
 
-		if (not self.compileErrors) or os.path.isfile(file):
-			params = self.pushFileName(self.run, {"%f":'"'+file+'"'})
-			
-			#if (i is not None):
-			#	params += [str(i)]
+		if self.compileErrors and not os.path.isfile(compiledFile):
+			result['status'] = False
+			result['message'] = _('Compilation error')
+			return result
+	
+		if os.path.exists(compiledFile+'.output'):
+				os.remove(compiledFile+'.output')
 
-			strParams = self.ListToText(params)
-			strUlimit = ""
-			if time_limit>0 and memory_limit>0:
-				strUlimit = 'ulimit -t ' + str(time_limit) + " -v " + str(memory_limit) + "; "
+		command = "sudo -u python -H bash -c 'ulimit -t %s -v %s; %s < %s;' > %s\n" % (
+					judge.time_limit,
+					judge.memory_limit,
+					self.ListToText(self.pushFileName(self.run, {"%f" : '"%s"' % compiledFile} )),
+					judge.getFile().name,
+					compiledFile+'.output',
+				)
+
+		sh = open(compiledFile+".sh", "w")
+		sh.write(command)
+		sh.close()
 		
-			sh = open(file+".sh", "w")
-			sh.write(self.sudo + "-H bash -c '"+strUlimit+strParams+"';\n")
-			sh.close()
+		process = subprocess.Popen(['sh', compiledFile+'.sh'], stderr=subprocess.PIPE)
+		
+		while process.poll() is None:
+			pass
 
-			p = subprocess.Popen(['sh', file+'.sh'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		error = process.stderr.read()
+		if error:
+			result['status'] = False
+			result['message'] = error
 
-			if fileIn:
-				f = open(fileIn, 'r')
-				try:
-					p.stdin.write(f.read())
-					p.stdin.close()
-				except:
-					pass
-				f.close()
+			if 'Killed' in error:
+				result['message'] = _('Time or memory limit exceeded')
+			return result
+		
+		
+		egrep = subprocess.Popen(['egrep', '-i', 'error', compiledFile+'.output'], stdout=subprocess.PIPE)
+		egrepOutput = egrep.communicate()[0]
 
-			while True:
-				if p.poll() is not None:
-					status = True
-					break
+		if egrepOutput:
+			result['status'] = False
+			result['message'] = egrepOutput
+			return result
 
-			if not err:
-				ret = p.stdout.read()
-				err = p.stderr.read()
+		if onlyResult:
+			return result
+		
+		compare = subprocess.call(['cmp', '--quiet', compiledFile+'.output', judge.getOutputFile().name])
+		if compare == 1:
+			result['status'] = False
+			result['message'] = _('Wrong output')
 
-		if not err and ('error' in ret):
-			err = ret
 
-		return {
-			"status": status,
-			"return": self.toUnicode(ret),
-			"errors": self.toUnicode(err),
-			"compile": self.toUnicode(self.compileErrors)
-		}
+		
+		return result
+		
 
 
 	__str__ = __unicode__
