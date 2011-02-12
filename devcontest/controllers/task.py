@@ -111,7 +111,10 @@ class TaskController(BaseController):
 				result['status'] = False
 				result['judges'].append(resultJudge['message'])
 			else:
-				result['judges'].append(_('OK (%s points)') % (judge.points))
+				if self.contest.mode == 2: # codex
+					result['judges'].append(_('OK (%s points)') % (judge.points))
+				else:
+					result['judges'].append(_('OK'))
 				result['points'] += judge.points
 		
 		if result['status']:
