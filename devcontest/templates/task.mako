@@ -86,7 +86,7 @@ ${c.source.source}
  		% endif
 		
 		<ul>
-		<% sum = len(c.result)+1 %>
+		<% sum = len(c.result['judges']) %>
 		% for i, result in enumerate(c.result['judges']):
 			<li>${i+1}/${sum}: ${result}</li>
 		% endfor

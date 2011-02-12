@@ -83,6 +83,7 @@ class Judge(object):
 
 class Task(object):
 	path = ''
+	filetype = ''
 
 	def __init__(self, parent, name, description="", example_in="", example_out="", script=""):
 		self.contest_id = parent
@@ -90,6 +91,7 @@ class Task(object):
 		self.description = description
 		self.example_in = example_in
 		self.example_out = example_out
+		self.filetype = ''
 
 	def _getFileName(self):
 		if self.path=='':
@@ -98,6 +100,7 @@ class Task(object):
 		if not os.path.isdir(os.path.join(self.path, str(self.contest_id))):
 			os.mkdir(os.path.join(self.path, str(self.contest_id)))
 
+		self.filetype = str(self.filetype)
 		return os.path.join(self.path, str(self.contest_id), str(self.id)+"."+self.filetype)
 
 	def __unicode__(self):
