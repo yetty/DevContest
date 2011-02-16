@@ -28,7 +28,7 @@ class TaskController(BaseController):
 	def show(self, id, param=None):
 		self.auth()
 		self._load(id)
-
+		
 		c.task = self.task
 		c.runners = Session.query(Runner).all()
 		c.contest = self.contest
@@ -43,6 +43,13 @@ class TaskController(BaseController):
 				c.result = self._runUserScript()
 				self.source.status = c.result['status']
 				self.source.points = c.result['points']
+				
+				err = ''
+				sum = len(c.result['judges'])
+				for i, result in enumerate(c.result['judges']):
+					err += '<li>%s/%s: %s</li>' % (i+1, sum, result)
+				
+				self.source.errors = err
 				self.source.commit()
 		
 		c.source = self.source

@@ -85,11 +85,11 @@ ${c.source.source}
 			${_('Points')}: ${c.result['points']} <br>
  		% endif
 		
+	% endif
+
+	% if c.source.errors:
 		<ul>
-		<% sum = len(c.result['judges']) %>
-		% for i, result in enumerate(c.result['judges']):
-			<li>${i+1}/${sum}: ${result}</li>
-		% endfor
+		${c.source.errors | n}
 		</ul>
 	% endif
 

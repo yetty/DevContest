@@ -8,7 +8,7 @@
 		% for contest in Session.query(Contest).filter_by(is_running=True).all():
 			<li class="h">${contest.name}<hr></li>
 			<li><a href=${h.url_for(controller="contest", action="tasks", id=contest.id, param=None)}>${_('Tasks')}</a></li>
-			% if contest.results:
+			% if contest.results or request.environ.get('REMOTE_USER').admin:
 				<li><a href=${h.url_for(controller="contest", action="rank", id=contest.id, param=None)}>${_('Ranks')}</a></li>
 			% endif
 			<li class="break"></li>
