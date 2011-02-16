@@ -21,9 +21,9 @@
         	<td class="ns"> 
 			<img 
 			% if b.status:
-				src="/true.png" alt="${_('Solved')}"
+				src="/true.gif" alt="${_('Solved')}"
 			% else:
-				src="/false.png" alt="${_('Not solved')}"
+				src="/remove.png" alt="${_('Not solved')}"
 			% endif
 			>
 			</td>

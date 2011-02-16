@@ -11,7 +11,7 @@
 				<td>${page}</td>
 				<td class="ns"><img ondblclick='remove("${h.url_for(id=page,
 				param="remove")}");' src="/remove.png" alt="${_('Remove')}"
-				style="cursor:pointer;"></td>
+				style="cursor:pointer;" ></td>
 			</tr>
 	%endfor
 	</table>
