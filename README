@@ -3,11 +3,11 @@ Installation and Setup
 
 1. Download setup.sh:
 
-	wget http://github.com/downloads/yetty/DevContest/setup.sh
+	wget http://github.com/downloads/yetty/DevContest/setup-0.3.sh
 
 2. Run it as root:
 
 	su
-	sh setup.sh
+	sh setup-*.sh
 
 and it is finished! Enjoy.

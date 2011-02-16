@@ -11,11 +11,11 @@ os_files = [
 
 setup(
     name='DevContest',
-    version='0.2.7',
+    version='0.3',
     description='Web interface for developers contests. Python, C, Pascal, PHP, Perl, Java',
     author='Juda Kaleta',
     author_email='juda.kaleta@gmail.com',
-    url='http://github.com/yetty/DevContest/',
+    url='http://github.com/yetty/DevContest/tree/0.3',
     license='GPL2',
     install_requires=[
         "Pylons==0.9.7",

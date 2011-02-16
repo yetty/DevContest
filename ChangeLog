@@ -1,0 +1,54 @@
+2011-02-16  Juda Kaleta <juda.kaleta@gmail.com>
+  Translations
+  Images
+  Links to images with javascript
+  Showing results of contest for administrators
+
+2011-02-12  Juda Kaleta <juda.kaleta@gmail.com>
+  Don't show points in non-codex contests
+  Showing source code in not-running contests
+  Codex like style.
+  Dir for judges and path to data/judges into config.ini and setup.sh
+  Adding one more parametr to URL
+
+  Fix: count of judges in task's results 
+  Fix: creating new task
+  Fix: task name
+  Fix: backlink to admin contest
+  Fix: always show rank in not-running contest
+  Fix: show textarea even if the source isn't uploaded
+  Fix: don't include running contests into TOP10
+  Fix: TOP 10 is now showing 10 people (or whatever you want)
+
+2011-02-11  Juda Kaleta <juda.kaleta@gmail.com>
+  Fix: saving user's values
+  Fix: align in Top list
+
+2011-01-22  Juda Kaleta <juda.kaleta@gmail.com>
+  Source code editor
+  Unification of edit buttons
+
+2011-01-21  Juda Kaleta <juda.kaleta@gmail.com>
+  Showing saved source and remembering file type.
+
+2011-01-19  Juda Kaleta <juda.kaleta@gmail.com>
+  Uploading sources by textarea
+
+2011-01-07  Juda Kaleta <juda.kaleta@gmail.com>
+  Compact menu of not-running contests + possibility of sending sources to not-running contest for admins.
+  Showing new contests for admins. Button to reset contest (clean results = remove from archive).
+
+2011-01-06  Juda Kaleta <juda.kaleta@gmail.com>
+  Fix: Hidding outputs
+  Fix: limits for users scripts
+  Fix: putting inputs into death processes
+
+2011-01-06  Juda Kaleta <juda.kaleta@gmail.com>
+  Allow to select type of uploading source code
+
+2011-01-05  Juda Kaleta <juda.kaleta@gmail.com>
+  Showing original sources after contest end
+  Fix sorting in overall top
+
+2010-12-23  Juda Kaleta <yettycz@gmail.com>
+  Time and memory limit by ulimit
