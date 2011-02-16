@@ -22,7 +22,9 @@
 			% endif
             &nbsp;${b.fname + ' ' + b.lname}</td>
             <td style="text-align:center;">${b.cls}</td>
-			<td class="ns"><a href="#" ondblclick='remove("${h.url_for(id="remove", param=b.id)}");'><img src="/remove.png" alt="${_('remove')}"></a></td>
+			<td class="ns">
+				<img style="cursor:pointer;" ondblclick='remove("${h.url_for(id="remove", param=b.id)}");' src="/remove.png" alt="${_('remove')}">
+			</td>
         </tr>
     % endfor
     % if i<0:

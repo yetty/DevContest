@@ -26,15 +26,11 @@
 				% endif
 				</td>
 				<td class="ns">
-					<a href="#" ondblclick='remove("${h.url_for(id=contest.id, param="remove")}");'>
-						<img src="/remove.png" alt="${_('Remove')}" title="${_('Remove')}">
-					</a>
+					<img style="cursor:pointer;" ondblclick='remove("${h.url_for(id=contest.id, param="remove")}");' src="/remove.png" alt="${_('Remove')}" title="${_('Remove')}">
 				</td>
 				<td class="ns">
 					% if not contest.is_running and contest.timeStart!=None:
-					<a href="#" ondblclick='remove("${h.url_for(id=contest.id, param="reset")}");'>
-						<img src="/reset.png" alt="${_('Clean up')}" title="${_('Clean up')}">
-					</a>
+						<img style="cursor:pointer;"  ondblclick='remove("${h.url_for(id=contest.id, param="reset")}");' src="/reset.png" alt="${_('Clean up')}" title="${_('Clean up')}">
 					% endif
 				</td>
 			</tr>

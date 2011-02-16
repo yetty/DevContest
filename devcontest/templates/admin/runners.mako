@@ -3,7 +3,6 @@
 <%def name="title()">${_('The Settings of Compilators and Starters')}</%def>
 
 <%def name="body()">
-	<script type="text/javascript">var LANG="html";</script>
 	<h2>${_('The Settings of Compilators and Starters')}</h2>
 
 	<table class="dark">
@@ -12,7 +11,7 @@
 				<td><strong>${item.lang}</strong></td>
 				<td>${item.compile}</td>
 				<td>${item.run}</td>
-				<td class="ns"><a href="#" ondblclick='remove("${h.url_for(id=item.id, param="remove")}");'><img src="/remove.png" alt="${_('Remove')}"></a></td>
+				<td class="ns"><img style="cursor:pointer;" src="/remove.png" ondblclick='remove("${h.url_for(id=item.id, param="remove")}");' alt="${_('Remove')}"></td>
 			</tr>
 	%endfor
 	</table>
