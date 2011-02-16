@@ -15,7 +15,8 @@
     % for i, b in enumerate(c.users):
         <tr>
 			<td class="ns"><a href=${h.url_for(id="edit", param=b.id)}><img src="/edit.png" alt="${_('edit')}"></a></td>
-			<td class="ns"><a href=${h.url_for(id="sources", param=b.id)}><img src="/sources.png" alt="${_('sources')}"></a></td>
+			<td class="ns"><a href=${h.url_for(id="sources", param=b.id)}><img
+			src="/source.gif" alt="${_('sources')}"></a></td>
             <td>
 			% if b.admin:
 				<img src="/running.gif" alt="${_('is administrator')}">
