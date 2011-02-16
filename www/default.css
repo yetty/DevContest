@@ -37,6 +37,12 @@ h1 {
 h2 {
 	font-size: 23px;
 }
+h3 {
+	margin-top: 10px;
+	font-size: 18px;
+	border-bottom: 1px dotted #ddd;
+}
+
 
 p, ul, ol {
 	margin: 0 0 2em 0;

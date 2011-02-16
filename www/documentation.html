@@ -23,7 +23,7 @@ Description: A two-column, fixed-width and lightweight template ideal for 1024x7
 <!-- start header -->
 <div id="header">
 	<div id="logo">
-		<h1><a href="#"><strong>Dev</strong>Contest<sup>0.2.7</sup></a></h1>
+		<h1><a href="#"><strong>Dev</strong>Contest<sup>0.3</sup></a></h1>
 	</div>
 	<div id="menu">
 		<ul>
@@ -41,8 +41,45 @@ Description: A two-column, fixed-width and lightweight template ideal for 1024x7
 	<!-- start content -->
 	<div id="content">
 		<div class="post">
-			<h2>Documentation</h2>
-			<p>...is coming soon.</p>
+			<h2>Documentation</h2> 
+			
+			<h3>License</h3>
+			<p>DevContest is licensed under <a
+			href="http://www.gnu.org/licenses/gpl-3.0.html">GNU GPL3</a>.</p> 
+
+			<h3>How to set language</h3>
+			<p>In file <span style="font-family:mono;font-size:90%;">/usr/share/devcontest/config.ini</span> set value of
+			variable lang to your language (cs, en, fr...)</p>
+
+			<h3>How to set port</h3>
+			<p>In configure file set variable port to needed port. For example
+			80.</p>
+
+			<h3>Contest modes in DevContest</h3>
+			<p>Now there are three contest modes in DevContest:</p>
+			<ol>
+				<li><strong>Normal mode</strong>: who is fastest, he is the
+				winner. Competitors are sorted at first by count of solved task
+				and then by time of last solved task.</li>
+
+				<li><strong>PilsProg mode</strong>: this mode is inspirated in
+				Czech competition <a href="http://pilsprog.fav.zcu.cz/index.php/aktuality">PilsProg</a>. 
+				Competitors are sorted by count of solved task, too, but at second 
+				there are sorted by sum of time of each solved task from 
+				time of contest start.</li>
+
+				<li><strong>Codex mode</strong>: mode inspirated in by <a
+				href="http://codex2.ms.mff.cuni.cz/project/">Codex</a>. Each of
+				judgement is rated by points. Competitors are sorted by points.</li>
+			</ol>
+
+			<h3>How to set compilers</h3>
+			<p>Here are some recommended configurations of compilers:</p>
+			<ul>
+				<li><strong>C (gcc)</strong>: <code>gcc -std=gnu99 -O2 -g -lm -o %o %f</code></li>
+				<li><strong>C++ (g++)</strong>: <code>g++ -std=gnu++98 -O2 -g -lm -o %o %f</code></li>
+				<li><strong>Pascal (fpc)</strong>: <code>fpc -g -O2 -Sg -Ci -Cr -Ct -ve -o%o %f</code></li>
+			</ul>
 		</div>
 	</div>
 	<!-- end content -->
