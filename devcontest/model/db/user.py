@@ -21,7 +21,7 @@ users_table = sa.Table('users', meta.metadata,
 def hash(password):
 	return hashlib.sha256(password).hexdigest()
 
-class User(object):
+class User(object):		
 	def __init__(self, login, password, mail="", fname="", lname="", cls="", rank=0, admin=False, donthash=False):
 		self.login = login
 		if donthash:
@@ -34,6 +34,9 @@ class User(object):
 		self.cls = cls
 		self.rank = rank
 		self.admin = admin
+
+	def getName(self):
+		return "%s %s" % (self.fname, self.lname)
 
 	def __unicode__(self):
 		return "<User("+str(self.id)+": "+self.login+")"

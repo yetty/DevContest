@@ -25,7 +25,7 @@ sources_table = sa.Table('sources', meta.metadata,
 
 class Source(object):
 	path = ''
-
+	source = ''
 	status = False
 
 	def __init__(self, contest_id, task_id, user_id, file, errors=None, points=0):

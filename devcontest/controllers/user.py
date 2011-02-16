@@ -92,9 +92,35 @@ class UserController(BaseController):
 		if id=="edit" and param:
 			c.user = Session.query(User).filter_by(id=int(param)).first()
 			return render("admin/userEdit.mako")
+		
+		if id=="source_view" and param:
+			c.source = Session.query(Source).filter_by(id=int(param)).first()
+			c.user = Session.query(User).filter_by(id=c.source.user_id).first()
+			c.task_name = self._getTaskName(c.source.task_id)
+			return render("admin/viewSource.mako")
+
+		if id=="sources" and param:
+			c.user = Session.query(User).filter_by(id=int(param)).first()
+			c.sources = Session.query(Source).filter_by(user_id=int(param)).all()
+			c.getTaskName = self._getTaskName
+			c.taskExists = self._taskExists
+			return render("admin/userSources.mako")
 
 		c.users = Session.query(User).order_by(users_table.c.lname, users_table.c.fname).all()
 		return render('admin/user.mako')
+	
+	def _taskExists(self, id):
+		task = Session.query(Task).filter_by(id=id).first()
+		print task.name
+		if task:
+			return True
+		else:
+			return False
+
+	def _getTaskName(self, id):
+		task = Session.query(Task).filter_by(id=id).first()
+		if task:
+			return task.name
 
 	def _adminSave(self, id, params):
 		user = Session.query(User).filter_by(id=id).first()
