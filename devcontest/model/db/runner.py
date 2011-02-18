@@ -83,6 +83,9 @@ class Runner(object):
 	def exe(self, source, judge, onlyResult=False):
 		self.compileErrors = ''
 
+		time_limit = int(config.get('judge_max_time'))
+		memory_limit = int(config.get('judge_max_memory'))
+
 		result = {
 			'status' : True,
 			'message' : '',
@@ -103,11 +106,16 @@ class Runner(object):
 			return result
 	
 		if os.path.exists(compiledFile+'.output'):
-				os.remove(compiledFile+'.output')
+			os.remove(compiledFile+'.output')
+
+		if judge.time_limit < time_limit:
+			time_limit = judge.time_limit
+		if judge.memory_limit < memory_limit:
+			memory_limit = judge.memory_limit
 
 		command = "sudo -u python -H bash -c 'ulimit -t %s -v %s; %s < %s;' > %s\n" % (
-					judge.time_limit,
-					judge.memory_limit,
+					time_limit,
+					memory_limit,
 					self.ListToText(self.pushFileName(self.run, {"%f" : '"%s"' % compiledFile} )),
 					judge.getFile().name,
 					compiledFile+'.output',

@@ -18,17 +18,28 @@ port = 8888
 use = egg:DevContest
 full_stack = true
 static_files = true
+
+# Language (cs, en, de, fr)
 lang = en
 
-cache_dir = %(here)s/data
 beaker.session.key = devcontest
 beaker.session.secret = rW/JvuN0xisb9Ft4OPXgZ7ULg
 app_instance_uuid = {248e4c01-3440-49bb-8af9-e1378966e931}
+
+# Paths
+cache_dir = %(here)s/data
 page_dir = %(here)s/data/pages
 task_dir = %(here)s/data/tasks
 sources_dir = %(here)s/data/sources/
 runner_tmp_dir = %(here)s/data/tmp
 judges_dir = %(here)s/data/judges/
+
+# Setting of judges
+# Main time limit
+judge_max_time = 10
+# Main memory limit
+judge_max_memory = 104576 
+
 
 # If you'd like to fine-tune the individual locations of the cache data dirs
 # for the Cache data, or the Session saves, un-comment the desired settings
