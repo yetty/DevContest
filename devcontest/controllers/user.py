@@ -23,6 +23,22 @@ class UserController(BaseController):
 
 		return render('user.mako')
 
+	def sources(self):
+		self.auth()
+		
+		c.sources = Session.query(Source).filter_by(user_id=self.user.id).all()
+		c.getTaskName = self._getTaskName
+
+		return render('sources.mako')
+
+	def source(self, id=0):
+		self.auth()
+
+		c.source = Session.query(Source).filter_by(id=id).first()
+		c.task_name = self._getTaskName(c.source.task_id)
+
+		return render('source.mako')
+
 	def save(self):
 		self.auth()
 	

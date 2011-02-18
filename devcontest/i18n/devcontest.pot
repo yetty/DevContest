@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: DevContest 0.2.7\n"
+"Project-Id-Version: DevContest 0.3\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2011-02-16 17:39+0100\n"
+"POT-Creation-Date: 2011-02-18 20:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,15 +79,15 @@ msgstr ""
 msgid "This script need support of *.%s"
 msgstr ""
 
-#: devcontest/model/db/runner.py:102
+#: devcontest/model/db/runner.py:105
 msgid "Compilation error"
 msgstr ""
 
-#: devcontest/model/db/runner.py:131
+#: devcontest/model/db/runner.py:139
 msgid "Time or memory limit exceeded"
 msgstr ""
 
-#: devcontest/model/db/runner.py:149
+#: devcontest/model/db/runner.py:157
 msgid "Wrong output"
 msgstr ""
 
@@ -255,6 +255,10 @@ msgid "Profile"
 msgstr ""
 
 #: devcontest/templates/menu.mako:44
+msgid "Sources"
+msgstr ""
+
+#: devcontest/templates/menu.mako:47
 msgid "Log out"
 msgstr ""
 
@@ -319,6 +323,44 @@ msgstr ""
 
 #: devcontest/templates/registration.mako:40
 msgid "Registration was succesful. You can log in by the box on the left."
+msgstr ""
+
+#: devcontest/templates/source.mako:6
+msgid "back to the list of sources"
+msgstr ""
+
+#: devcontest/templates/sources.mako:3 devcontest/templates/sources.mako:6
+msgid "Source codes"
+msgstr ""
+
+#: devcontest/templates/sources.mako:11
+#: devcontest/templates/admin/userSources.mako:11
+msgid "Task"
+msgstr ""
+
+#: devcontest/templates/sources.mako:12
+#: devcontest/templates/admin/userSources.mako:12
+msgid "Date"
+msgstr ""
+
+#: devcontest/templates/sources.mako:13
+#: devcontest/templates/admin/taskEdit.mako:116
+msgid "Status"
+msgstr ""
+
+#: devcontest/templates/sources.mako:19
+#: devcontest/templates/admin/userSources.mako:19
+msgid "view"
+msgstr ""
+
+#: devcontest/templates/sources.mako:25
+#: devcontest/templates/admin/userSources.mako:25
+msgid "Solved"
+msgstr ""
+
+#: devcontest/templates/sources.mako:27
+#: devcontest/templates/admin/userSources.mako:27
+msgid "Not solved"
 msgstr ""
 
 #: devcontest/templates/task.mako:6 devcontest/templates/admin/taskEdit.mako:7
@@ -507,10 +549,6 @@ msgstr ""
 msgid "Memory limit (kB)"
 msgstr ""
 
-#: devcontest/templates/admin/taskEdit.mako:116
-msgid "Status"
-msgstr ""
-
 #: devcontest/templates/admin/taskEdit.mako:161
 msgid "Add judge"
 msgstr ""
@@ -541,25 +579,5 @@ msgstr ""
 
 #: devcontest/templates/admin/userEdit.mako:26
 msgid "Administrator"
-msgstr ""
-
-#: devcontest/templates/admin/userSources.mako:11
-msgid "Task"
-msgstr ""
-
-#: devcontest/templates/admin/userSources.mako:12
-msgid "Date"
-msgstr ""
-
-#: devcontest/templates/admin/userSources.mako:19
-msgid "view"
-msgstr ""
-
-#: devcontest/templates/admin/userSources.mako:25
-msgid "Solved"
-msgstr ""
-
-#: devcontest/templates/admin/userSources.mako:27
-msgid "Not solved"
 msgstr ""
 

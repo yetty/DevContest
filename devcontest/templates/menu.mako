@@ -41,6 +41,9 @@
         % endif
         <li><a href=${h.url_for(controller="user", action="top", id="10", param=None)}>${_('TOP10')}</a></li>
         <li><a href=${h.url_for(controller="user", action="index", id=None, param=None)}>${_('Profile')}</a></li>
+        <li><a href=${h.url_for(controller="user", action="sources", id=None, param=None)}>${_('Sources')}</a></li>
+        
+		<li class="break"></li>
         <li><a href=${h.url_for(controller="auth", action="signout", id=None, param=None)}>${_('Log out')}</a></li>
     </ul>
     % endif

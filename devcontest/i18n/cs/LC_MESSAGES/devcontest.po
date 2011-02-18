@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: juda.kaleta@gmail.cm\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2011-02-16 17:39+0100\n"
+"PO-Revision-Date: 2011-02-18 20:48+0100\n"
 "Last-Translator: Juda Kaleta <juda.kaleta@gmail.com>\n"
 "Language-Team: cs\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
@@ -82,16 +82,16 @@ msgstr "Úloha vyřešena"
 msgid "This script need support of *.%s"
 msgstr "Tento skript potřebuje podporu *.%s"
 
-#: devcontest/model/db/runner.py:102
+#: devcontest/model/db/runner.py:105
 #, fuzzy
 msgid "Compilation error"
 msgstr "Kompilátor"
 
-#: devcontest/model/db/runner.py:131
+#: devcontest/model/db/runner.py:139
 msgid "Time or memory limit exceeded"
 msgstr "Časový nebo paměťový limit byl překročen"
 
-#: devcontest/model/db/runner.py:149
+#: devcontest/model/db/runner.py:157
 msgid "Wrong output"
 msgstr "Špatná odpověď."
 
@@ -265,6 +265,10 @@ msgid "Profile"
 msgstr "Profil"
 
 #: devcontest/templates/menu.mako:44
+msgid "Sources"
+msgstr "Mé zdrojáky"
+
+#: devcontest/templates/menu.mako:47
 msgid "Log out"
 msgstr "Odhlášení"
 
@@ -330,6 +334,46 @@ msgstr "Tučně zvýrazněné položky jsou povinné."
 #: devcontest/templates/registration.mako:40
 msgid "Registration was succesful. You can log in by the box on the left."
 msgstr "Registrace byla úspěšná. Můžete se přihlásit formulářem vlevo."
+
+#: devcontest/templates/source.mako:6
+msgid "back to the list of sources"
+msgstr "zpět na seznam zdrojáků"
+
+#: devcontest/templates/sources.mako:3 devcontest/templates/sources.mako:6
+msgid "Source codes"
+msgstr "Zdrojové kódy"
+
+#: devcontest/templates/sources.mako:11
+#: devcontest/templates/admin/userSources.mako:11
+msgid "Task"
+msgstr "úkol"
+
+#: devcontest/templates/sources.mako:12
+#: devcontest/templates/admin/userSources.mako:12
+msgid "Date"
+msgstr "Datum"
+
+#: devcontest/templates/sources.mako:13
+#: devcontest/templates/admin/taskEdit.mako:116
+msgid "Status"
+msgstr "Stav"
+
+#: devcontest/templates/sources.mako:19
+#: devcontest/templates/admin/userSources.mako:19
+msgid "view"
+msgstr "zobrazit"
+
+#: devcontest/templates/sources.mako:25
+#: devcontest/templates/admin/userSources.mako:25
+#, fuzzy
+msgid "Solved"
+msgstr "Řešitelů"
+
+#: devcontest/templates/sources.mako:27
+#: devcontest/templates/admin/userSources.mako:27
+#, fuzzy
+msgid "Not solved"
+msgstr "Úloha vyřešena"
 
 #: devcontest/templates/task.mako:6 devcontest/templates/admin/taskEdit.mako:7
 msgid "back to the contest"
@@ -520,10 +564,6 @@ msgstr "Časový limit (sekundy)"
 msgid "Memory limit (kB)"
 msgstr "Omezení paměti (v kB)"
 
-#: devcontest/templates/admin/taskEdit.mako:116
-msgid "Status"
-msgstr "Stav"
-
 #: devcontest/templates/admin/taskEdit.mako:161
 msgid "Add judge"
 msgstr "Přidej testovací položku"
@@ -555,32 +595,4 @@ msgstr "Úprava profilu"
 #: devcontest/templates/admin/userEdit.mako:26
 msgid "Administrator"
 msgstr "Administrátor"
-
-#: devcontest/templates/admin/userSources.mako:11
-#, fuzzy
-#| msgid "tasks"
-msgid "Task"
-msgstr "úkoly"
-
-#: devcontest/templates/admin/userSources.mako:12
-#, fuzzy
-#| msgid "Create"
-msgid "Date"
-msgstr "Vytvořit"
-
-#: devcontest/templates/admin/userSources.mako:19
-msgid "view"
-msgstr "zobrazit"
-
-#: devcontest/templates/admin/userSources.mako:25
-#, fuzzy
-#| msgid "Resolvers"
-msgid "Solved"
-msgstr "Řešitelů"
-
-#: devcontest/templates/admin/userSources.mako:27
-#, fuzzy
-#| msgid "The task was not solved"
-msgid "Not solved"
-msgstr "Úloha vyřešena"
 
