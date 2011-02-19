@@ -34,7 +34,9 @@ class UserController(BaseController):
 	def source(self, id=0):
 		self.auth()
 
-		c.source = Session.query(Source).filter_by(id=id).first()
+		c.source = Session.query(Source).filter_by(id=id, user_id=self.user.id).first()
+		if not c.source:
+			return redirect_to(action="sources", id=None)
 		c.task_name = self._getTaskName(c.source.task_id)
 
 		return render('source.mako')
