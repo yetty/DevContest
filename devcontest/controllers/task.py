@@ -42,7 +42,9 @@ class TaskController(BaseController):
 			if self._upload():
 				c.result = self._runUserScript()
 				self.source.status = c.result['status']
-				self.source.points = c.result['points']
+				
+				if int(self.source.points) < int(c.result['points']):
+					self.source.points = c.result['points']
 				
 				err = ''
 				sum = len(c.result['judges'])
