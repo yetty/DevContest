@@ -10,6 +10,7 @@ from devcontest.model import meta
 from devcontest.model.meta import Session
 
 from pylons import config
+from pylons.i18n import get_lang, set_lang, _
 
 sources_table = sa.Table('sources', meta.metadata,
 	sa.Column('id', sa.types.Integer(), primary_key=True),
@@ -85,6 +86,42 @@ class Source(object):
 
 	def load(self):
 		self.source = self._load()
+
+	def run(self, contest, Runner, Judge):
+		result = {
+			'status' : True,
+			'points' : 0,
+			'message' : '',
+			'judges' : [],
+		}
+		
+		r = Session.query(Runner).filter_by(lang=self.getType()).first()
+		if not r:
+			result['message'] = _("Unknown file type")
+			return result
+
+		judges = Session.query(Judge).filter_by(task_id=self.task_id).all()
+		for judge in judges:
+			resultJudge = r.exe(self, judge)
+
+			if not resultJudge['status']:
+				result['status'] = False
+				result['judges'].append(resultJudge['message'])
+			else:
+				if contest.mode == 2: # codex
+					result['judges'].append(_('OK (%s points)') % (judge.points))
+				else:
+					result['judges'].append(_('OK'))
+				result['points'] += judge.points
+		
+		if result['status']:
+			result['message'] = _('The task was solved')
+		else:
+			result['message'] = _('The task was not solved')
+
+		return result
+
+
 
 	__str__ = __unicode__
 

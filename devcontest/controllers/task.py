@@ -99,40 +99,7 @@ class TaskController(BaseController):
 		return True
 
 	def _runUserScript(self):
-		result = {
-			'status' : True,
-			'points' : 0,
-			'message' : '',
-			'judges' : [],
-		}
-		
-		r = Session.query(Runner).filter_by(lang=self.source.getType).first()
-
-		if not r:
-			result['message'] = _("Unknown file type")
-			return result
-
-		judges = Session.query(Judge).filter_by(task_id=self.task.id).all()
-		for judge in judges:
-			resultJudge = r.exe(self.source, judge)
-
-			if not resultJudge['status']:
-				result['status'] = False
-				result['judges'].append(resultJudge['message'])
-			else:
-				if self.contest.mode == 2: # codex
-					result['judges'].append(_('OK (%s points)') % (judge.points))
-				else:
-					result['judges'].append(_('OK'))
-				result['points'] += judge.points
-		
-		if result['status']:
-			result['message'] = _('The task was solved')
-		else:
-			result['message'] = _('The task was not solved')
-
-		return result
-
+		return self.source.run(self.contest, Runner, Judge)
 
 	def admin(self, id=None, param=None, num=None):
 		self.auth(admin=True)

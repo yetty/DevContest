@@ -111,6 +111,12 @@ class UserController(BaseController):
 			c.user = Session.query(User).filter_by(id=int(param)).first()
 			return render("admin/userEdit.mako")
 		
+		if id=="source_rerun" and param:
+			c.source = Session.query(Source).filter_by(id=int(param)).first()
+			contest = Session.query(Contest).filter_by(id=c.source.contest_id).first()
+			c.source.run(contest, Runner, Judge)
+			return redirect_to(id="source_view")
+
 		if id=="source_view" and param:
 			c.source = Session.query(Source).filter_by(id=int(param)).first()
 			c.user = Session.query(User).filter_by(id=c.source.user_id).first()
