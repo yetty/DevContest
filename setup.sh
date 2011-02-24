@@ -9,7 +9,7 @@ if [ -d $path ]; then
 	cd $path
 
 	rm -fvr data/sessions data/tmp
-	rm -v *.egg
+	rm -fv *.egg
 else
 	mkdir -v $path
 fi
