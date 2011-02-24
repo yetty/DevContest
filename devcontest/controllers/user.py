@@ -114,7 +114,16 @@ class UserController(BaseController):
 		if id=="source_rerun" and param:
 			c.source = Session.query(Source).filter_by(id=int(param)).first()
 			contest = Session.query(Contest).filter_by(id=c.source.contest_id).first()
-			c.source.run(contest, Runner, Judge)
+			result = c.source.run(contest, Runner, Judge)
+
+			c.source.status = result['status']
+			c.source.points = result['points']
+			c.source.errors = ''
+			sum = len(result['judges'])
+			for i, result in enumerate(result['judges']):
+				c.source.errors += '<li>%s/%s: %s</li>' % (i+1, sum, result)
+			
+			Session.commit()
 			return redirect_to(id="source_view")
 
 		if id=="source_view" and param:
