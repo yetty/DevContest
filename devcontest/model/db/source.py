@@ -97,6 +97,7 @@ class Source(object):
 		
 		r = Session.query(Runner).filter_by(lang=self.getType()).first()
 		if not r:
+			result['status'] = False
 			result['message'] = _("Unknown file type")
 			return result
 
