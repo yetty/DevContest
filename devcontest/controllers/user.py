@@ -134,7 +134,7 @@ class UserController(BaseController):
 
 		if id=="sources" and param:
 			c.user = Session.query(User).filter_by(id=int(param)).first()
-			c.sources = Session.query(Source).filter_by(user_id=int(param)).all()
+			c.sources = Session.query(Source).filter_by(user_id=int(param)).order_by(sources_table.c.datetime.desc()).all()
 			c.getTaskName = self._getTaskName
 			c.taskExists = self._taskExists
 			return render("admin/userSources.mako")
