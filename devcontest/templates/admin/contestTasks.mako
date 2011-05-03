@@ -40,7 +40,7 @@
 					<option disabled>---</option>
 
 					%for i, mode in enumerate(c.contest.modes):
-						<option value="${i}">${mode}</option
+						<option value="${i}">${mode}</option>
 					%endfor
 				</select>
 			</td>
