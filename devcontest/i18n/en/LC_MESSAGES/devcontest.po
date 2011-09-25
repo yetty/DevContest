@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2011-02-12 19:49+0100\n"
+"PO-Revision-Date: 2011-02-18 20:48+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -53,37 +53,42 @@ msgstr ""
 msgid "Registration failed. Sorry. Please, contact us."
 msgstr ""
 
-#: devcontest/controllers/task.py:103
+#: devcontest/controllers/task.py:110
 msgid "Unknown file type"
 msgstr ""
 
-#: devcontest/controllers/task.py:114
+#: devcontest/controllers/task.py:122
 #, python-format
 msgid "OK (%s points)"
 msgstr ""
 
-#: devcontest/controllers/task.py:118 devcontest/templates/task.mako:78
+#: devcontest/controllers/task.py:124
+#: devcontest/templates/admin/taskEdit.mako:143
+msgid "OK"
+msgstr ""
+
+#: devcontest/controllers/task.py:128 devcontest/templates/task.mako:78
 msgid "The task was solved"
 msgstr ""
 
-#: devcontest/controllers/task.py:120
+#: devcontest/controllers/task.py:130
 msgid "The task was not solved"
 msgstr ""
 
-#: devcontest/controllers/task.py:226
+#: devcontest/controllers/task.py:236
 #, python-format
 msgid "This script need support of *.%s"
 msgstr ""
 
-#: devcontest/model/db/runner.py:102
+#: devcontest/model/db/runner.py:105
 msgid "Compilation error"
 msgstr ""
 
-#: devcontest/model/db/runner.py:131
+#: devcontest/model/db/runner.py:139
 msgid "Time or memory limit exceeded"
 msgstr ""
 
-#: devcontest/model/db/runner.py:149
+#: devcontest/model/db/runner.py:157
 msgid "Wrong output"
 msgstr ""
 
@@ -94,7 +99,7 @@ msgstr ""
 #: devcontest/templates/archiv.mako:10 devcontest/templates/archivTasks.mako:10
 #: devcontest/templates/contestTasks.mako:10 devcontest/templates/rank.mako:11
 #: devcontest/templates/top.mako:11
-#: devcontest/templates/admin/contestList.mako:45
+#: devcontest/templates/admin/contestList.mako:41
 #: devcontest/templates/admin/user.mako:11
 msgid "Name"
 msgstr ""
@@ -255,6 +260,10 @@ msgid "Profile"
 msgstr ""
 
 #: devcontest/templates/menu.mako:44
+msgid "Sources"
+msgstr ""
+
+#: devcontest/templates/menu.mako:47
 msgid "Log out"
 msgstr ""
 
@@ -321,6 +330,44 @@ msgstr ""
 msgid "Registration was succesful. You can log in by the box on the left."
 msgstr ""
 
+#: devcontest/templates/source.mako:6
+msgid "back to the list of sources"
+msgstr ""
+
+#: devcontest/templates/sources.mako:3 devcontest/templates/sources.mako:6
+msgid "Source codes"
+msgstr ""
+
+#: devcontest/templates/sources.mako:11
+#: devcontest/templates/admin/userSources.mako:11
+msgid "Task"
+msgstr ""
+
+#: devcontest/templates/sources.mako:12
+#: devcontest/templates/admin/userSources.mako:12
+msgid "Date"
+msgstr ""
+
+#: devcontest/templates/sources.mako:13
+#: devcontest/templates/admin/taskEdit.mako:116
+msgid "Status"
+msgstr ""
+
+#: devcontest/templates/sources.mako:19
+#: devcontest/templates/admin/userSources.mako:19
+msgid "view"
+msgstr ""
+
+#: devcontest/templates/sources.mako:25
+#: devcontest/templates/admin/userSources.mako:25
+msgid "Solved"
+msgstr ""
+
+#: devcontest/templates/sources.mako:27
+#: devcontest/templates/admin/userSources.mako:27
+msgid "Not solved"
+msgstr ""
+
 #: devcontest/templates/task.mako:6 devcontest/templates/admin/taskEdit.mako:7
 msgid "back to the contest"
 msgstr ""
@@ -343,10 +390,6 @@ msgstr ""
 msgid "File type"
 msgstr ""
 
-#: devcontest/templates/task.mako:37
-msgid "source_type"
-msgstr ""
-
 #: devcontest/templates/task.mako:39
 msgid "Select type automaticly"
 msgstr ""
@@ -367,7 +410,7 @@ msgstr ""
 msgid "Ranking"
 msgstr ""
 
-#: devcontest/templates/top.mako:27 devcontest/templates/admin/user.mako:30
+#: devcontest/templates/top.mako:27 devcontest/templates/admin/user.mako:34
 msgid "Nobody?"
 msgstr ""
 
@@ -394,51 +437,51 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: devcontest/templates/admin/contestList.mako:30
-#: devcontest/templates/admin/contestTasks.mako:12
-#: devcontest/templates/admin/pageList.mako:12
-#: devcontest/templates/admin/runners.mako:15
+#: devcontest/templates/admin/contestList.mako:29
+#: devcontest/templates/admin/contestTasks.mako:13
+#: devcontest/templates/admin/pageList.mako:13
+#: devcontest/templates/admin/runners.mako:14
 #: devcontest/templates/admin/taskEdit.mako:124
 #: devcontest/templates/admin/taskEdit.mako:125
 msgid "Remove"
 msgstr ""
 
-#: devcontest/templates/admin/contestList.mako:36
+#: devcontest/templates/admin/contestList.mako:33
 msgid "Clean up"
 msgstr ""
 
-#: devcontest/templates/admin/contestList.mako:46
-#: devcontest/templates/admin/contestTasks.mako:21
-#: devcontest/templates/admin/pageList.mako:19
-#: devcontest/templates/admin/runners.mako:24
+#: devcontest/templates/admin/contestList.mako:42
+#: devcontest/templates/admin/contestTasks.mako:23
+#: devcontest/templates/admin/pageList.mako:21
+#: devcontest/templates/admin/runners.mako:23
 msgid "Create"
 msgstr ""
 
-#: devcontest/templates/admin/contestTasks.mako:20
+#: devcontest/templates/admin/contestTasks.mako:22
 msgid "Name of task"
 msgstr ""
 
-#: devcontest/templates/admin/contestTasks.mako:26
+#: devcontest/templates/admin/contestTasks.mako:28
 msgid "Settings of the Contest"
 msgstr ""
 
-#: devcontest/templates/admin/contestTasks.mako:30
+#: devcontest/templates/admin/contestTasks.mako:32
 msgid "Contest name:"
 msgstr ""
 
-#: devcontest/templates/admin/contestTasks.mako:34
+#: devcontest/templates/admin/contestTasks.mako:36
 msgid "Contest mode:"
 msgstr ""
 
-#: devcontest/templates/admin/contestTasks.mako:47
+#: devcontest/templates/admin/contestTasks.mako:49
 msgid "Show results:"
 msgstr ""
 
-#: devcontest/templates/admin/contestTasks.mako:52
+#: devcontest/templates/admin/contestTasks.mako:54
 msgid "Yes"
 msgstr ""
 
-#: devcontest/templates/admin/contestTasks.mako:56
+#: devcontest/templates/admin/contestTasks.mako:58
 msgid "Save"
 msgstr ""
 
@@ -452,32 +495,32 @@ msgstr ""
 msgid "The List of Pages"
 msgstr ""
 
-#: devcontest/templates/admin/pageList.mako:18
+#: devcontest/templates/admin/pageList.mako:20
 msgid "URL"
 msgstr ""
 
 #: devcontest/templates/admin/runners.mako:3
-#: devcontest/templates/admin/runners.mako:7
+#: devcontest/templates/admin/runners.mako:6
 msgid "The Settings of Compilators and Starters"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:21
+#: devcontest/templates/admin/runners.mako:20
 msgid "Language (extension)"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:22
+#: devcontest/templates/admin/runners.mako:21
 msgid "Compilator"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:23
+#: devcontest/templates/admin/runners.mako:22
 msgid "Starter"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:25
+#: devcontest/templates/admin/runners.mako:24
 msgid "for input"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:25
+#: devcontest/templates/admin/runners.mako:24
 msgid "for output"
 msgstr ""
 
@@ -513,14 +556,6 @@ msgstr ""
 msgid "Memory limit (kB)"
 msgstr ""
 
-#: devcontest/templates/admin/taskEdit.mako:116
-msgid "Status"
-msgstr ""
-
-#: devcontest/templates/admin/taskEdit.mako:143
-msgid "OK"
-msgstr ""
-
 #: devcontest/templates/admin/taskEdit.mako:161
 msgid "Add judge"
 msgstr ""
@@ -529,11 +564,15 @@ msgstr ""
 msgid "edit"
 msgstr ""
 
-#: devcontest/templates/admin/user.mako:20
+#: devcontest/templates/admin/user.mako:19
+msgid "sources"
+msgstr ""
+
+#: devcontest/templates/admin/user.mako:22
 msgid "is administrator"
 msgstr ""
 
-#: devcontest/templates/admin/user.mako:24
+#: devcontest/templates/admin/user.mako:27
 msgid "remove"
 msgstr ""
 
@@ -548,10 +587,4 @@ msgstr ""
 #: devcontest/templates/admin/userEdit.mako:26
 msgid "Administrator"
 msgstr ""
-
-#~ msgid "Unexpected error"
-#~ msgstr ""
-
-#~ msgid "Error in compilation"
-#~ msgstr ""
 
