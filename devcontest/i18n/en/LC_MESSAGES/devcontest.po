@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2011-02-18 20:48+0100\n"
+"PO-Revision-Date: 2011-10-06 15:05+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -53,29 +53,7 @@ msgstr ""
 msgid "Registration failed. Sorry. Please, contact us."
 msgstr ""
 
-#: devcontest/controllers/task.py:110
-msgid "Unknown file type"
-msgstr ""
-
-#: devcontest/controllers/task.py:122
-#, python-format
-msgid "OK (%s points)"
-msgstr ""
-
-#: devcontest/controllers/task.py:124
-#: devcontest/templates/admin/taskEdit.mako:143
-msgid "OK"
-msgstr ""
-
-#: devcontest/controllers/task.py:128 devcontest/templates/task.mako:78
-msgid "The task was solved"
-msgstr ""
-
-#: devcontest/controllers/task.py:130
-msgid "The task was not solved"
-msgstr ""
-
-#: devcontest/controllers/task.py:236
+#: devcontest/controllers/task.py:205
 #, python-format
 msgid "This script need support of *.%s"
 msgstr ""
@@ -90,6 +68,28 @@ msgstr ""
 
 #: devcontest/model/db/runner.py:157
 msgid "Wrong output"
+msgstr ""
+
+#: devcontest/model/db/source.py:101
+msgid "Unknown file type"
+msgstr ""
+
+#: devcontest/model/db/source.py:113
+#, python-format
+msgid "OK (%s points)"
+msgstr ""
+
+#: devcontest/model/db/source.py:115
+#: devcontest/templates/admin/taskEdit.mako:143
+msgid "OK"
+msgstr ""
+
+#: devcontest/model/db/source.py:119 devcontest/templates/task.mako:78
+msgid "The task was solved"
+msgstr ""
+
+#: devcontest/model/db/source.py:121
+msgid "The task was not solved"
 msgstr ""
 
 #: devcontest/templates/archiv.mako:3 devcontest/templates/archiv.mako:6
@@ -250,20 +250,26 @@ msgstr ""
 msgid "Starters"
 msgstr ""
 
-#: devcontest/templates/menu.mako:42
+#: devcontest/templates/menu.mako:38
+#: devcontest/templates/admin/lastSources.mako:3
+#: devcontest/templates/admin/lastSources.mako:6
+msgid "Last sources"
+msgstr ""
+
+#: devcontest/templates/menu.mako:43
 msgid "TOP10"
 msgstr ""
 
-#: devcontest/templates/menu.mako:43 devcontest/templates/user.mako:3
+#: devcontest/templates/menu.mako:44 devcontest/templates/user.mako:3
 #: devcontest/templates/user.mako:6 devcontest/templates/admin/userEdit.mako:3
 msgid "Profile"
 msgstr ""
 
-#: devcontest/templates/menu.mako:44
+#: devcontest/templates/menu.mako:45
 msgid "Sources"
 msgstr ""
 
-#: devcontest/templates/menu.mako:47
+#: devcontest/templates/menu.mako:48
 msgid "Log out"
 msgstr ""
 
@@ -339,11 +345,13 @@ msgid "Source codes"
 msgstr ""
 
 #: devcontest/templates/sources.mako:11
+#: devcontest/templates/admin/lastSources.mako:11
 #: devcontest/templates/admin/userSources.mako:11
 msgid "Task"
 msgstr ""
 
 #: devcontest/templates/sources.mako:12
+#: devcontest/templates/admin/lastSources.mako:13
 #: devcontest/templates/admin/userSources.mako:12
 msgid "Date"
 msgstr ""
@@ -354,16 +362,19 @@ msgid "Status"
 msgstr ""
 
 #: devcontest/templates/sources.mako:19
+#: devcontest/templates/admin/lastSources.mako:21
 #: devcontest/templates/admin/userSources.mako:19
 msgid "view"
 msgstr ""
 
 #: devcontest/templates/sources.mako:25
+#: devcontest/templates/admin/lastSources.mako:36
 #: devcontest/templates/admin/userSources.mako:25
 msgid "Solved"
 msgstr ""
 
 #: devcontest/templates/sources.mako:27
+#: devcontest/templates/admin/lastSources.mako:38
 #: devcontest/templates/admin/userSources.mako:27
 msgid "Not solved"
 msgstr ""
@@ -485,6 +496,10 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: devcontest/templates/admin/lastSources.mako:12
+msgid "User"
+msgstr ""
+
 #: devcontest/templates/admin/pageEdit.mako:3
 #: devcontest/templates/admin/pageEdit.mako:11
 msgid "Editation of page"
@@ -586,5 +601,9 @@ msgstr ""
 
 #: devcontest/templates/admin/userEdit.mako:26
 msgid "Administrator"
+msgstr ""
+
+#: devcontest/templates/admin/viewSource.mako:10
+msgid "re-run this source"
 msgstr ""
 

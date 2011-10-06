@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: juda.kaleta@gmail.cm\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2011-02-18 20:48+0100\n"
+"PO-Revision-Date: 2011-10-06 15:06+0200\n"
 "Last-Translator: Juda Kaleta <juda.kaleta@gmail.com>\n"
 "Language-Team: cs\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
@@ -54,38 +54,14 @@ msgstr "E-mail je již zaregistrován"
 msgid "Registration failed. Sorry. Please, contact us."
 msgstr "Registrace selhala, kontaktujte administrátora."
 
-#: devcontest/controllers/task.py:110
-msgid "Unknown file type"
-msgstr "Neznámý formát souboru"
-
-#: devcontest/controllers/task.py:122
-#, python-format
-msgid "OK (%s points)"
-msgstr "OK (%s bodů)"
-
-#: devcontest/controllers/task.py:124
-#: devcontest/templates/admin/taskEdit.mako:143
-msgid "OK"
-msgstr "OK"
-
-#: devcontest/controllers/task.py:128 devcontest/templates/task.mako:78
-msgid "The task was solved"
-msgstr "Úloha vyřešena"
-
-#: devcontest/controllers/task.py:130
-#, fuzzy
-msgid "The task was not solved"
-msgstr "Úloha vyřešena"
-
-#: devcontest/controllers/task.py:236
+#: devcontest/controllers/task.py:205
 #, python-format
 msgid "This script need support of *.%s"
 msgstr "Tento skript potřebuje podporu *.%s"
 
 #: devcontest/model/db/runner.py:105
-#, fuzzy
 msgid "Compilation error"
-msgstr "Kompilátor"
+msgstr "Chyba v kompilaci"
 
 #: devcontest/model/db/runner.py:139
 msgid "Time or memory limit exceeded"
@@ -94,6 +70,28 @@ msgstr "Časový nebo paměťový limit byl překročen"
 #: devcontest/model/db/runner.py:157
 msgid "Wrong output"
 msgstr "Špatná odpověď."
+
+#: devcontest/model/db/source.py:101
+msgid "Unknown file type"
+msgstr "Neznámý formát souboru"
+
+#: devcontest/model/db/source.py:113
+#, python-format
+msgid "OK (%s points)"
+msgstr "OK (%s bodů)"
+
+#: devcontest/model/db/source.py:115
+#: devcontest/templates/admin/taskEdit.mako:143
+msgid "OK"
+msgstr "OK"
+
+#: devcontest/model/db/source.py:119 devcontest/templates/task.mako:78
+msgid "The task was solved"
+msgstr "Úloha vyřešena"
+
+#: devcontest/model/db/source.py:121
+msgid "The task was not solved"
+msgstr "Úloha nebyla vyřešena"
 
 #: devcontest/templates/archiv.mako:3 devcontest/templates/archiv.mako:6
 msgid "The Archive"
@@ -255,20 +253,27 @@ msgstr "Uživatelé"
 msgid "Starters"
 msgstr "Spouštěč"
 
-#: devcontest/templates/menu.mako:42
+#: devcontest/templates/menu.mako:38
+#: devcontest/templates/admin/lastSources.mako:3
+#: devcontest/templates/admin/lastSources.mako:6
+#| msgid "sources"
+msgid "Last sources"
+msgstr "Poslední kódy"
+
+#: devcontest/templates/menu.mako:43
 msgid "TOP10"
 msgstr "TOP10"
 
-#: devcontest/templates/menu.mako:43 devcontest/templates/user.mako:3
+#: devcontest/templates/menu.mako:44 devcontest/templates/user.mako:3
 #: devcontest/templates/user.mako:6 devcontest/templates/admin/userEdit.mako:3
 msgid "Profile"
 msgstr "Profil"
 
-#: devcontest/templates/menu.mako:44
+#: devcontest/templates/menu.mako:45
 msgid "Sources"
 msgstr "Mé zdrojáky"
 
-#: devcontest/templates/menu.mako:47
+#: devcontest/templates/menu.mako:48
 msgid "Log out"
 msgstr "Odhlášení"
 
@@ -344,11 +349,13 @@ msgid "Source codes"
 msgstr "Zdrojové kódy"
 
 #: devcontest/templates/sources.mako:11
+#: devcontest/templates/admin/lastSources.mako:11
 #: devcontest/templates/admin/userSources.mako:11
 msgid "Task"
 msgstr "úkol"
 
 #: devcontest/templates/sources.mako:12
+#: devcontest/templates/admin/lastSources.mako:13
 #: devcontest/templates/admin/userSources.mako:12
 msgid "Date"
 msgstr "Datum"
@@ -359,21 +366,22 @@ msgid "Status"
 msgstr "Stav"
 
 #: devcontest/templates/sources.mako:19
+#: devcontest/templates/admin/lastSources.mako:21
 #: devcontest/templates/admin/userSources.mako:19
 msgid "view"
 msgstr "zobrazit"
 
 #: devcontest/templates/sources.mako:25
+#: devcontest/templates/admin/lastSources.mako:36
 #: devcontest/templates/admin/userSources.mako:25
-#, fuzzy
 msgid "Solved"
-msgstr "Řešitelů"
+msgstr "Vyřešeno"
 
 #: devcontest/templates/sources.mako:27
+#: devcontest/templates/admin/lastSources.mako:38
 #: devcontest/templates/admin/userSources.mako:27
-#, fuzzy
 msgid "Not solved"
-msgstr "Úloha vyřešena"
+msgstr "Nevyřešeno"
 
 #: devcontest/templates/task.mako:6 devcontest/templates/admin/taskEdit.mako:7
 msgid "back to the contest"
@@ -410,9 +418,8 @@ msgid "Last version"
 msgstr "Poslední verze"
 
 #: devcontest/templates/task.mako:82
-#, fuzzy
 msgid "Task status"
-msgstr "úkoly"
+msgstr "Stav úlohy"
 
 #: devcontest/templates/top.mako:3 devcontest/templates/top.mako:6
 msgid "Ranking"
@@ -492,6 +499,11 @@ msgstr "Ano"
 #: devcontest/templates/admin/contestTasks.mako:58
 msgid "Save"
 msgstr "Uložit"
+
+#: devcontest/templates/admin/lastSources.mako:12
+#| msgid "Users"
+msgid "User"
+msgstr "Uživatel"
 
 #: devcontest/templates/admin/pageEdit.mako:3
 #: devcontest/templates/admin/pageEdit.mako:11
@@ -595,4 +607,8 @@ msgstr "Úprava profilu"
 #: devcontest/templates/admin/userEdit.mako:26
 msgid "Administrator"
 msgstr "Administrátor"
+
+#: devcontest/templates/admin/viewSource.mako:10
+msgid "re-run this source"
+msgstr "spust znovu tento kód"
 
