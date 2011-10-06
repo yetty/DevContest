@@ -25,7 +25,7 @@ class UserController(BaseController):
 
 	def sources(self):
 		self.auth()
-		
+
 		c.sources = Session.query(Source).filter_by(user_id=self.user.id).all()
 		c.getTaskName = self._getTaskName
 
@@ -43,11 +43,11 @@ class UserController(BaseController):
 
 	def save(self):
 		self.auth()
-	
+
 		id = self.user.id
-		
+
 		user = Session.query(User).filter_by(id=id).first()
-		
+
 		l = request.params
 
 		if l['password'] == l['cpassword'] and l['password']!="":
@@ -73,7 +73,7 @@ class UserController(BaseController):
 
 	def top(self, id=10):
 		self.auth()
-	
+
 		countShow = int(id)
 		users = None
 		if self.user:
@@ -86,7 +86,7 @@ class UserController(BaseController):
 		runningContests = []
 		for contest in contests:
 			runningContests.append(contest.id)
-				
+
 		c.users = []
 		for user in users:
 			count = Session.query(Source).filter_by(user_id=user.id, status=True).filter(not_(Source.contest_id.in_(runningContests))).count()
@@ -110,7 +110,7 @@ class UserController(BaseController):
 		if id=="edit" and param:
 			c.user = Session.query(User).filter_by(id=int(param)).first()
 			return render("admin/userEdit.mako")
-		
+
 		if id=="source_rerun" and param:
 			c.source = Session.query(Source).filter_by(id=int(param)).first()
 			contest = Session.query(Contest).filter_by(id=c.source.contest_id).first()
@@ -122,7 +122,7 @@ class UserController(BaseController):
 			sum = len(result['judges'])
 			for i, result in enumerate(result['judges']):
 				c.source.errors += '<li>%s/%s: %s</li>' % (i+1, sum, result)
-			
+
 			Session.commit()
 			return redirect_to(id="source_view")
 
@@ -139,9 +139,15 @@ class UserController(BaseController):
 			c.taskExists = self._taskExists
 			return render("admin/userSources.mako")
 
+		if id=="last":
+			c.sources = Session.query(Source).order_by(sources_table.c.datetime.desc()).all()
+			c.getTaskName = self._getTaskName
+			c.getUser = self._getUser
+			return render("admin/lastSources.mako")
+
 		c.users = Session.query(User).order_by(users_table.c.lname, users_table.c.fname).all()
 		return render('admin/user.mako')
-	
+
 	def _taskExists(self, id):
 		task = Session.query(Task).filter_by(id=id).first()
 		print task.name
@@ -149,6 +155,11 @@ class UserController(BaseController):
 			return True
 		else:
 			return False
+
+	def _getUser(self, id):
+		user = Session.query(User).filter_by(id=id).first()
+		if user:
+			return user.fname+" "+user.lname
 
 	def _getTaskName(self, id):
 		task = Session.query(Task).filter_by(id=id).first()

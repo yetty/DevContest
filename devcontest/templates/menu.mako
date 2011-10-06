@@ -35,6 +35,7 @@
 					<li><a href=${h.url_for(controller="admin", action="page", id=None, param=None)}>${_('Pages')}</a></li>
 					<li><a href=${h.url_for(controller="admin", action="users", id=None, param=None)}>${_('Users')}</a></li>
 					<li><a href=${h.url_for(controller="admin", action="runners", id=None, param=None)}>${_('Starters')}</a></li>
+					<li><a href=${h.url_for(controller="admin", action="users", id="last", param=None)}>${_('Last sources')}</a></li>
 				</ul>
             </li>
             <li class="break"></li>
@@ -42,7 +43,7 @@
         <li><a href=${h.url_for(controller="user", action="top", id="10", param=None)}>${_('TOP10')}</a></li>
         <li><a href=${h.url_for(controller="user", action="index", id=None, param=None)}>${_('Profile')}</a></li>
         <li><a href=${h.url_for(controller="user", action="sources", id=None, param=None)}>${_('Sources')}</a></li>
-        
+
 		<li class="break"></li>
         <li><a href=${h.url_for(controller="auth", action="signout", id=None, param=None)}>${_('Log out')}</a></li>
     </ul>
