@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2011-10-06 15:05+0200\n"
+"PO-Revision-Date: 2011-10-06 15:37+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -464,7 +464,7 @@ msgstr ""
 #: devcontest/templates/admin/contestList.mako:42
 #: devcontest/templates/admin/contestTasks.mako:23
 #: devcontest/templates/admin/pageList.mako:21
-#: devcontest/templates/admin/runners.mako:23
+#: devcontest/templates/admin/runners.mako:24
 msgid "Create"
 msgstr ""
 
@@ -519,24 +519,32 @@ msgstr ""
 msgid "The Settings of Compilators and Starters"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:20
+#: devcontest/templates/admin/runners.mako:21
 msgid "Language (extension)"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:21
+#: devcontest/templates/admin/runners.mako:22
 msgid "Compilator"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:22
+#: devcontest/templates/admin/runners.mako:23
 msgid "Starter"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:24
+#: devcontest/templates/admin/runners.mako:25
 msgid "for input"
 msgstr ""
 
-#: devcontest/templates/admin/runners.mako:24
+#: devcontest/templates/admin/runners.mako:25
 msgid "for output"
+msgstr ""
+
+#: devcontest/templates/admin/runners.mako:28
+msgid "Examples of runners"
+msgstr ""
+
+#: devcontest/templates/admin/runners.mako:29
+msgid "Little help with settings of runners. Can be depended on the server."
 msgstr ""
 
 #: devcontest/templates/admin/taskEdit.mako:3

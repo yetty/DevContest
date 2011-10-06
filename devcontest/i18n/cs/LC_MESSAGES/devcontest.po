@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: DevContest 0.1\n"
 "Report-Msgid-Bugs-To: juda.kaleta@gmail.cm\n"
 "POT-Creation-Date: 2010-07-12 18:24+0200\n"
-"PO-Revision-Date: 2011-10-06 15:06+0200\n"
+"PO-Revision-Date: 2011-10-06 15:38+0200\n"
 "Last-Translator: Juda Kaleta <juda.kaleta@gmail.com>\n"
 "Language-Team: cs\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
@@ -256,7 +256,6 @@ msgstr "Spouštěč"
 #: devcontest/templates/menu.mako:38
 #: devcontest/templates/admin/lastSources.mako:3
 #: devcontest/templates/admin/lastSources.mako:6
-#| msgid "sources"
 msgid "Last sources"
 msgstr "Poslední kódy"
 
@@ -468,7 +467,7 @@ msgstr "Vyčistit"
 #: devcontest/templates/admin/contestList.mako:42
 #: devcontest/templates/admin/contestTasks.mako:23
 #: devcontest/templates/admin/pageList.mako:21
-#: devcontest/templates/admin/runners.mako:23
+#: devcontest/templates/admin/runners.mako:24
 msgid "Create"
 msgstr "Vytvořit"
 
@@ -501,7 +500,6 @@ msgid "Save"
 msgstr "Uložit"
 
 #: devcontest/templates/admin/lastSources.mako:12
-#| msgid "Users"
 msgid "User"
 msgstr "Uživatel"
 
@@ -524,25 +522,34 @@ msgstr "URL adresa"
 msgid "The Settings of Compilators and Starters"
 msgstr "Nastavení kompilátorů a spouštěčů"
 
-#: devcontest/templates/admin/runners.mako:20
+#: devcontest/templates/admin/runners.mako:21
 msgid "Language (extension)"
 msgstr "Jazyk (přípona)"
 
-#: devcontest/templates/admin/runners.mako:21
+#: devcontest/templates/admin/runners.mako:22
 msgid "Compilator"
 msgstr "Kompilátor"
 
-#: devcontest/templates/admin/runners.mako:22
+#: devcontest/templates/admin/runners.mako:23
 msgid "Starter"
 msgstr "Spouštěč"
 
-#: devcontest/templates/admin/runners.mako:24
+#: devcontest/templates/admin/runners.mako:25
 msgid "for input"
 msgstr "pro vstup"
 
-#: devcontest/templates/admin/runners.mako:24
+#: devcontest/templates/admin/runners.mako:25
 msgid "for output"
 msgstr "pro výstup"
+
+#: devcontest/templates/admin/runners.mako:28
+#| msgid "Example of input"
+msgid "Examples of runners"
+msgstr "Příklad spouštěčů"
+
+#: devcontest/templates/admin/runners.mako:29
+msgid "Little help with settings of runners. Can be depended on the server."
+msgstr "Malá nápověda s nastavováním spouštěčů. Příkazy ale mohou být závislé na vašem serveru."
 
 #: devcontest/templates/admin/taskEdit.mako:3
 msgid "Editation of task"
