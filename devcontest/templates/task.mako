@@ -3,7 +3,8 @@
 <%def name="title()">${c.task.name}</%def>
 
 <%def name="body()">
-	<a href=${h.url_for(controller="contest", action="tasks", id=c.task.contest_id)} class="back">${_('back to the contest')}</a>
+	<a href=${h.url_for(controller="contest", action="tasks",
+	id=c.task.contest_id, param=None)} class="back">${_('back to the contest')}</a>
 	<h2>${c.task.name}</h2>
 	${c.task.description | n}
 
@@ -24,11 +25,11 @@ from pygments.formatters import HtmlFormatter
 	% if not c.status or request.environ.get('REMOTE_USER').admin:
 	 ${h.form_start(h.url_for(param="upload"), method="post", multipart=True)}
 	 ${h.field(_("Source file"), h.file(name="source"))}
-	
-	 
+
+
 	 <tr class="field">
 	 	<td class="label">
-			<span style="visibility: hidden;">*</span>	
+			<span style="visibility: hidden;">*</span>
 			<label>${_("File type")}:</label>
 		</td>
 		<td>
@@ -55,7 +56,7 @@ from pygments.formatters import HtmlFormatter
 				LANG="${request.cookies['source_type']}";</script>
 				<%include file="/edit.mako"/>
 			% endif
-			
+
 			<textarea name="code" id="code" cols=60 rows=20>
 			% if c.source:
 ${c.source.source}
@@ -63,10 +64,10 @@ ${c.source.source}
 			</textarea>
 		</td>
 	</tr>
-	 
+
 	 ${h.field("", h.submit("submit", _("Submit")))}
-	
-	
+
+
 	${h.form_end()}
 	% endif
 
@@ -80,11 +81,11 @@ ${c.source.source}
 
 	% if c.result:
 		${_('Task status')}: ${c.result['message']} <br>
-		
+
 		% if c.contest.mode == 2: # codex
 			${_('Points')}: ${c.result['points']} <br>
  		% endif
-		
+
 	% endif
 
 	% if c.source.errors:
