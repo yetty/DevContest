@@ -26,11 +26,11 @@
 			</td>
 		</tr>
 		<tr>
-			<td>		
+			<td>
 			${h.submit("submit", _("Submit"))}
 			</td>
 		</tr>
-		
+
 		<tr><td colspan=2><hr></td></tr>
 
 		<script>
@@ -46,7 +46,7 @@
 			% endif
 
 			file_in = document.createElement('td');
-			file_in.innerHTML = '<input type="file" name="file_in['+id+']">';
+			file_in.innerHTML = '<input onchange="javascript: addJudgeAuto('+id+');" type="file" name="file_in['+id+']">';
 			tr.appendChild(file_in);
 
 			time_limit = document.createElement('td');
@@ -65,8 +65,14 @@
 
 			judges.appendChild(htmlJudge(id));
 			id++;
-			
+
 			document.getElementById('count').value = id;
+		}
+
+		function addJudgeAuto(id) {
+			if (id + 1 == document.getElementById('count').value) {
+				addJudge();
+			}
 		}
 		</script>
 
@@ -79,7 +85,7 @@
 				</a></td>
 			</tr>
 		% endif
-		
+
 		<tr>
 			<td>${_('Source file:')}</td>
 			<td><input type="file" name="source"></td>
@@ -91,7 +97,7 @@
 					% if c.task.source:
 						<option value="${c.task.filetype}">${c.task.filetype}</option>
 					% endif
-					
+
 					% for runner in c.runners:
 						<option value="${runner.lang}">${_(runner.lang)}</option>
 					% endfor
@@ -121,7 +127,7 @@
 				% for i, judge in enumerate(c.task.judges):
 					<tr>
 						<td class="ns">
-							<img style="cursor:pointer;" src="/remove.png" alt="${_('Remove')}" 
+							<img style="cursor:pointer;" src="/remove.png" alt="${_('Remove')}"
 							title="${_('Remove')}"
 							ondblclick='remove("${h.url_for(param="deljudge", num=judge.id)}");'>
 						</td>
@@ -162,10 +168,10 @@
 			</td>
 	</table>
 	<script>
-	
+
 	var id = ${i}+1;
 	addJudge();
-	
+
 	</script>
 	${h.submit("submit", _("Submit"))}
 	${h.form_end()}
