@@ -28,10 +28,12 @@ class TaskController(BaseController):
 	def show(self, id, param=None):
 		self.auth()
 		self._load(id)
-		
+
 		c.task = self.task
+
 		c.runners = Session.query(Runner).all()
 		c.contest = self.contest
+		c.has_pdf = self.task.hasPDF()
 
 		self.source = Session.query(Source).filter_by(user_id=self.user.id, task_id=id).first()
 		if self.source:
@@ -42,18 +44,20 @@ class TaskController(BaseController):
 			if self._upload():
 				c.result = self._runUserScript()
 				self.source.status = c.result['status']
-				
+
 				if int(self.source.points) < int(c.result['points']):
 					self.source.points = c.result['points']
-				
+
 				err = ''
 				sum = len(c.result['judges'])
 				for i, result in enumerate(c.result['judges']):
 					err += '<li>%s/%s: %s</li>' % (i+1, sum, result)
-				
+
 				self.source.errors = err
 				self.source.commit()
-		
+		elif param=="pdf":
+			return self.pdf()
+
 		c.source = self.source
 		if c.source:
 			c.status = c.source.status
@@ -63,6 +67,17 @@ class TaskController(BaseController):
 		self.task.description = self.task.description.replace("\n", "<br>").replace("    ", "&nbsp;"*4).strip("<br>")
 
 		return render("task.mako")
+
+	def pdf(self):
+		name = str(self.task.id)+'.pdf'
+		size = self.task.sizePDF()
+		f = self.task.getPDF()
+
+		response.headers['Content-Type'] = "text/plain; name=%s" % (name)
+		response.headers['Content-length'] = "%s" % (size)
+		response.headers['Content-Disposition'] = "attachment; filename= %s" %(name)
+		shutil.copyfileobj(f, response)
+		return
 
 	def _upload(self):
 		if request.POST['type']:
@@ -80,13 +95,13 @@ class TaskController(BaseController):
 		except:
 			if request.POST['code'] != '' and request.POST['type'] != '*':
 				fileName = b16encode(request.POST['code'])[:16]+"."+request.POST['type']
-				fileValue = request.POST['code'] 
+				fileValue = request.POST['code']
 				size = len(fileValue)
 			else:
 				return False
 
 
-		if size>1024*10: # 10 kB 
+		if size>1024*10: # 10 kB
 			return False
 
 		if not self.source:
@@ -103,13 +118,13 @@ class TaskController(BaseController):
 
 	def admin(self, id=None, param=None, num=None):
 		self.auth(admin=True)
-	
+
 		if param=="deljudge" and num is not None:
 			Session.execute(judges_table.delete().where(judges_table.c.id==int(num)))
 			Session.commit()
-		
-		self._load(id)		
-		
+
+		self._load(id)
+
 		if param=="download":
 			if num is None:
 				download = self.task.source
@@ -124,7 +139,7 @@ class TaskController(BaseController):
 
 			response.headers['Content-Type'] = "text/plain; name=%s" % (name)
 			response.headers['Content-length'] = "%s" % (size)
-			response.headers['Content-Disposition'] = "attachment; filename= %s" %(name) 
+			response.headers['Content-Disposition'] = "attachment; filename= %s" %(name)
 			shutil.copyfileobj(file, response)
 			return
 
@@ -166,11 +181,11 @@ class TaskController(BaseController):
 		self.task.description = request.POST['description']
 		self.task.example_in = request.POST['example_in']
 		self.task.example_out = request.POST['example_out']
-		
-		self.task.filetype = request.POST['filetype']	
+
+		self.task.filetype = request.POST['filetype']
 		if request.POST['source'] != '':
 			self.task.saveSource(request.POST['source'])
-	
+
 		for i in range(int(request.POST['count'])):
 			if self.contest.mode == 2: # codex
 				points = request.POST['points['+str(i)+']']
@@ -190,6 +205,7 @@ class TaskController(BaseController):
 				judge.memory_limit = request.POST['memory_limit['+str(i)+']']
 
 		Session.commit()
+		self.task.createPDF()
 		self.task.load()
 
 	def _run(self, file, lang, fileIn=None, i=None, nolimit=False):

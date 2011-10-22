@@ -3,8 +3,14 @@
 <%def name="title()">${c.task.name}</%def>
 
 <%def name="body()">
+	<span class="back"
 	<a href=${h.url_for(controller="contest", action="tasks",
-	id=c.task.contest_id, param=None)} class="back">${_('back to the contest')}</a>
+	id=c.task.contest_id, param=None)}>${_('back to the contest')}</a>
+
+	% if c.has_pdf:
+		| <a href=${h.url_for(param="pdf")}>${_('download as pdf')}</a>
+	% endif
+	</span>
 	<h2>${c.task.name}</h2>
 	<div id="task">${c.task.description | n}</div>
 

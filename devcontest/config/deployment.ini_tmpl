@@ -30,15 +30,19 @@ app_instance_uuid = {248e4c01-3440-49bb-8af9-e1378966e931}
 cache_dir = %(here)s/data
 page_dir = %(here)s/data/pages
 task_dir = %(here)s/data/tasks
-sources_dir = %(here)s/data/sources/
+sources_dir = %(here)s/data/sources
 runner_tmp_dir = %(here)s/data/tmp
-judges_dir = %(here)s/data/judges/
+judges_dir = %(here)s/data/judges
+pdf_dir = %(here)s/data/pdf
+
+# latex
+latex_template = %(here)s/task.tex
 
 # Setting of judges
 # Main time limit
 judge_max_time = 10
 # Main memory limit
-judge_max_memory = 104576 
+judge_max_memory = 104576
 
 
 # If you'd like to fine-tune the individual locations of the cache data dirs

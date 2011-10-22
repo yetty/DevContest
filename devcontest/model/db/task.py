@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
-import os
+import os, subprocess, codecs
 import sqlalchemy as sa
 from sqlalchemy import orm
 
@@ -48,13 +48,13 @@ class Judge(object):
 			os.mkdir(os.path.join(self.path, str(self.task_id)))
 
 		return os.path.join(self.path, str(self.task_id), str(self.id))
-	
+
 	def size(self):
 		return os.path.getsize(self._getFileName())
 
 	def getOutputFile(self):
 		fileName = self._getFileName()+".output"
-		
+
 		if not os.path.exists(fileName):
 			task = Session.query(Task).filter_by(id=self.task_id).one()
 			runner = Session.query(Runner).filter_by(lang=task.filetype).one()
@@ -63,7 +63,7 @@ class Judge(object):
 				os.path.join(config.get('task_dir'), str(task.contest_id), str(task.id)+"."+task.filetype+".out.output"),
 				fileName
 			)
-		
+
 		return open(fileName, 'r')
 
 	def getFile(self):
@@ -78,7 +78,7 @@ class Judge(object):
 
 	def __unicode__(self):
 		return "<Judge("+str(self.id)+": "+self.points+")"
-	
+
 	__str__ = __unicode__
 
 class Task(object):
@@ -117,6 +117,45 @@ class Task(object):
 	def saveSource(self, file):
 		f = open(self._getFileName(), 'w')
 		f.write(file.value)
+
+	def createPDF(self):
+		path = config.get('latex_template')
+		template = codecs.open(path, 'r', 'utf-8').read()
+
+		print type(template)
+
+		template = template.replace('__NAME__', self.name)
+		template = template.replace('__DESCRIPTION__', self.description)
+		template = template.replace('__EXAMPLE_IN__', self.example_in)
+		template = template.replace('__EXAMPLE_OUT__', self.example_out)
+
+		tex_file = os.path.join(config.get('pdf_dir'), str(self.id)+".tex")
+		tex = codecs.open(tex_file, 'w', 'utf-8')
+		tex.write(template)
+		tex.close()
+
+		try:
+			run = subprocess.call([
+				'pdflatex', '--synctex=1', '-interaction=batchmode',
+				'-output-directory=%s' % config.get('pdf_dir'),
+				tex_file])
+		except:
+			return False
+		return True
+
+	def _pdf(self):
+		return os.path.join(config.get('pdf_dir'), str(self.id)+'.pdf')
+
+	def sizePDF(self):
+		return os.path.getsize(self._pdf())
+
+	def getPDF(self):
+		return open(self._pdf(), 'r')
+
+	def hasPDF(self):
+		if os.path.isfile(self._pdf()):
+			return True
+		return False
 
 	def load(self):
 		if os.path.exists(self._getFileName()):
