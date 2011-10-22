@@ -7,6 +7,9 @@
     <link rel="shortcut icon" href="/icon.png">
     ${h.stylesheet_link("/style.css")}
     ${h.stylesheet_link("/highlighter.css")}
+
+	${h.javascript_link("/jsmath/jsMath.js")}
+	${h.javascript_link("/jsmath.js")}
 </head>
 <body>
 <script language="Javascript" type="text/javascript">

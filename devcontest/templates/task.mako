@@ -6,7 +6,7 @@
 	<a href=${h.url_for(controller="contest", action="tasks",
 	id=c.task.contest_id, param=None)} class="back">${_('back to the contest')}</a>
 	<h2>${c.task.name}</h2>
-	${c.task.description | n}
+	<div id="task">${c.task.description | n}</div>
 
 	<hr style="visibility:hidden;">
 
