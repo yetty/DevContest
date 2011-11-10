@@ -3,19 +3,20 @@
 <%def name="title()">${_('The List of Tasks')}</%def>
 
 <%def name="body()">
+	<a href=${h.url_for(controller="admin", action="contest", id=None, param=None)} class="back">${_('back to the contest list')}</a>
 	<h2>${_('The List of Tasks')}</h2>
 	<table class="dark">
 	% for task in c.list:
 			<tr>
 				<td class="ns"><a href=${h.url_for(action="task", id=task.id)}><img src="/edit.png" alt="${_('Edit')}"></a></td>
-				<td>${task.name}</td>
+				<td><a href=${h.url_for(action="task", id=task.id)}>${task.name}</a></td>
 				<td class="ns">
 					<img style="cursor:pointer;" ondblclick='remove("${h.url_for(action="task", id=task.id, param="remove")}");' src="/remove.png" alt="${_('Remove')}">
 				</td>
 			</tr>
 	%endfor
 	</table>
-	
+
 	<br>
 
 	 ${h.form_start(h.url_for(param="create_task"), method="post")}
@@ -47,10 +48,10 @@
 		</tr>
 		<tr>
 			<td>${_('Show results:')}</td>
-			<td><input type="checkbox" name="results" value="true" 
+			<td><input type="checkbox" name="results" value="true"
 			%if c.contest.results:
 				checked
-			%endif			
+			%endif
 			> ${_('Yes')}</td>
 		</tr>
 

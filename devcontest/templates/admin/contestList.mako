@@ -13,7 +13,7 @@
 					<img src="/running.gif" alt="${_('is running')}">
 					<strong>
 				% endif
-					${contest.name}
+					<a href=${h.url_for(id=contest.id)}>${contest.name}</a>
 				% if contest.is_running:
 					</strong>
 				% endif
