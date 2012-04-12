@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from devcontest.settings.base import *
+from settings.base import *
 
 try:
-	from devcontest.settings.local import *
+	from settings.local import *
 except ImportError:
 	pass
