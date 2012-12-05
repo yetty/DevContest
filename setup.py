@@ -6,7 +6,7 @@ except ImportError:
     from setuptools import setup, find_packages
 
 os_files = [
-	 ('/etc/init.d',['bin/devcontestd']),
+    ('/etc/init.d',['bin/devcontestd']),
 ]
 
 setup(
@@ -22,6 +22,7 @@ setup(
         "routes==1.11",
         "SQLAlchemy>=0.5",
         "Pygments>=1.3.0",
+        "webob==1.0.8",
     ],
     setup_requires=["PasteScript>=1.6.3"],
     packages=find_packages(exclude=['ez_setup']),
