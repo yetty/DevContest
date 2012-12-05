@@ -16,16 +16,17 @@ def setup_app(command, conf, vars):
 	meta.metadata.create_all(bind=meta.engine)
 	log.info("Successfully set up.")
 
-	admin = {}
-	admin['login'] = "admin"
-	# through model.db.user.hash()
-	admin['password'] = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
-	admin['mail'] = ""
-	admin['fname'] = "Administrator"
-	admin['lname'] = ""
-	admin['class'] = ""
-	admin['rank'] = 100
-	admin['admin'] = True
+	admin = {
+		'login': 'admin',
+		# through model.db.user.hash()
+		'password': '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918',
+		'mail': '',
+		'fname': 'Administrator',
+		'lname': '',
+		'class': '',
+		'rank': 100,
+		'admin': True,
+	}
 
 	log.info("Adding front page data...")
 	user = model.User(
