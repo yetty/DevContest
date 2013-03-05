@@ -26,7 +26,7 @@
 				% endif
 				</td>
 				<td class="ns">
-					<img style="cursor:pointer;" ondblclick='remove("${h.url_for(id=contest.id, param="remove")}");' src="/remove.png" alt="${_('Remove')}" title="${_('Remove')}">
+					<img style="cursor:pointer;" ondblclick='to_remove("${h.url_for(id=contest.id, param="remove")}");' src="/remove.png" alt="${_('Remove')}" title="${_('Remove')}">
 				</td>
 				<td class="ns">
 					% if not contest.is_running and contest.timeStart!=None:

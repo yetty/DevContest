@@ -129,7 +129,7 @@
 						<td class="ns">
 							<img style="cursor:pointer;" src="/remove.png" alt="${_('Remove')}"
 							title="${_('Remove')}"
-							ondblclick='remove("${h.url_for(param="deljudge", num=judge.id)}");'>
+							ondblclick='to_remove("${h.url_for(param="deljudge", num=judge.id)}");'>
 						</td>
 					% if c.contest.mode == 2: # codex
 						<td><input type="text" name="points[${i}]"

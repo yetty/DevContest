@@ -13,7 +13,7 @@
 </head>
 <body>
 <script language="Javascript" type="text/javascript">
-function remove(url) {
+function to_remove(url) {
 	window.location.href = url;
 }
 </script>

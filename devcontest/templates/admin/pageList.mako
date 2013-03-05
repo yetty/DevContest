@@ -9,7 +9,7 @@
 			<tr>
 				<td class="ns"><a href=${h.url_for(id=page)}><img src="/edit.png" alt="${_('Edit')}"></a></td>
 				<td>${page}</td>
-				<td class="ns"><img ondblclick='remove("${h.url_for(id=page,
+				<td class="ns"><img ondblclick='to_remove("${h.url_for(id=page,
 				param="remove")}");' src="/remove.png" alt="${_('Remove')}"
 				style="cursor:pointer;" ></td>
 			</tr>
