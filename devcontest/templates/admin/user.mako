@@ -24,7 +24,7 @@
             &nbsp;${b.fname + ' ' + b.lname}</td>
             <td style="text-align:center;">${b.cls}</td>
 			<td class="ns">
-				<img style="cursor:pointer;" ondblclick='remove("${h.url_for(id="remove", param=b.id)}");' src="/remove.png" alt="${_('remove')}">
+				<img style="cursor:pointer;" ondblclick='to_remove("${h.url_for(id="remove", param=b.id)}");' src="/remove.png" alt="${_('remove')}">
 			</td>
         </tr>
     % endfor

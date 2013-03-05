@@ -11,7 +11,7 @@
 				<td class="ns"><a href=${h.url_for(action="task", id=task.id)}><img src="/edit.png" alt="${_('Edit')}"></a></td>
 				<td><a href=${h.url_for(action="task", id=task.id)}>${task.name}</a></td>
 				<td class="ns">
-					<img style="cursor:pointer;" ondblclick='remove("${h.url_for(action="task", id=task.id, param="remove")}");' src="/remove.png" alt="${_('Remove')}">
+					<img style="cursor:pointer;" ondblclick='to_remove("${h.url_for(action="task", id=task.id, param="remove")}");' src="/remove.png" alt="${_('Remove')}">
 				</td>
 			</tr>
 	%endfor
