@@ -11,7 +11,7 @@
 				<td><strong>${item.lang}</strong></td>
 				<td>${item.compile}</td>
 				<td>${item.run}</td>
-				<td class="ns"><img style="cursor:pointer;" src="/remove.png" ondblclick='remove("${h.url_for(id=item.id, param="remove")}");' alt="${_('Remove')}"></td>
+				<td class="ns"><img style="cursor:pointer;" src="/remove.png" ondblclick='to_remove("${h.url_for(id=item.id, param="remove")}");' alt="${_('Remove')}"></td>
 			</tr>
 	%endfor
 	</table>
