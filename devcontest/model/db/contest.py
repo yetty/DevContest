@@ -31,7 +31,7 @@ class Contest(object):
 
 	def start(self):
 		self.is_running = True
-		Session.execute(sources_table.delete().where(sources_table.c.contest_id==self.id))
+		#Session.execute(sources_table.delete().where(sources_table.c.contest_id==self.id))
 		self.timeStart = self.getTimeStart()
 
 	def stop(self):
