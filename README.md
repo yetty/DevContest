@@ -2,6 +2,12 @@
 
 DevContest is web server based on Pylons framework and Python. This allows you to create a competition for students of informatics. The only thing you need is a Linux server with the necessary compilers. In the administration system you can set the language, what you want. The base is the default C, C++, Java, Pascal, Python, PHP and Ruby.
 
+
+## STATUS: DEAD. ##
+
+Not really maintained anymore. Sorry.
+
+
 ## Install from sources ##
 
     git clone https://github.com/yetty/DevContest.git DevContest
